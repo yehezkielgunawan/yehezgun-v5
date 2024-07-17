@@ -7,4 +7,5 @@ projectHero: "/projects/master-thesis/hero.png"
 isFeatured: true
 stacks: 
     - python
+test: ""
 ---
