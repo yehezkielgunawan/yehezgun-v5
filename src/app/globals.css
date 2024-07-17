@@ -6,4 +6,7 @@
   main {
     @apply container mx-auto mt-8;
   }
+  article {
+    @apply prose max-w-none;
+  }
 }
