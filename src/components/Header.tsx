@@ -1,7 +1,7 @@
 "use client";
 import useIsDark from "@/hooks/useIsDark";
-import { FaGithub } from "react-icons/fa";
 import { IoMoon, IoSunny } from "react-icons/io5";
+import { menuList } from "@/constants/menuList";
 
 const Header = () => {
 	const { setIsDark } = useIsDark();
@@ -11,22 +11,27 @@ const Header = () => {
 			<nav className="container mx-auto">
 				<div className="navbar px-0">
 					<div className="flex-1">
-						<a href="/">NextJS 14 Template</a>
+						<a href="/" className="font-bold">
+							yehezgun.com
+						</a>
 					</div>
 					<div className="flex-none">
+						<ul className="menu menu-horizontal hidden md:flex">
+							{menuList.map((menu, index) => (
+								<li key={`${menu.title}${index}`}>
+									<a
+										href={menu.url}
+										className="tooltip tooltip-bottom"
+										data-tip={menu.title}
+									>
+										<menu.icon size={18} />
+									</a>
+								</li>
+							))}
+						</ul>
 						<ul className="menu menu-horizontal">
 							<li>
-								<a
-									href="https://github.com/yehezkielgunawan/next14-starter"
-									target="_blank"
-									className="btn btn-ghost btn-sm"
-									rel="noreferrer"
-								>
-									<FaGithub size={20} />
-								</a>
-							</li>
-							<li>
-								<label className="swap swap-rotate btn btn-ghost btn-sm">
+								<label className="swap swap-rotate rounded-lg">
 									<input
 										type="checkbox"
 										className="theme-controller"
@@ -34,8 +39,8 @@ const Header = () => {
 										onChange={(e) => setIsDark(e.target.checked)}
 									/>
 
-									<IoSunny size={20} className="swap-off" />
-									<IoMoon size={20} className="swap-on" />
+									<IoSunny size={18} className="swap-off" />
+									<IoMoon size={18} className="swap-on" />
 								</label>
 							</li>
 						</ul>
