@@ -13,14 +13,14 @@ export const menuList = [
 		url: "/projects",
 	},
 	{
-		icon: FaStickyNote,
-		title: "TIL",
-		url: "/til",
-	},
-	{
 		icon: IoPencil,
 		title: "Blog",
 		url: "/blog",
+	},
+	{
+		icon: FaStickyNote,
+		title: "TIL",
+		url: "/til",
 	},
 	{
 		icon: IoPerson,
