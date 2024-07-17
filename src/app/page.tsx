@@ -1,7 +1,7 @@
 export default function Home() {
 	return (
 		<main>
-			<article className="prose lg:prose-lg max-w-none">
+			<article>
 				<h1>Hello world!</h1>
 				<code>
 					This is just a starter template, made using Next.js app dir +
