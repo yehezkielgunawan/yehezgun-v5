@@ -17,7 +17,7 @@ const Header = () => {
 	}, []);
 
 	return (
-		<header className="fixed top-0 w-full bg-base-100/20 bg-clip-padding backdrop-blur-sm backdrop-filter">
+		<header className="fixed top-0 z-30 w-full bg-base-100/80 bg-clip-padding backdrop-blur-sm backdrop-filter">
 			<nav className="container mx-auto lg:max-w-5xl">
 				<div className="navbar px-0">
 					<div className="flex-1">
