@@ -1,3 +1,4 @@
+import GeneralWrapper from "@/components/GeneralWrapper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,12 +8,10 @@ export const metadata: Metadata = {
 
 const ProjectPage = () => {
 	return (
-		<main>
-			<article>
-				<h1>Projects</h1>
-				<p>Here I will share some of the projects I have worked on.</p>
-			</article>
-		</main>
+		<GeneralWrapper>
+			<h1>Projects</h1>
+			<p>Here I will share some of the projects I have worked on.</p>
+		</GeneralWrapper>
 	);
 };
 

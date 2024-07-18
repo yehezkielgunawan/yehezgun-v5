@@ -1,23 +1,49 @@
+import GeneralWrapper from "@/components/GeneralWrapper";
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Home() {
 	return (
-		<main>
-			<article>
-				<h1>Hello world!</h1>
-				<code>
-					This is just a starter template, made using Next.js app dir +
-					Typescript + Tailwind CSS (with Daisy UI).
-				</code>
-				<div className="mt-12 flex w-full items-center justify-center">
-					<a
-						href="https://github.com/new?template_name=next14-starter&template_owner=yehezkielgunawan"
-						target="_blank"
-						className="btn"
-						rel="noreferrer"
-					>
-						Generate Project using this template
-					</a>
+		<GeneralWrapper>
+			<section className="flex flex-wrap-reverse items-center justify-center gap-12 md:flex-nowrap md:justify-between">
+				<div className="space-y-4">
+					<h1>Hello! I'm Yehez 🙌</h1>
+					<p>
+						Mainly work in React & Typescript Ecosystem as a frontend engineer,
+						and write to remind myself about things that I discovered before.
+					</p>
+					<div className="flex flex-wrap items-center gap-4">
+						<Link
+							href="/projects"
+							className="btn rounded-lg bg-base-300 font-bold"
+						>
+							Projects
+						</Link>
+						<Link
+							href="/about"
+							className="btn rounded-lg bg-base-300 font-bold"
+						>
+							About Me
+						</Link>
+						<a
+							href="/resume"
+							className="btn rounded-lg bg-base-300 font-bold"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Resume
+						</a>
+					</div>
 				</div>
-			</article>
-		</main>
+				<Image
+					src="/yehez-icon.svg"
+					width={240}
+					height={240}
+					alt="icon"
+					priority={true}
+					className="rounded-full"
+				/>
+			</section>
+		</GeneralWrapper>
 	);
 }
