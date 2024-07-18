@@ -4,10 +4,16 @@ import { menuList } from "@/constants/menuList";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const Header = () => {
 	const pathname = usePathname();
-	const { setTheme } = useTheme();
+	const { setTheme, theme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<header className="bg-base-200">
@@ -37,19 +43,25 @@ const Header = () => {
 						</ul>
 						<ul className="menu menu-horizontal">
 							<li>
-								<label className="swap swap-rotate rounded-lg">
-									<input
-										type="checkbox"
-										className="theme-controller"
-										value="dim"
-										onChange={(e) =>
-											setTheme(e.target.checked ? "dim" : "nord")
-										}
-									/>
+								{mounted ? (
+									<label className={clsx("swap swap-rotate rounded-lg")}>
+										<input
+											checked={theme === "dim"}
+											type="checkbox"
+											className="theme-controller"
+											value="dim"
+											onChange={(e) =>
+												setTheme(e.target.checked ? "dim" : "nord")
+											}
+										/>
 
-									<IoSunny size={18} className="swap-off" />
-									<IoMoon size={18} className="swap-on" />
-								</label>
+										<IoMoon size={18} className="swap-on" />
+
+										<IoSunny size={18} className="swap-off" />
+									</label>
+								) : (
+									<div className="skeleton h-[34px] w-[50px] md:h-8" />
+								)}
 							</li>
 						</ul>
 					</div>
