@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
 	const pathname = usePathname();
@@ -28,7 +29,7 @@ const Header = () => {
 						<ul className="menu menu-horizontal hidden md:flex">
 							{menuList.map((menu, index) => (
 								<li key={`${menu.title}${index}`}>
-									<a
+									<Link
 										href={menu.url}
 										className={clsx(
 											"tooltip tooltip-bottom",
@@ -37,7 +38,7 @@ const Header = () => {
 										data-tip={menu.title}
 									>
 										<menu.icon size={18} />
-									</a>
+									</Link>
 								</li>
 							))}
 						</ul>
