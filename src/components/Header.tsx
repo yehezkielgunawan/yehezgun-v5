@@ -1,10 +1,13 @@
 "use client";
-import useIsDark from "@/hooks/useIsDark";
 import { IoMoon, IoSunny } from "react-icons/io5";
 import { menuList } from "@/constants/menuList";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 const Header = () => {
-	const { setIsDark } = useIsDark();
+	const pathname = usePathname();
+	const { setTheme } = useTheme();
 
 	return (
 		<header className="bg-base-200">
@@ -21,7 +24,10 @@ const Header = () => {
 								<li key={`${menu.title}${index}`}>
 									<a
 										href={menu.url}
-										className="tooltip tooltip-bottom"
+										className={clsx(
+											"tooltip tooltip-bottom",
+											pathname === menu.url && "active",
+										)}
 										data-tip={menu.title}
 									>
 										<menu.icon size={18} />
@@ -36,7 +42,9 @@ const Header = () => {
 										type="checkbox"
 										className="theme-controller"
 										value="dim"
-										onChange={(e) => setIsDark(e.target.checked)}
+										onChange={(e) =>
+											setTheme(e.target.checked ? "dim" : "nord")
+										}
 									/>
 
 									<IoSunny size={18} className="swap-off" />
