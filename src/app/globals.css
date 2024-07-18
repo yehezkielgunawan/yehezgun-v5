@@ -4,7 +4,7 @@
 
 @layer base {
   main {
-    @apply container mx-auto mt-8;
+    @apply container lg:max-w-5xl mx-auto mt-24;
   }
   article {
     @apply prose max-w-none;
