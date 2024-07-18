@@ -11,6 +11,7 @@ const projects = defineCollection({
 		projectHero: z.string(),
 		stacks: z.array(z.string()),
 		isFeatured: z.boolean(),
+		date: z.string(),
 	}),
 });
 
