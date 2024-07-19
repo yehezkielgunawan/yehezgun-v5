@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const ProjectPage = () => {
 	return (
 		<GeneralWrapper>
-			<section className="space-y-2">
+			<section>
 				<h1>Projects</h1>
 				<p>Here I will share some of the projects I have worked on.</p>
 			</section>
