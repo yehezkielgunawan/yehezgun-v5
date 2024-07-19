@@ -1,5 +1,6 @@
 "use client";
 
+import { badgeColor } from "@/constants/badgeColor";
 import { formatDate } from "@/services/blogs";
 import clsx from "clsx";
 import Image from "next/image";
@@ -18,10 +19,6 @@ type BlogWrapperProps = {
 
 const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 	const [searchKeyword, setSearchKeyword] = useState<string>("");
-	const badgeColor: { [key: string]: string } = {
-		Random: "badge badge-secondary",
-		Technical: "badge badge-accent",
-	};
 
 	const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchKeyword(e.target.value);
