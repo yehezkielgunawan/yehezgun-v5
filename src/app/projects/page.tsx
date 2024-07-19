@@ -48,6 +48,8 @@ const ProjectPage = () => {
 											width={72}
 											height={72}
 											className="m-0"
+											priority={true}
+											blurDataURL="/stacks/light/nextjs.svg"
 										/>
 									</div>
 									<div className="flex items-center gap-4">
@@ -59,6 +61,8 @@ const ProjectPage = () => {
 												width={32}
 												height={32}
 												className="m-0"
+												priority={true}
+												blurDataURL="/stacks/light/nextjs.svg"
 											/>
 										))}
 									</div>
@@ -98,6 +102,8 @@ const ProjectPage = () => {
 											width={72}
 											height={72}
 											className="m-0"
+											priority={true}
+											blurDataURL="/stacks/light/nextjs.svg"
 										/>
 									</div>
 									<div className="flex items-center gap-4">
@@ -109,6 +115,8 @@ const ProjectPage = () => {
 												width={32}
 												height={32}
 												className="m-0"
+												priority={true}
+												blurDataURL="/stacks/light/nextjs.svg"
 											/>
 										))}
 									</div>
