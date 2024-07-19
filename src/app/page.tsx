@@ -70,6 +70,7 @@ export default function Home() {
 											height={320}
 											alt={project.name}
 											className="h-full w-full rounded-lg object-cover blur-none brightness-90 transition duration-300 hover:outline hover:outline-secondary hover:blur-none md:blur-[2px]"
+											priority={true}
 										/>
 
 										<figcaption className="-translate-x-1/2 absolute bottom-0 left-1/2 w-full text-center font-bold text-base-content">
