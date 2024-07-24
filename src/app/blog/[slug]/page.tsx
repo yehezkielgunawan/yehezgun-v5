@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 import { MDXContent } from "@content-collections/mdx/react";
+import { CustomTheme } from "@/components/CustomTheme";
 
 const SingeBlogPage = ({
 	params,
@@ -23,33 +24,19 @@ const SingeBlogPage = ({
 					src={blogData.coverImg}
 					width={500}
 					height={300}
-					className="aspect-video w-full rounded-lg"
+					className="aspect-video h-auto w-full rounded-lg object-fill"
 				/>
 				<h1>{blogData.title}</h1>
 				<div className="flex items-center gap-4">
 					<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
-					<h5 className={clsx("badge", badgeColor[blogData.category])}>
+					<h5 className={clsx("badge shadow", badgeColor[blogData.category])}>
 						{blogData.category}
 					</h5>
 				</div>
 			</section>
 			<hr />
 			<section className="mt-6">
-				<MDXContent
-					code={blogData.mdx}
-					components={{
-						a: ({ href, children }) => (
-							<a
-								href={href}
-								className="link hover:decoration-dashed hover:underline-offset-2"
-								target={String(href).startsWith("http") ? "_blank" : "_self"}
-								rel="noreferrer"
-							>
-								{children}
-							</a>
-						),
-					}}
-				/>
+				<MDXContent code={blogData.mdx} components={CustomTheme} />
 			</section>
 			<Link
 				href="/blog"
