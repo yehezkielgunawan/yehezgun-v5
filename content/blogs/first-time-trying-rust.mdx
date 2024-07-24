@@ -1,0 +1,209 @@
+---
+title: "First Time Trying Rust"
+summary: "A quick testimony of trying Rust for the first time."
+coverImg: "/blogs/first-time-trying-rust/cover.png"
+date: "2024-06-22"
+category: "Random"
+---
+
+> This is not a tutorial blog. It's just a spontaneous testimony after tried Rust for the first time as an amateur😅
+
+# Introduction
+
+It started when I knew [Mustafa on Twitter](https://twitter.com/mustafasegf). He's actually still a final-year student from Computer Science Major at Universitas Indonesia, but I like his explanation regarding software engineering things on his Twitter account. We met offline for the first time in November 2023 at Tjikini Lima Cafe when we were working from the cafe together.
+
+He introduced Rust to me through Monad concept explanation when we were discussing it at Tjikini Lima Cafe before. I knew it was a hard topic for me because I usually code frontend things and never go down to the lower level before. This is the beginning for me to learn low-level programming concepts and even try Rust for the first time.
+
+My learning journey is still ongoing until now. There's still a lot of things that I need to understand. But here's my current learning progress on Rust.
+
+# Installation
+
+The complete installation guide can be seen at [Rust Official Docs](https://doc.rust-lang.org/book/ch01-01-installation.html). If you want to try it, you can follow the installation guide based on your OS.
+
+In my case, I use Windows 11 as my main OS currently. Honestly, it can take time because it requires other Windows tools like Visual Studio 2022, Windows 11 SDK, and the language pack. Somehow, some error occurred in my case, and of course, it forced me to do the reinstallation process several times😅.
+
+I suggest you use WSL if you want to install Rust on your Windows PC/laptop. You can just run the terminal command and just follow the guide (if any).
+
+```bash
+$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+
+# A Little About Cargo
+
+As a front-end engineer, I usually use NPM or Yarn as the package manager for my web projects/tasks. Rust uses Cargo as its package manager. I can use Cargo to initiate, compile, and run my Rust project.
+
+To create a project, I can run `cargo new [project-name]`. To compile the project, I can use `cargo build`. And to run the project, it can be executed by running `cargo run`.
+
+For the complete explanation, you can check it [here](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html).
+
+# About Rust Syntax
+
+I still use VS Code as my main code editor. To help me while coding Rust, I used the [rust-analyzer](https://rust-analyzer.github.io/) extension to show me the autocomplete recommendation. It also behaves like a code linter to warn the coder if there's syntax that doesn't match.
+
+Now I'll tell you my testimony when trying Rust Syntax. I can't explain all of them in this blog. I only show some highlighted things that I tried before because it's too much and I am still a newbie here. I try my best to tell it in the right way😅.
+
+## Variables
+
+For the variables declaration, somehow Rust is unique. It also uses `let` keywords like JS to declare variables. But by default, it's not mutable.
+
+```rust
+fn main() {
+    // VARIABLES
+    let x = 5;
+    const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
+    println!("The value of x is: {x}");
+    x = 12;
+    println!("The value of x is: {x}");
+}
+```
+
+For example, like the snippet below. If I run it, it will show an error like below here. Even before I compile it, the rust-analyzer has figured it out early.
+
+I have to put `mut` keyword after `let` so it can become mutable.
+
+```rust
+let mut x = 5;
+println!("The value of x is: {x}");
+x = 12;
+println!("The value of x is: {x}");
+```
+
+The full explanation regarding these variables and mutability can be read [here](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html).
+
+## Data Types
+
+In my perspective as a frontend engineer who uses Typescript as a daily programming language, Rust also has the data type but is more strict. In other words, I have to be aware of the data type before I build it. Again, even the `rust-analyzer` can detect the mistakes early before I compile it.
+
+Based on the [docs](https://doc.rust-lang.org/book/ch03-02-data-types.html), Rust is a statically typed language, which means that it must know the types of all variables at compile time.
+
+In Rust, the data type is actually pretty similar to other programming languages, like integer, float, char, string, array, and tuple. Luckily, by using `rust-analyzer`, it helped me to see what kind of data type of a variable when I declared it. This VS Code extension is so powerful and helpful when coding Rust in VS Code.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/a06d0ad769f4ca58bd875b51f8a09432fe4419d0-482x250.png?w=450)
+
+You can check the full docs about Rust Data Type [here.](https://doc.rust-lang.org/book/ch03-02-data-types.html)
+
+## Functions
+
+For this topic regarding Rust functions, I didn't find any major difficulties when learning it. The thing that I noticed is that when I create a function with the return value, I need to declare the return value data type also. For the parameters, I think it is similar to Typescript behavior when declaring the parameter type.
+
+```rust
+// with return value
+fn plus_one(x: i32) -> i32 {
+    x + 1
+}
+
+// without return value
+fn another_function(value: i32, unit_label: char) {
+    println!("The measurement is: {value} {unit_label}")
+}
+```
+
+You can check the full docs [here.](https://doc.rust-lang.org/book/ch03-03-how-functions-work.html)
+
+## Comments
+
+Like other programming languages, you can also create some comments in your codes.
+
+```rust
+// Test Command rust
+// I like it
+```
+
+## Control Flow
+
+Now let's move to the control flow syntax. Let's start with `if else` syntax in Rust. For me, the syntax is similar to JS but without `()` when declaring the condition😅.
+
+```ruby
+    let number = 6;
+
+    if number % 4 == 0 {
+        println!("number is divisible by 4");
+    } else if number % 3 == 0 {
+        println!("number is divisible by 3");
+    } else if number % 2 == 0 {
+        println!("number is divisible by 2");
+    } else {
+        println!("number is not divisible by 4, 3, or 2");
+    }
+```
+
+The unique thing about Rust's `if else`is it can be written in one line like this too.
+
+```rust
+   let condition = true;
+   let number = if condition { 5 } else { "six" };
+```
+
+How about `switch` syntax? Yes, Rust also has it, but it uses `match`. Full docs about it can be accessed [here.](https://doc.rust-lang.org/reference/expressions/match-expr.html)
+
+```rust
+let x = 1;
+
+match x {
+    1 => println!("one"),
+    2 => println!("two"),
+    3 => println!("three"),
+    4 => println!("four"),
+    5 => println!("five"),
+    _ => println!("something else"),
+}
+```
+
+How about looping? There's several approach that can do with Rust when creating the looping code. I can use `loop`, `while`, and `for` loop.
+
+Here's an example.
+
+```rust
+ // Looping using "loop". It won't stop looping until you create "break"
+    loop {
+        println!("again")
+    }
+```
+
+```rust
+// Loop using "while"
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    }
+```
+
+```rust
+// Looping using "for loop"
+    for number in (1..4).rev() {
+        println!("{number}!");
+    }
+```
+
+One thing to be aware of, sometimes you have to add `iter` keyword when using "for loop". It's related to the Borrow Concept in Rust and I still don't get it fully😅. Full docs [here](https://doc.rust-lang.org/rust-by-example/flow_control/for.html).
+
+```rust
+fn main() {
+    let names = vec!["Bob", "Frank", "Ferris"];
+
+    for name in names.iter() {
+        match name {
+            &"Ferris" => println!("There is a rustacean among us!"),
+            // TODO ^ Try deleting the & and matching just "Ferris"
+            _ => println!("Hello {}", name),
+        }
+    }
+    
+    println!("names: {:?}", names);
+}
+```
+
+# Closing
+
+There are a lot of things regarding Rust that I need to understand. But so far, those are what I've tried. I even tried it in my Leetcode exercise and maybe it can be proof that low-level programming languages like Rust can be very fast even though I still used the very basic approach.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/d3bdcbcea969e14ae2d3e8644b9100bee52fbbc4-1887x827.png?w=450)
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/b6d1c69636e8c5bb2d2dfde973e2f58728d3883d-1870x817.png?w=450)
+
+Again I have to warn you that Rust has quite a hard learning curve. Its compiler sometimes irritating 😅. But somehow it also forces me to code in the right way based on Rust standards.
+
+For now, learning Rust seems "useless" because there are very few job listings that use Rust in Indonesia. But don't hesitate to learn. Don't just learn because of the money, but learn for the sake of your curiosity. I believe learning this hard tech stack can be worth investment for the long term. At least, it will shape your mindset when writing code.
+
+Pssstttt, by the way, I still use VS Code when coding Rust. I am actually very curious about the NeoVim code editor, but it is very confusing for me because I have to get used to remembering the keyboard combinations😅. Maybe I'll use NeoVim (LazyVim) when I code some toy project that does not require fast deliverance so I don't be rushed.
