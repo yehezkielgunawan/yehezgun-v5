@@ -48,14 +48,14 @@ const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 							href={`/blog/${blog.slug}`}
 							className="group hover:-translate-y-0.5 bg-base-200 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
 						>
-							<div className="rounded-lg border border-base-content">
+							<div className="h-full w-full rounded-lg border border-base-content">
 								<Image
 									alt="blog-cover"
 									src={blog.coverImg}
 									width={360}
 									height={240}
 									priority={true}
-									className="m-0 aspect-video w-full rounded-lg object-cover"
+									className="m-0 aspect-video w-full rounded-t-lg object-cover"
 								/>
 								<div className="p-2">
 									<div className="flex items-center gap-2">
