@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 import { MDXContent } from "@content-collections/mdx/react";
+import { CustomTheme } from "@/components/CustomTheme";
 
 const SingeBlogPage = ({
 	params,
@@ -35,30 +36,7 @@ const SingeBlogPage = ({
 			</section>
 			<hr />
 			<section className="mt-6">
-				<MDXContent
-					code={blogData.mdx}
-					components={{
-						a: ({ href, children }) => (
-							<a
-								href={href}
-								className="link hover:decoration-dashed hover:underline-offset-2"
-								target={String(href).startsWith("http") ? "_blank" : "_self"}
-								rel="noreferrer"
-							>
-								{children}
-							</a>
-						),
-						img: ({ src, alt }) => (
-							<Image
-								src={src as string}
-								alt={alt as string}
-								width={500}
-								height={300}
-								className="m-0 aspect-video h-auto w-full rounded-lg object-contain"
-							/>
-						),
-					}}
-				/>
+				<MDXContent code={blogData.mdx} components={CustomTheme} />
 			</section>
 			<Link
 				href="/blog"
