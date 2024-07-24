@@ -1,0 +1,184 @@
+---
+title: "How To Make Your Own Next.js Starter Template"
+summary: "Quick Blog About How to Make Your Own Next.js Starter Template"
+coverImg: "/blogs/how-to-make-your-own-nextjs-starter-template/cover.png"
+date: "2022-10-24"
+category: "Tutorial"
+---
+
+# Table of contents
+- [Introduction](#introduction)
+- [Project Initialization](#project-initialization)
+- [Folder Structure](#folder-structure)
+- [Modify the Base UI](#modify-the-base-ui)
+- [Deploy](#deploy)
+
+## Introduction
+Currently, I'm learning about React & Next.js. To understand how it works, I usually push myself to make some mini-projects using that framework. One thing I hate when I develop a project, it's about config.
+
+It started when I knew a friend who made his starter template. I asked him, `Why do you make it?`. He answered, `Well I don't need to worry about the 'configuration' thing when I initiate a new project. So I can focus on the development process.`
+
+I think it's a great idea. I also don't need to feel anxious about the configuration when I make a new project if I have my starter template.
+
+Here's how I made my starter template using Next.js and Chakra UI.
+
+## Project Initialization
+This time, I used the example of the base starter template that Next.js provides.
+```cli
+npx create-next-app --example with-chakra-ui-typescript [YOUR_APP_NAME]
+```
+Next, I initiated the ESlint config so the code style can be consistent. I added `next-lint` at `package.json` and executed it. The details can be seen [here](https://nextjs.org/docs/basic-features/eslint).
+```json
+"scripts": {
+  "lint": "next lint"
+}
+```
+After that, execute the command `yarn lint` or `npm run lint` to initiate `eslintrc.json`. I modified some things due to personal preferences. You also can adapt it to your preferences.
+```js
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          "parent",
+          ["sibling", "index"],
+          "object"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "complexity": "warn",
+    "no-console": ["error"]
+  }
+}
+```
+After finishing the ESlint config, I made a [Next SEO](https://www.npmjs.com/package/next-seo) config. This library is used to modify the meta-tag which is usually used to optimize the SEO and make a preview for the web project.
+
+First, install the Next SEO using `npm I next-seo`. Then, make `next-seo.config.js` at the root directory. This is my base configuration. You can accommodate with your preferences.
+```js
+/** @type {import('next-seo').DefaultSeoProps} */
+const defaultSEOConfig = {
+  title: "yehez-nextchakra-starter",
+  titleTemplate: "%s | yehez-nextchakra-starter",
+  defaultTitle: "yehez-nextchakra-starter",
+  description:
+    "Yehezkiel Gunawan's personalized Next.js + chakra-ui + TypeScript starter template",
+  canonical: "https://yehez-nextchakra-starter.yehezgun.com",
+  openGraph: {
+    url: "https://yehez-nextchakra-starter.yehezgun.com",
+    title: "yehez-nextchakra-starter",
+    description: "Next.js + chakra-ui + TypeScript template",
+    type: "website",
+    images: [
+      {
+        url: "https://yehez-og-image.yehezgun.com/**yehez-nextchakra-starter**.yehezgun.com.png?theme=dark&md=1&fontSize=50px&images=https%3A%2F%2Fres.cloudinary.com%2Fyehez%2Fimage%2Fupload%2Fv1631970666%2Fyehez_avatar_vkv7pc.png&widths=200&heights=200",
+        alt: "yehez-nextchakra-starter.yehezgun.com og-image",
+        width: 800,
+        height: 600,
+      },
+    ],
+    site_name: "yehez-nextchakra-starter",
+  },
+  twitter: {
+    handle: "@handle",
+    site: "@site",
+    cardType: "summary_large_image",
+  },
+  additionalLinkTags: [
+    {
+      rel: "icon",
+      href: "https://res.cloudinary.com/yehez/image/upload/v1630902976/Assassination_Classroom_-_Koro-sensei_smiling_head_fwpndi.svg",
+    },
+  ],
+};
+
+export default defaultSEOConfig;
+```
+
+## Folder Structure
+The base config is done, now it's time to make the folder structure. The base folder structure from the example template is quite good, but I want some modification here. Here's mine.
+```clean
+/src
+    /components
+        /layout
+        /motion
+        /wrapper
+    /functions
+        /helper
+    /pages
+    /types
+```
+
+## Modify the Base UI
+It's time to modify the UI and layout. Maybe I won't explain the whole process here. It will be too long to explain. You can modify the layout by your option.
+
+Here's my result [https://github.com/yehezkielgunawan/yehez-nextchakra-starter](https://github.com/yehezkielgunawan/yehez-nextchakra-starter)rr.
+
+## Deploy
+Finally, the final step. Don't forget to push the project to your repo in Github or Gitlab. You can check [here](https://www.git-tower.com/learn/git/faq/push-to-github/) for the details.
+
+I used [Vercel](https://vercel.com/) as my hosting platform. It's easy to use, you can integrate your repository with Vercel, so every time you push an update, it also re-build the project. Read [here](https://egghead.io/lessons/next-js-deploy-a-project-on-vercel-formerly-zeit-from-a-github-repository) for the details.
+
+After deployed, let's make the project a public template.
+![Template Repo](https://diskusi-tech-production.s3.amazonaws.com/i/mzpxxxc6hdj4i6hd5un5.PNG)
+
+Aaaanddd, that's it. You can use the template using this command
+```bash
+npx degit [REPOSITORY NAME] <APP NAME>
+```
+Example: 
+```bash
+npx degit yehezkielgunawan/yehez-nextchakra-starter test-template
+```
+
+For Next.js you can use the built-in command to initiate a project based on the example template.
+```bash
+npx create-next-app --example [Github Repository Link] <YOUR_APP_NAME>
+```
+Example : 
+```bash
+npx create-next-app --example https://github.com/yehezkielgunawan/yehez-nextchakra-starter test-template
+```
+
+Your life will be easier with this, so you can focus on the development process every time you initiate a new project, LOL. Congratulations!!!
+
+Here's my starter template: [https://yehez-nextchakra-starter.yehezgun.com/](https://yehez-nextchakra-starter.yehezgun.com/)//. How about you? Not a perfect one, I know. But at least, it's very helpful for me.
+
+Yeah, that's from me. I'm sorry if there're some typos or mistakes here. I'm still an amateur at making a tech article. Happy trying and you can give some feedback here if you want. Thank you.
+
+Reference: [Sozonome NextChakra-starter](https://github.com/sozonome/nextarter-chakra)
