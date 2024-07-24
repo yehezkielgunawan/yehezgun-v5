@@ -1,0 +1,142 @@
+---
+title: "Using Google Spreadsheet as Personalized 'CMS'"
+summary: "How to use Google Spreadsheet as a personalized 'CMS' for your project."
+coverImg: "/blogs/google-spreadsheet-cms/cover.png"
+date: "2024-10-29"
+category: "Random"
+---
+
+> I just covered some quick highlights here to implement Google Sheets as "CMS". You still need to read the official docs [here](https://developers.google.com/sheets/api/guides/concepts).
+
+# Introduction
+Did you know that you can use Google Sheets as "CMS" or "database"? As a pragmatic engineer, this tool can be useful when you need to develop a web app that needs dynamic data to be displayed. So whenever you want to change the data, you just change the data through the Google Sheet without redeploying the website.
+
+I'll share a quick highlight about how to set up the integration of Google Spreadsheet with my Svelte Kit project here.
+
+# Setting Up Your Google Sheet API
+First of all, make sure you have your own Google account, so you can log in to [https://console.cloud.google.com/](https://console.cloud.google.com/). We'll set up the Google Sheet API through that site.
+
+If you don't have any projects yet in the Google Console, you can create them by clicking the new project at the top of the navbar.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/835b8caa5c7b663f5bae44d8bcfdb7def6b746fc-1174x815.png?w=450)
+
+If you already have some projects in your account, you can just select one of your desired projects in your Google Console. After that, you can click the `API and Services` menu to go to the dashboard menu.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/543869e9664d7847428300c594bac23e76870d3b-1063x688.png?w=450)
+
+In your dashboard menu, click the `Enable API and Services` button. Then, search "Google Sheets API" and select it.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/46957eec1b2515e1f870c43da5cff9343a3f7e93-1871x698.png?w=450)
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/79bfc5f7aae77dc2c1d69d1535a411dfec91ac7e-1266x415.png?w=450)
+
+After that, click the `Enable` button to enable the API service for the Google Sheet. The button will convert into `Manage` after you click it.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/3c2f7d6273bb0152a887583db119996e3ad55e93-843x393.png?w=450)
+
+Click the `Manage` button to navigate to the dashboard page again. Then, click the `Credentials` menu. We'll set up the API Key here.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/dc7f5a356357967b5afaf92b612bfd0038204f20-1895x602.png?w=450)
+
+Click the `Create Credentials` button and select `API Key`. It will generate an API Key that can be used for our Google Sheet API.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/c035616c0fffca31d9f59efc834ef909d9bb5cf7-862x177.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/d386489390b882bffe919004ad9ac05ac7ca3383-682x388.png?w=450)
+
+The API now can be used directly for our needs. But if you want to add additional configurations, you can select the API Key that has been generated and make your config.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/de867e8b8c4831d2af8b888f4b871bb10313ae26-787x729.png?w=450)
+
+# Integrate Google Sheet API with Svelte Kit
+Now, we can integrate the Google Sheet API with our front-end project. In this blog, I'll use Svelte Kit to make a simple Link Collection Web like Linktree. For the UI, I use Tailwind CSS and [Daisy UI](https://daisyui.com/) because I don't want to reinvent the wheel and just use tools that can help me for now😅.
+
+Here's my base Google Spreadsheet template, you can access it  [here](https://docs.google.com/spreadsheets/d/1XoZlWRD2REeytJoBbw9f-I0mCU2HilrmMLyl9w0gPFU/edit#gid=0). You also can create a duplicate from it if you want.
+
+For the base code, you can learn or just clone my Github repository [here](https://github.com/yehezkielgunawan/link-collection). For your information, we'll use the official [Google API Node JS Client](https://github.com/googleapis/google-api-nodejs-client) to enable the Google Sheet integration to our website. You can follow the installation guide based on the official docs.
+
+
+Okay, now if you already have the Node JS Client installed, you can fetch the data from the Google Sheet using this codes.
+
+```ts
+import { google } from "googleapis";
+ const sheet = google.sheets({
+    version: "v4",
+    auth: KEY,
+  });
+  const links = await sheet.spreadsheets.values
+    .get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "links" // the sheet name,
+    })
+    .then((res) => {
+      // remove the first index of the array (Because it's just a label)
+      // then map the result into array of objects
+      return res.data.values?.slice(1).map((row) => {
+        return {
+          name: row[1],
+          url: row[0],
+        };
+      });
+    });
+```
+
+In my case, I use my [own](https://docs.google.com/spreadsheets/d/1XoZlWRD2REeytJoBbw9f-I0mCU2HilrmMLyl9w0gPFU/edit#gid=0) sheet template which contains the link collection and the social media URL. For the Spreadsheet ID, actually, you can obtain it from the URL after the `/d`.
+```md
+https://docs.google.com/spreadsheets/d/[Spreadsheet ID]/edit#gid=0
+```
+
+Here's my full fetch method in my Svelte Kit project. For the API Key and Spreadsheet ID, I store it as the environment variables.
+```ts
+import { google } from "googleapis";
+import { KEY, SPREADSHEET_ID } from "$env/static/private";
+
+export const load = async () => {
+  const sheet = google.sheets({
+    version: "v4",
+    auth: KEY,
+  });
+  const links = await sheet.spreadsheets.values
+    .get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "links",
+    })
+    .then((res) => {
+      // remove the first index of the array
+      // then map the result into array of objects
+      return res.data.values?.slice(1).map((row) => {
+        return {
+          name: row[1],
+          url: row[0],
+        };
+      });
+    });
+
+  const socialMedias = await sheet.spreadsheets.values
+    .get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "social_media",
+    })
+    .then((res) => {
+      return res.data.values?.slice(1).map((row) => {
+        return {
+          social_media_name: row[0],
+          url: row[1],
+        };
+      });
+    });
+
+  return {
+    links,
+    socialMedias,
+  };
+};
+
+```
+Here's my final UI result. You can check it at [https://links.yehezgun.com/](https://links.yehezgun.com/).
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/ed8ec6f873f5120ca660a6b0d271602cb6cc6431-896x505.png?w=450)
+
+# Closing
+Seems simple right? You just need to enable the API from your Google Console, generate the API Key, and then use it in your project.
+
+I know, this may seem like a trivial thing, but we need to know this kind of tool can be helpful for us. I guess, if you need to deliver something fast and the data are dynamic, with no time to build a CMS, you can use Google Sheets as your CMS. When the data needs to be updated, just change it through Google Sheets without redeploying the web app.
