@@ -28,7 +28,7 @@ const SingeBlogPage = ({
 				<h1>{blogData.title}</h1>
 				<div className="flex items-center gap-4">
 					<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
-					<h5 className={clsx("badge", badgeColor[blogData.category])}>
+					<h5 className={clsx("badge shadow", badgeColor[blogData.category])}>
 						{blogData.category}
 					</h5>
 				</div>
@@ -47,6 +47,15 @@ const SingeBlogPage = ({
 							>
 								{children}
 							</a>
+						),
+						img: ({ src, alt }) => (
+							<Image
+								src={src as string}
+								alt={alt as string}
+								width={500}
+								height={300}
+								className="m-0 aspect-video h-auto w-full rounded-lg object-contain"
+							/>
 						),
 					}}
 				/>
