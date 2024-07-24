@@ -23,7 +23,7 @@ const SingeBlogPage = ({
 					src={blogData.coverImg}
 					width={500}
 					height={300}
-					className="aspect-video w-full rounded-lg"
+					className="aspect-video h-auto w-full rounded-lg object-fill"
 				/>
 				<h1>{blogData.title}</h1>
 				<div className="flex items-center gap-4">
