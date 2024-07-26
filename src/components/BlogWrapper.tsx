@@ -1,11 +1,8 @@
 "use client";
-
-import { badgeColor } from "@/constants/badgeColor";
-import { formatDate } from "@/services/blogs";
-import clsx from "clsx";
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
+import BlogCard from "./BlogCard";
+import { blogCategories } from "@/services/blogs";
+import clsx from "clsx";
 
 type BlogWrapperProps = {
 	blogList: {
@@ -19,9 +16,15 @@ type BlogWrapperProps = {
 
 const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 	const [searchKeyword, setSearchKeyword] = useState<string>("");
+	const [selectedCategory, setSelectedCategory] = useState<string>("");
+	const categoryList = blogCategories();
 
-	const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchKeyword(e.target.value);
+	};
+
+	const handleChangeCategory = (category: string) => {
+		setSelectedCategory(category === selectedCategory ? "" : category);
 	};
 
 	return (
@@ -30,12 +33,31 @@ const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 				type="text"
 				placeholder="Search Blog..."
 				className="input input-bordered w-full rounded-lg border-2"
-				onChange={onChangeSearch}
+				onChange={handleChangeSearch}
 			/>
-			<div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+			<div className="mt-4 flex items-center gap-4">
+				<h4 className="m-0">Category: </h4>
+				{categoryList.map((category) => (
+					<button
+						type="button"
+						key={category}
+						onClick={() => handleChangeCategory(category)}
+						className={clsx(
+							"btn btn-sm rounded-lg",
+							selectedCategory === category ? "btn-primary" : "btn-neutral",
+						)}
+					>
+						{category}
+					</button>
+				))}
+			</div>
+			<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{blogList
 					.filter((blog) =>
 						blog.title.toLowerCase().includes(searchKeyword.toLowerCase()),
+					)
+					.filter((blog) =>
+						selectedCategory ? blog.category === selectedCategory : true,
 					)
 					.sort(
 						(a, b) =>
@@ -43,31 +65,14 @@ const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 							(new Date(a.date) as unknown as number),
 					)
 					.map((blog) => (
-						<Link
+						<BlogCard
 							key={blog.slug}
-							href={`/blog/${blog.slug}`}
-							className="group hover:-translate-y-0.5 bg-base-200 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
-						>
-							<div className="h-full w-full rounded-lg border border-base-content">
-								<Image
-									alt="blog-cover"
-									src={blog.coverImg}
-									width={360}
-									height={240}
-									priority={true}
-									className="m-0 aspect-video w-full rounded-t-lg object-cover"
-								/>
-								<div className="p-2">
-									<div className="flex items-center gap-2">
-										<h5>{formatDate(blog.date)}</h5>
-										<h5 className={clsx("badge", badgeColor[blog.category])}>
-											{blog.category}
-										</h5>
-									</div>
-									<h4 className="m-0 mt-2">{blog.title}</h4>
-								</div>
-							</div>
-						</Link>
+							slug={blog.slug}
+							coverImg={blog.coverImg}
+							date={blog.date}
+							category={blog.category}
+							title={blog.title}
+						/>
 					))}
 			</div>
 		</>
