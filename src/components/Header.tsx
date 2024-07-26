@@ -4,17 +4,17 @@ import { menuList } from "@/constants/menuList";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 
 const Header = () => {
 	const pathname = usePathname();
 	const { setTheme, theme } = useTheme();
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
+	const isClient = useSyncExternalStore(
+		() => () => {},
+		() => true,
+		() => false,
+	);
 
 	return (
 		<header className="fixed top-0 z-30 w-full bg-base-100/80 bg-clip-padding backdrop-blur-sm backdrop-filter">
@@ -44,7 +44,7 @@ const Header = () => {
 						</ul>
 						<ul className="menu menu-horizontal">
 							<li>
-								{mounted ? (
+								{isClient ? (
 									<label className={clsx("swap swap-rotate rounded-lg")}>
 										<input
 											checked={theme === "dim"}
