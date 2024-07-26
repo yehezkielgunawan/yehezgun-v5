@@ -24,7 +24,7 @@
         },
         "noUnusedVariables": {
           "level": "warn",
-          "fix": "unsafe"
+          "fix": "none"
         }
       },
       "style": {
