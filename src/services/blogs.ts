@@ -17,6 +17,11 @@ export const getBlogBySlug = (slug: string) => {
 	return post;
 };
 
+export const blogCategories = () => {
+	const categories = allBlogs.map((post) => post.category);
+	return Array.from(new Set(categories));
+};
+
 export const formatDate = (date: string) => {
 	const options: Intl.DateTimeFormatOptions = {
 		year: "numeric",
