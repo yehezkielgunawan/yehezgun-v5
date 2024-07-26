@@ -43,6 +43,28 @@ const blogs = defineCollection({
 	},
 });
 
+const tilNotes = defineCollection({
+	name: "tilNotes",
+	directory: "content/til-notes",
+	include: "**/*.mdx",
+	schema: (z) => ({
+		title: z.string(),
+		subtitle: z.string(),
+		date: z.string(),
+		tags: z.array(z.string()),
+	}),
+	transform: async (document, context) => {
+		const mdx = await compileMDX(context, document, {
+			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
+			remarkPlugins: [remarkGfm, remarkHtml],
+		});
+		return {
+			...document,
+			mdx,
+		};
+	},
+});
+
 export default defineConfig({
-	collections: [projects, blogs],
+	collections: [projects, blogs, tilNotes],
 });

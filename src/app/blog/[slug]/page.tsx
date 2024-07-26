@@ -1,5 +1,4 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { badgeColor } from "@/constants/badgeColor";
 import { formatDate, getBlogBySlug } from "@/services/blogs";
 import clsx from "clsx";
 import Image from "next/image";
@@ -29,7 +28,7 @@ const SingeBlogPage = ({
 				<h1>{blogData.title}</h1>
 				<div className="flex items-center gap-4">
 					<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
-					<h5 className={clsx("badge shadow", badgeColor[blogData.category])}>
+					<h5 className={clsx("badge badge-neutral shadow")}>
 						{blogData.category}
 					</h5>
 				</div>
