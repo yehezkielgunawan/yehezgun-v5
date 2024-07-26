@@ -1,6 +1,6 @@
 const Footer = () => {
 	return (
-		<footer className="container mx-auto mt-16 text-center">
+		<footer className="container mx-auto my-16 text-center">
 			<a
 				href="https://yehezgun.com"
 				target="_blank"
