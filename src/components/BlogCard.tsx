@@ -1,4 +1,4 @@
-import { formatDate } from "@/services/blogs";
+import { formatDate } from "@/services/formatDate";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
