@@ -14,7 +14,6 @@ type BlogCardProps = {
 const BlogCard = (blog: BlogCardProps) => {
 	return (
 		<Link
-			key={blog.slug}
 			href={`/blog/${blog.slug}`}
 			className="group hover:-translate-y-0.5 bg-base-200 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
 		>
