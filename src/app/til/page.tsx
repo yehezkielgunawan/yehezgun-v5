@@ -1,4 +1,6 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
+import TILWrapper from "@/components/TILWrapper";
+import { allTILNotes } from "@/services/til-notes";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,8 +10,13 @@ export const metadata: Metadata = {
 const TILPage = () => {
 	return (
 		<GeneralWrapper>
-			<h1>Today I Learned</h1>
-			<p>Here I will share some of the things I learn on a daily basis.</p>
+			<section>
+				<h1>Today I Learned</h1>
+				<p>A Quick Notes From What I've Figured Out.</p>
+			</section>
+			<section className="mt-12">
+				<TILWrapper TILNoteList={allTILNotes} />
+			</section>
 		</GeneralWrapper>
 	);
 };
