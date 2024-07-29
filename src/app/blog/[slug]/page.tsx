@@ -1,11 +1,12 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { formatDate, getBlogBySlug } from "@/services/blogs";
+import { getBlogBySlug } from "@/services/blogs";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 import { MDXContent } from "@content-collections/mdx/react";
 import { CustomTheme } from "@/components/CustomTheme";
+import { formatDate } from "@/services/formatDate";
 
 const SingeBlogPage = ({
 	params,
@@ -39,7 +40,7 @@ const SingeBlogPage = ({
 			</section>
 			<Link
 				href="/blog"
-				className="btn btn-neutral mt-8 flex w-full items-center"
+				className="btn btn-neutral mt-8 flex w-full items-center rounded-lg"
 			>
 				<BiChevronLeft size={24} />
 				Back to Blog List Page
