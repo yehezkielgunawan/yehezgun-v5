@@ -40,7 +40,7 @@ const SingeBlogPage = ({
 			</section>
 			<Link
 				href="/blog"
-				className="btn btn-neutral mt-8 flex w-full items-center"
+				className="btn btn-neutral mt-8 flex w-full items-center rounded-lg"
 			>
 				<BiChevronLeft size={24} />
 				Back to Blog List Page
