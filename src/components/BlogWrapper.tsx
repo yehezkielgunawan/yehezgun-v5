@@ -35,21 +35,23 @@ const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
 				className="input input-bordered w-full rounded-lg border-2"
 				onChange={handleChangeSearch}
 			/>
-			<div className="mt-4 flex items-center gap-4">
+			<div className="mt-4 flex flex-wrap items-center gap-4">
 				<h4 className="m-0">Category: </h4>
-				{categoryList.map((category) => (
-					<button
-						type="button"
-						key={category}
-						onClick={() => handleChangeCategory(category)}
-						className={clsx(
-							"btn btn-sm rounded-lg",
-							selectedCategory === category ? "btn-primary" : "btn-neutral",
-						)}
-					>
-						{category}
-					</button>
-				))}
+				<div className="flex flex-wrap items-center gap-2">
+					{categoryList.map((category) => (
+						<button
+							type="button"
+							key={category}
+							onClick={() => handleChangeCategory(category)}
+							className={clsx(
+								"btn btn-sm rounded-lg",
+								selectedCategory === category ? "btn-primary" : "btn-neutral",
+							)}
+						>
+							{category}
+						</button>
+					))}
+				</div>
 			</div>
 			<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{blogList

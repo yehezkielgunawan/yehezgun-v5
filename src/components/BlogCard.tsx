@@ -14,7 +14,6 @@ type BlogCardProps = {
 const BlogCard = (blog: BlogCardProps) => {
 	return (
 		<Link
-			key={blog.slug}
 			href={`/blog/${blog.slug}`}
 			className="group hover:-translate-y-0.5 bg-base-200 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
 		>
@@ -30,7 +29,7 @@ const BlogCard = (blog: BlogCardProps) => {
 				<div className="p-2">
 					<div className="flex items-center gap-2">
 						<h5>{formatDate(blog.date)}</h5>
-						<h5 className={clsx("badge bade-secondary")}>{blog.category}</h5>
+						<h5 className={clsx("badge badge-accent")}>{blog.category}</h5>
 					</div>
 					<h4 className="m-0 mt-2">{blog.title}</h4>
 				</div>
