@@ -43,9 +43,9 @@ const blogs = defineCollection({
 	},
 });
 
-const tilNotes = defineCollection({
-	name: "tilNotes",
-	directory: "content/til-notes",
+const quickNotes = defineCollection({
+	name: "quickNotes",
+	directory: "content/quick-notes",
 	include: "**/*.mdx",
 	schema: (z) => ({
 		title: z.string(),
@@ -66,5 +66,5 @@ const tilNotes = defineCollection({
 });
 
 export default defineConfig({
-	collections: [projects, blogs, tilNotes],
+	collections: [projects, blogs, quickNotes],
 });
