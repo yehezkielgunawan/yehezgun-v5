@@ -1,5 +1,6 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
+import ShareButtonFlex from "@/components/ShareButtonFlex";
 import { metadataContent } from "@/services/metadata";
 import { getQuickNoteBySlug } from "@/services/quickNotes";
 
@@ -37,9 +38,12 @@ const SingleNotePage = ({
 	const noteData = getQuickNoteBySlug(params.slug);
 	return (
 		<GeneralWrapper>
-			<section>
-				<h1>{noteData.title}</h1>
-				<h3>{noteData.subtitle}</h3>
+			<section className="flex flex-wrap items-end justify-between gap-4">
+				<div>
+					<h1>{noteData.title}</h1>
+					<h3>{noteData.subtitle}</h3>
+				</div>
+				<ShareButtonFlex title={noteData.title} />
 			</section>
 
 			<hr />
