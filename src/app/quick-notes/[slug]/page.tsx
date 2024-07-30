@@ -28,7 +28,7 @@ const SingleNotePage = ({
 			</section>
 
 			<Link
-				href="/til"
+				href="/quick-notes"
 				className="btn btn-neutral mt-8 w-full flex-items-center rounded-lg"
 			>
 				<BiChevronLeft size={24} />
