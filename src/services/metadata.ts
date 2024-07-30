@@ -39,6 +39,7 @@ export const metadataContent = ({
 				}),
 				width: 800,
 				height: 600,
+				alt: title,
 			},
 		],
 	},
