@@ -25,6 +25,7 @@ export const metadataContent = ({ title, description }: OGImageProps) => ({
 	twitter: {
 		title,
 		description,
+		url: "https://yehezgun.com",
 		card: "summary_large_image",
 		site: "@yehezgun",
 		images: [

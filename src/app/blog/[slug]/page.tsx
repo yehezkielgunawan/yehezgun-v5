@@ -8,6 +8,8 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { CustomTheme } from "@/components/CustomTheme";
 import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
+import type { Metadata } from "next";
+import ShareButtonFlex from "@/components/ShareButtonFlex";
 
 type DetailBlogProps = {
 	params: {
@@ -15,7 +17,9 @@ type DetailBlogProps = {
 	};
 };
 
-export async function generateMetadata({ params }: DetailBlogProps) {
+export async function generateMetadata({
+	params,
+}: DetailBlogProps): Promise<Metadata> {
 	const slug = params.slug;
 
 	const detailBlogData = getBlogMetadataBySlug(slug);
@@ -45,14 +49,17 @@ const SingeBlogPage = ({
 					className="aspect-video h-auto w-full rounded-lg object-fill"
 				/>
 				<h1>{blogData.title}</h1>
-				<div className="flex items-center gap-4">
-					<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
-					<h5 className={clsx("badge badge-neutral shadow")}>
-						{blogData.category}
-					</h5>
+				<div className="flex flex-wrap items-center justify-between gap-4">
+					<div className="flex items-center gap-4">
+						<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
+						<h5 className={clsx("badge badge-neutral shadow")}>
+							{blogData.category}
+						</h5>
+					</div>
+					<ShareButtonFlex title={blogData.title} />
 				</div>
 			</section>
-			<hr />
+			<hr className="mt-4" />
 			<section className="mt-6">
 				<MDXContent code={blogData.mdx} components={CustomTheme} />
 			</section>

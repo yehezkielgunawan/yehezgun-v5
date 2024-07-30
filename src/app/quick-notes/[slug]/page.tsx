@@ -1,8 +1,11 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
+import ShareButtonFlex from "@/components/ShareButtonFlex";
+import { metadataContent } from "@/services/metadata";
 import { getQuickNoteBySlug } from "@/services/quickNotes";
 
 import { MDXContent } from "@content-collections/mdx/react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
@@ -12,15 +15,17 @@ type DetailQuickNoteProps = {
 	};
 };
 
-export async function generateMetadata({ params }: DetailQuickNoteProps) {
+export async function generateMetadata({
+	params,
+}: DetailQuickNoteProps): Promise<Metadata> {
 	const slug = params.slug;
 
 	const detailNoteData = getQuickNoteBySlug(slug);
 
-	return {
+	return metadataContent({
 		title: `Quick Notes: ${detailNoteData.title}`,
 		description: detailNoteData.subtitle,
-	};
+	});
 }
 
 const SingleNotePage = ({
@@ -33,9 +38,12 @@ const SingleNotePage = ({
 	const noteData = getQuickNoteBySlug(params.slug);
 	return (
 		<GeneralWrapper>
-			<section>
-				<h1>{noteData.title}</h1>
-				<h3>{noteData.subtitle}</h3>
+			<section className="flex flex-wrap items-end justify-between gap-4">
+				<div>
+					<h1>{noteData.title}</h1>
+					<h3>{noteData.subtitle}</h3>
+				</div>
+				<ShareButtonFlex title={noteData.title} />
 			</section>
 
 			<hr />
