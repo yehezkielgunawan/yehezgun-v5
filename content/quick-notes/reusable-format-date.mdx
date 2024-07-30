@@ -1,3 +1,11 @@
+---
+title: "Reusable Format Date Snippet"
+subtitle: "This is my reusable format date snippet"
+date: "2024-07-30"
+tags: ["typescript", "snippet"]
+---
+
+```ts
 export const formatDate = (
 	date: string,
 	dateFormat: {
@@ -13,3 +21,5 @@ export const formatDate = (
 	};
 	return new Date(date).toLocaleDateString("en-US", options);
 };
+
+```

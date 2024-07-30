@@ -20,6 +20,19 @@ const projects = defineCollection({
 		date: z.string(),
 	}),
 });
+
+const workExperiences = defineCollection({
+	name: "workExperiences",
+	directory: "content/work-experiences",
+	include: "**/*.mdx",
+	schema: (z) => ({
+		title: z.string(),
+		company: z.string(),
+		startDate: z.string(),
+		endDate: z.string().optional(),
+	}),
+});
+
 const blogs = defineCollection({
 	name: "blogs",
 	directory: "content/blogs",
@@ -43,9 +56,9 @@ const blogs = defineCollection({
 	},
 });
 
-const tilNotes = defineCollection({
-	name: "tilNotes",
-	directory: "content/til-notes",
+const quickNotes = defineCollection({
+	name: "quickNotes",
+	directory: "content/quick-notes",
 	include: "**/*.mdx",
 	schema: (z) => ({
 		title: z.string(),
@@ -66,5 +79,5 @@ const tilNotes = defineCollection({
 });
 
 export default defineConfig({
-	collections: [projects, blogs, tilNotes],
+	collections: [projects, workExperiences, blogs, quickNotes],
 });

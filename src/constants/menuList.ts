@@ -19,8 +19,8 @@ export const menuList = [
 	},
 	{
 		icon: FaStickyNote,
-		title: "TIL",
-		url: "/til",
+		title: "Quick Notes",
+		url: "/quick-notes",
 	},
 	{
 		icon: IoPerson,

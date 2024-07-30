@@ -1,24 +1,25 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
-import TILWrapper from "@/components/TILWrapper";
-import { allTILNotes } from "@/services/til-notes";
+import QuickNotesWrapper from "@/components/QuickNotesWrapper";
+import { quickNotesList } from "@/services/quick-notes";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Today I Learned",
+	title: "Quick Notes",
 	description: "A quick collection of things I learn on a daily basis.",
 };
-const TILPage = () => {
+const QuickNotesPage = () => {
 	return (
 		<GeneralWrapper>
 			<section>
-				<h1>Today I Learned</h1>
+				<h1>Quick Notes</h1>
 				<p>A Quick Notes From What I've Figured Out.</p>
 			</section>
 			<section className="mt-12">
-				<TILWrapper TILNoteList={allTILNotes} />
+				<QuickNotesWrapper quickNotesList={quickNotesList} />
 			</section>
 		</GeneralWrapper>
 	);
 };
 
-export default TILPage;
+export default QuickNotesPage;

@@ -1,6 +1,7 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { getTILNoteBySlug } from "@/services/til-notes";
+import { getQuickNoteBySlug } from "@/services/quick-notes";
+
 import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
@@ -12,7 +13,7 @@ const SingleNotePage = ({
 		slug: string;
 	};
 }) => {
-	const noteData = getTILNoteBySlug(params.slug);
+	const noteData = getQuickNoteBySlug(params.slug);
 	return (
 		<GeneralWrapper>
 			<section>

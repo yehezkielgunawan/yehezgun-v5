@@ -1,16 +1,16 @@
 import Link from "next/link";
 
-type TILCardProps = {
+type QuickNotesProps = {
 	slug: string;
 	title: string;
 	subtitle: string;
 	tags: string[];
 };
 
-const TILCard = (til: TILCardProps) => {
+const QuickNotesCard = (til: QuickNotesProps) => {
 	return (
 		<Link
-			href={`/til/${til.slug}`}
+			href={`/quick-notes/${til.slug}`}
 			className="group hover:-translate-y-0.5 rounded-lg bg-base-300 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
 		>
 			<div className="flex h-full w-full flex-col items-start justify-between rounded-lg p-2">
@@ -30,4 +30,4 @@ const TILCard = (til: TILCardProps) => {
 	);
 };
 
-export default TILCard;
+export default QuickNotesCard;
