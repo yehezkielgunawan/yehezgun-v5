@@ -42,7 +42,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 							src={`/stacks/light/${icon}.svg`}
 							width={32}
 							height={32}
-							className="m-0"
+							className="m-0 aspect-square"
 							priority={true}
 							blurDataURL="/stacks/light/nextjs.svg"
 						/>
