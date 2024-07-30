@@ -11,6 +11,11 @@ const nextConfig = {
 			},
 		],
 	},
+	env: {
+		publicRepo: process.env.NEXT_PUBLIC_REPO,
+		repoId: process.env.NEXT_PUBLIC_REPO_ID,
+		categoryId: process.env.NEXT_PUBLIC_CATEGORY_ID,
+	},
 };
 
 export default withcontentCollections(nextConfig);
