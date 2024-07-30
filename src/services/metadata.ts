@@ -30,7 +30,7 @@ export const metadataContent = ({
 	openGraph: {
 		type: "website",
 		siteName: "YehezGun",
-		url: `https://yehezgun.com/${slug || ""}`,
+		url: `https://yehezgun.com${slug ? `/${slug}` : ""}`,
 		title,
 		description,
 		images: [
