@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = metadataContent({
 	title: "Quick Notes",
 	description: "A quick notes from what I've figured out.",
+	slug: "quick-notes",
 });
 
 const QuickNotesPage = () => {

@@ -10,6 +10,7 @@ import Link from "next/link";
 export const metadata: Metadata = metadataContent({
 	title: "About",
 	description: "A little bit about me.",
+	slug: "about",
 });
 
 const About = () => {

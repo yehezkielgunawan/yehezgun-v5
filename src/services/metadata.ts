@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 type OGImageProps = {
 	title: string;
 	description: string;
+	slug?: string;
 };
 
 export function generateOGImage({ title, description }: OGImageProps) {
@@ -12,6 +13,7 @@ export function generateOGImage({ title, description }: OGImageProps) {
 export const metadataContent = ({
 	title,
 	description,
+	slug,
 }: OGImageProps): Metadata => ({
 	title,
 	description,
@@ -28,7 +30,7 @@ export const metadataContent = ({
 	openGraph: {
 		type: "website",
 		siteName: "YehezGun",
-		url: "https://yehezgun.com",
+		url: `https://yehezgun.com${slug ? `/${slug}` : ""}`,
 		title,
 		description,
 		images: [

@@ -28,6 +28,7 @@ export async function generateMetadata({
 	return metadataContent({
 		title: detailBlogData.title,
 		description: detailBlogData.summary,
+		slug: `blog/${slug}`,
 	});
 }
 
