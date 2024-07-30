@@ -1,3 +1,6 @@
+"use client";
+
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -11,6 +14,7 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = (props: ProjectCardProps) => {
+	const { theme } = useTheme();
 	return (
 		<Link
 			href={props.url}
@@ -39,7 +43,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 						<Image
 							key={icon}
 							alt={icon}
-							src={`/stacks/light/${icon}.svg`}
+							src={`/stacks/${theme === "dim" ? "dark" : "light"}/${icon}.svg`}
 							width={32}
 							height={32}
 							className="m-0 aspect-square"
