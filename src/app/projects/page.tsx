@@ -1,12 +1,13 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
 import ProjectCard from "@/components/ProjectCard";
+import { metadataContent } from "@/services/metadata";
 import { featuredProjects, nonFeaturedProjects } from "@/services/projects";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metadataContent({
 	title: "Projects",
-	description: "Here I will share some of the projects I have worked on.",
-};
+	description: "A showcase of some of the projects I have worked on.",
+});
 
 const ProjectPage = () => {
 	return (

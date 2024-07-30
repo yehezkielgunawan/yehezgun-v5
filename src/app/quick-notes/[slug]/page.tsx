@@ -1,10 +1,27 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { getQuickNoteBySlug } from "@/services/quick-notes";
+import { getQuickNoteBySlug } from "@/services/quickNotes";
 
 import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
+
+type DetailQuickNoteProps = {
+	params: {
+		slug: string;
+	};
+};
+
+export async function generateMetadata({ params }: DetailQuickNoteProps) {
+	const slug = params.slug;
+
+	const detailNoteData = getQuickNoteBySlug(slug);
+
+	return {
+		title: `Quick Notes: ${detailNoteData.title}`,
+		description: detailNoteData.subtitle,
+	};
+}
 
 const SingleNotePage = ({
 	params,
@@ -28,7 +45,7 @@ const SingleNotePage = ({
 			</section>
 
 			<Link
-				href="/til"
+				href="/quick-notes"
 				className="btn btn-neutral mt-8 w-full flex-items-center rounded-lg"
 			>
 				<BiChevronLeft size={24} />

@@ -2,14 +2,15 @@ import ExperienceCard from "@/components/ExperienceCard";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import { codingChallengeAccounts, socialMedias } from "@/constants/socialMedia";
 import { experienceList } from "@/services/experiences";
+import { metadataContent } from "@/services/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metadataContent({
 	title: "About",
 	description: "A little bit about me.",
-};
+});
 
 const About = () => {
 	return (
@@ -32,11 +33,11 @@ const About = () => {
 					width={500}
 					height={300}
 					alt="profile-pic"
-					className="h-full w-full rounded-lg md:max-w-sm"
+					className="h-full max-w-full rounded-lg md:max-w-sm"
 				/>
 			</section>
 
-			<section className="mt-4 flex items-center justify-between md:mt-0">
+			<section className="mt-4 flex flex-wrap items-center gap-4 md:mt-0 md:justify-between">
 				<div className="flex items-center gap-4">
 					{socialMedias.map((socialMedia) => {
 						const Icon = socialMedia.icon;
@@ -48,7 +49,7 @@ const About = () => {
 								className="tooltip"
 								target="_blank"
 							>
-								<Icon size={28} />
+								<Icon size={24} className="aspect-square" />
 							</Link>
 						);
 					})}
@@ -64,7 +65,7 @@ const About = () => {
 								className="tooltip"
 								target="_blank"
 							>
-								<Icon size={28} />
+								<Icon size={24} className="aspect-square" />
 							</Link>
 						);
 					})}
