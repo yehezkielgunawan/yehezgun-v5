@@ -8,6 +8,7 @@ export const metadata: Metadata = metadataContent({
 	title: "Blog",
 	description:
 		"Here, I will share some of the things I learn on a daily basis.",
+	slug: "blog",
 });
 
 const BlogPage = () => {

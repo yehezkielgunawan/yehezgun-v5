@@ -25,6 +25,7 @@ export async function generateMetadata({
 	return metadataContent({
 		title: `Quick Notes: ${detailNoteData.title}`,
 		description: detailNoteData.subtitle,
+		slug: `quick-notes/${slug}`,
 	});
 }
 
