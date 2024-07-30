@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-type TILCardProps = {
+type QuickNotesProps = {
 	slug: string;
 	title: string;
 	subtitle: string;
 	tags: string[];
 };
 
-const TILCard = (til: TILCardProps) => {
+const QuickNotesCard = (til: QuickNotesProps) => {
 	return (
 		<Link
 			href={`/til/${til.slug}`}
@@ -30,4 +30,4 @@ const TILCard = (til: TILCardProps) => {
 	);
 };
 
-export default TILCard;
+export default QuickNotesCard;
