@@ -1,6 +1,6 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
 import QuickNotesWrapper from "@/components/QuickNotesWrapper";
-import { quickNotesList } from "@/services/quick-notes";
+import { quickNotesList } from "@/services/quickNotes";
 
 import type { Metadata } from "next";
 

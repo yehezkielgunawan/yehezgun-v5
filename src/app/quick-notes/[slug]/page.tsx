@@ -1,6 +1,6 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { getQuickNoteBySlug } from "@/services/quick-notes";
+import { getQuickNoteBySlug } from "@/services/quickNotes";
 
 import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
