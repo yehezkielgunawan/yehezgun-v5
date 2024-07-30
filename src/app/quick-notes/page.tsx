@@ -1,13 +1,15 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
 import QuickNotesWrapper from "@/components/QuickNotesWrapper";
+import { metadataContent } from "@/services/metadata";
 import { quickNotesList } from "@/services/quickNotes";
 
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metadataContent({
 	title: "Quick Notes",
-	description: "A quick collection of things I learn on a daily basis.",
-};
+	description: "A quick notes from what I've figured out.",
+});
+
 const QuickNotesPage = () => {
 	return (
 		<GeneralWrapper>

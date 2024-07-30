@@ -2,14 +2,15 @@ import ExperienceCard from "@/components/ExperienceCard";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import { codingChallengeAccounts, socialMedias } from "@/constants/socialMedia";
 import { experienceList } from "@/services/experiences";
+import { metadataContent } from "@/services/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metadataContent({
 	title: "About",
 	description: "A little bit about me.",
-};
+});
 
 const About = () => {
 	return (

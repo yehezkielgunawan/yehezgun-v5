@@ -6,6 +6,23 @@ import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
+type DetailQuickNoteProps = {
+	params: {
+		slug: string;
+	};
+};
+
+export async function generateMetadata({ params }: DetailQuickNoteProps) {
+	const slug = params.slug;
+
+	const detailNoteData = getQuickNoteBySlug(slug);
+
+	return {
+		title: `Quick Notes: ${detailNoteData.title}`,
+		description: detailNoteData.subtitle,
+	};
+}
+
 const SingleNotePage = ({
 	params,
 }: {

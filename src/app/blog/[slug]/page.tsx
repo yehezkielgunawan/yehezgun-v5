@@ -1,5 +1,5 @@
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { getBlogBySlug } from "@/services/blogs";
+import { getBlogBySlug, getBlogMetadataBySlug } from "@/services/blogs";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,24 @@ import { BiChevronLeft } from "react-icons/bi";
 import { MDXContent } from "@content-collections/mdx/react";
 import { CustomTheme } from "@/components/CustomTheme";
 import { formatDate } from "@/services/formatDate";
+import { metadataContent } from "@/services/metadata";
+
+type DetailBlogProps = {
+	params: {
+		slug: string;
+	};
+};
+
+export async function generateMetadata({ params }: DetailBlogProps) {
+	const slug = params.slug;
+
+	const detailBlogData = getBlogMetadataBySlug(slug);
+
+	return metadataContent({
+		title: detailBlogData.title,
+		description: detailBlogData.summary,
+	});
+}
 
 const SingeBlogPage = ({
 	params,
