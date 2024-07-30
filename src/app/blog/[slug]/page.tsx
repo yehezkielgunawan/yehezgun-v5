@@ -10,6 +10,7 @@ import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
 import type { Metadata } from "next";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
+import ClientGiscus from "@/components/ClientGiscus";
 
 type DetailBlogProps = {
 	params: {
@@ -70,6 +71,7 @@ const SingeBlogPage = ({
 				<BiChevronLeft size={24} />
 				Back to Blog List Page
 			</Link>
+			<ClientGiscus />
 		</GeneralWrapper>
 	);
 };
