@@ -15,3 +15,14 @@ export const getQuickNoteBySlug = (slug: string) => {
 	}
 	return note;
 };
+
+export const getQuickNotesMetadataBySlug = (slug: string) => {
+	const note = allQuickNotes.find((note) => note._meta.path === slug);
+	if (!note) {
+		throw new Error(`No note found for slug: ${slug}`);
+	}
+	return {
+		title: note.title,
+		subtitle: note.subtitle,
+	};
+};

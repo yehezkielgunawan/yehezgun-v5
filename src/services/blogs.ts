@@ -17,6 +17,17 @@ export const getBlogBySlug = (slug: string) => {
 	return post;
 };
 
+export const getBlogMetadataBySlug = (slug: string) => {
+	const post = allBlogs.find((blog) => blog._meta.path === slug);
+	if (!post) {
+		throw new Error(`No post found for slug: ${slug}`);
+	}
+	return {
+		title: post.title,
+		summary: post.summary,
+	};
+};
+
 export const blogCategories = () => {
 	const categories = allBlogs.map((post) => post.category);
 	return Array.from(new Set(categories));
