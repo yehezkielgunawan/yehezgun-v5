@@ -8,6 +8,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { CustomTheme } from "@/components/CustomTheme";
 import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
+import type { Metadata } from "next";
 
 type DetailBlogProps = {
 	params: {
@@ -15,7 +16,9 @@ type DetailBlogProps = {
 	};
 };
 
-export async function generateMetadata({ params }: DetailBlogProps) {
+export async function generateMetadata({
+	params,
+}: DetailBlogProps): Promise<Metadata> {
 	const slug = params.slug;
 
 	const detailBlogData = getBlogMetadataBySlug(slug);

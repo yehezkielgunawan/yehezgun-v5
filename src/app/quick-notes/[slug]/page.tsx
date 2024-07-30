@@ -1,8 +1,10 @@
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
+import { metadataContent } from "@/services/metadata";
 import { getQuickNoteBySlug } from "@/services/quickNotes";
 
 import { MDXContent } from "@content-collections/mdx/react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
@@ -12,15 +14,17 @@ type DetailQuickNoteProps = {
 	};
 };
 
-export async function generateMetadata({ params }: DetailQuickNoteProps) {
+export async function generateMetadata({
+	params,
+}: DetailQuickNoteProps): Promise<Metadata> {
 	const slug = params.slug;
 
 	const detailNoteData = getQuickNoteBySlug(slug);
 
-	return {
+	return metadataContent({
 		title: `Quick Notes: ${detailNoteData.title}`,
 		description: detailNoteData.subtitle,
-	};
+	});
 }
 
 const SingleNotePage = ({
