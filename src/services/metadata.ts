@@ -18,6 +18,7 @@ export const metadataContent = ({
 	title,
 	description,
 	category: "personal",
+	manifest: "/manifest.json",
 	icons: {
 		icon: "/yehez-icon.svg",
 		shortcut: "/yehez-icon.svg",
