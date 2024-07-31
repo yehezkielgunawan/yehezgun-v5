@@ -20,9 +20,9 @@ export const metadataContent = ({
 	category: "personal",
 	manifest: "/manifest.json",
 	icons: {
-		icon: "/yehez-icon.svg",
-		shortcut: "/yehez-icon.svg",
-		apple: "/yehez-icon.svg",
+		icon: ["/yehez-icon.svg"],
+		shortcut: ["/yehez-icon.svg"],
+		apple: ["/yehez-icon.svg"],
 		other: {
 			rel: "icon",
 			url: "/yehez-icon.svg",
