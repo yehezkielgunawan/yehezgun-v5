@@ -30,7 +30,7 @@ export default function RootLayout({
 					{children}
 				</ThemeProvider>
 			</body>
-			<Script defer src={umamiId} data-website-id={umamiURL} />
+			<Script defer src={umamiURL} data-website-id={umamiId} />
 		</html>
 	);
 }
