@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import { metadataContent } from "@/services/metadata";
+import { umamiId, umamiURL } from "@/constants/baseConst";
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -28,11 +29,7 @@ export default function RootLayout({
 					{children}
 				</ThemeProvider>
 			</body>
-			<script
-				defer
-				src={process.env.NEXT_PUBLIC_UMAMI_URL}
-				data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
-			/>
+			<script defer src={umamiId} data-website-id={umamiURL} />
 		</html>
 	);
 }
