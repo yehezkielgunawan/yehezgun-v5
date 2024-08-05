@@ -36,6 +36,7 @@ const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
 					key={btn.name}
 					className="btn btn-neutral btn-xs md:btn-sm flex items-center gap-2 rounded-lg"
 					onClick={() => handleClick(btn)}
+					data-umami-event={`Click Share Button: ${btn.name}`}
 				>
 					<btn.icon />
 					<span>
