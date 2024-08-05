@@ -49,6 +49,7 @@ const About = () => {
 								data-tip={socialMedia.name}
 								className="tooltip"
 								target="_blank"
+								data-umami-event={`Click Social Media: ${socialMedia.name}`}
 							>
 								<Icon size={24} className="aspect-square" />
 							</Link>
