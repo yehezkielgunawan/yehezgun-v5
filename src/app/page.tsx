@@ -31,6 +31,7 @@ export default function Home() {
 							className="btn rounded-lg bg-base-300 font-bold"
 							target="_blank"
 							rel="noreferrer"
+							data-umami-event="Click Resume Button"
 						>
 							Resume
 						</a>
