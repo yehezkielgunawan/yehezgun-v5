@@ -8,7 +8,8 @@
     "start": "next start",
     "biome-format": "biome format --write src/",
     "biome-lint": "biome lint src/",
-    "test": "vitest"
+    "test": "vitest",
+    "test:ci": "vitest --ci --collect-coverage --verbose"
   },
   "dependencies": {
     "@giscus/react": "^3.0.0",
