@@ -9,7 +9,7 @@
     "biome-format": "biome format --write src/",
     "biome-lint": "biome lint src/",
     "test": "vitest",
-    "test:ci": "vitest --ci --collect-coverage --verbose"
+    "test:ci": "vitest run"
   },
   "dependencies": {
     "@giscus/react": "^3.0.0",
