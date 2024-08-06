@@ -13,6 +13,8 @@ vi.mock("@/services/projects", () => ({
 			_meta: {
 				filePath: "content/projects/mock-project-1.md",
 			},
+			projectHero: "/projects/mock-project-1/hero.png",
+			projectIcon: "/projects/mock-project-1/icon.png",
 			stacks: ["React", "Typescript"],
 		},
 		{
@@ -24,6 +26,8 @@ vi.mock("@/services/projects", () => ({
 			_meta: {
 				filePath: "content/projects/mock-project-3.md",
 			},
+			projectHero: "/projects/mock-project-1/hero.png",
+			projectIcon: "/projects/mock-project-1/icon.png",
 			stacks: ["React", "Typescript"],
 		},
 	],
@@ -37,6 +41,8 @@ vi.mock("@/services/projects", () => ({
 			_meta: {
 				filePath: "content/projects/mock-project-2.md",
 			},
+			projectHero: "/projects/mock-project-1/hero.png",
+			projectIcon: "/projects/mock-project-1/icon.png",
 			stacks: ["React", "Typescript"],
 		},
 	],
@@ -48,6 +54,7 @@ vi.mock("@/services/blogs", () => ({
 			title: "Why Making A Starter Template Matters",
 			summary: "The importance of having your own boilerplate.",
 			coverImg: "/blogs/why-making-a-starter-template-matters/cover.png",
+			slug: "why-making-a-starter-template-matters",
 			date: "2022-10-30",
 			category: "Random",
 		},
@@ -55,6 +62,7 @@ vi.mock("@/services/blogs", () => ({
 			title: "The Benefits of Learning TypeScript",
 			summary: "Why TypeScript is a valuable skill for modern web development.",
 			coverImg: "/blogs/benefits-of-learning-typescript/cover.png",
+			slug: "why-making-a-starter-template-matters2",
 			date: "2023-01-15",
 			category: "Programming",
 		},
@@ -63,6 +71,7 @@ vi.mock("@/services/blogs", () => ({
 			summary:
 				"A deep dive into the world of React Hooks and how they can simplify your code.",
 			coverImg: "/blogs/understanding-react-hooks/cover.png",
+			slug: "why-making-a-starter-template-matters3",
 			date: "2023-05-22",
 			category: "Web Development",
 		},
