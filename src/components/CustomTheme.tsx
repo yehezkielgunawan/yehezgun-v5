@@ -34,9 +34,9 @@ export const CustomTheme = {
 		<Image
 			src={src as string}
 			alt={alt as string}
-			width={600}
-			height={400}
-			className="m-0 aspect-video h-auto w-full rounded-lg object-contain"
+			width={1600}
+			height={900}
+			className="float-right m-0 aspect-video max-h-80 w-full rounded-lg object-contain"
 		/>
 	),
 

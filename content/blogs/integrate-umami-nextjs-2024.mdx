@@ -1,0 +1,84 @@
+---
+title: "[Updated 2024] How To Integrate Umami To Your Next.js Site"
+summary: "Updated quick guide on how to integrate Umami to your Next.js site."
+coverImg: "/blogs/integrate-umami-nextjs-2024/cover.png"
+date: "2024-08-15"
+category: "Tutorial"
+---
+
+I've written this before in 2022 about how to integrate Umami as a web tracker in your Next.js site, but now I think I need to rewrite it so it can be updated.
+
+> Please refer to the [official docs](https://umami.is/docs/install). I just share what I've done before and can't cover the whole topic.
+
+
+# Introduction
+
+As I've written before, Umami is an open-source alternative for web tracking tools. It also can be self-hosted and of course, because of that, you have full control of it.
+
+In this blog, I'll use Supabase as the main database to store the tracking data from Umami. If you're using the other database platform, you can check through [this official guide](https://umami.is/docs/guides) from Umami Docs.
+
+# Database Setup
+
+Before we install Umami in our local device or repository, we need to set up the database [first.](http://first.You) You can go to [Supabase](https://supabase.com/) site and log in with your account. Do the registration if you don't have the account yet.
+
+Open the **Dashboard** page and click the **New Project** button, also select your organization.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/0b2043a4a0b95356c2ad74f2dc13ea40132a15ee-1640x368.png?w=450)
+
+After you select the organization, the web will display the base form to set up your database. You can click **Create New Project** if you have set up your project name, password, and region.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/d70b696b841e9c0d04c8d5a4e577956406aa5c47-2368x1400.png?w=450)
+
+Now, when the database has been finished to be configured. You can open the **Settings** menu and select **Database**. You'll find your *connection string* that will be used in the Umami Setup as an environment variable.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/480cf3eb4bbdff2e7644cab6c43047811a0775ee-2768x820.png?w=450)
+
+# Umami Installation
+
+Make sure you have [Node.js](https://nodejs.org/en) installed and have configured Yarn. If not yet, you can install yarn through NPM.
+
+```bash
+npm install -g yarn
+```
+
+Clone the Umami repository to your local device and install the deps.
+
+```bash
+git clone https://github.com/umami-software/umami.git
+cd umami
+yarn install
+```
+
+Create the `.env` file in your root folder and create the `DATABASE_URL` as the environment variable. Use the **connection string ** that we've got from Supabase before as the value.
+
+```markdown
+DATABASE_URL={connection url}
+```
+
+You can now build and start your project to run it in your local device.
+
+```bash
+yarn build
+yarn start
+```
+
+The default username is **admin** and the default password is **umami.** You can change it by following [this guide](https://umami.is/docs/login).
+
+# Deploying To Vercel
+
+You can push the umami source code to your own Github repository first. Make sure you already set up the Vercel in your GitHub repository too. I also assume that you already have a Vercel account.
+
+In your Vercel dashboard, you can **Create New Project** and import the repository that contains the Umami source codes.
+
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/5a8a0b203939d24d345f71ab9499864e60b13e1d-332x252.png?w=450)
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/97edd9a352a255a1df92f4f189422f822f665929-2520x1534.png?w=450)
+
+After that, don't forget to set up the environment variable the same as your local source codes. Then, you can deploy the project to Vercel and wait until the build process is done.
+
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/6501a0e6c58140b2b2e2dcbf2e9cc145bfef1855-1684x538.png?w=450)
+
+# Closing
+
+My current blog may be obsolete in the future. This is why I always refer to the [Umami Official Docs](https://umami.is/docs). You need to read it also, so you can adjust it based on your needs. I just shared what I've known when I created this😅.

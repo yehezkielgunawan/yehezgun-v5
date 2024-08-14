@@ -9,6 +9,6 @@ export const footerMenuList = [
 	},
 	{
 		title: "Analytics",
-		url: "https://umami-v3.yehezgun.com/share/yaPWD5zDY4XPFNTC/yehezgun.com",
+		url: "https://umami-2.yehezgun.com/share/yaPWD5zDY4XPFNTC/yehezgun.com",
 	},
 ];
