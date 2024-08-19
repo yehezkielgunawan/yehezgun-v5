@@ -11,17 +11,17 @@
   "description": "Yehezkiel Gunawan's Portfolio",
   "screenshots": [
     {
-      "src": "icons/icon-192x192.png",
-      "sizes": "192x192",
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Yehezkiel Gunawan's Portfolio"
     },
     {
-      "src": "icons/icon-128x128.png",
-      "sizes": "128x128",
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
       "type": "image/png",
-      "form_factor": "mobile",
+      "form_factor": "narrow",
       "label": "Yehezkiel Gunawan's Portfolio"
     }
   ],
