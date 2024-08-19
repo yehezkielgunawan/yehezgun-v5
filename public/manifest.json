@@ -1,12 +1,30 @@
 {
+  "id": "1",
   "name": "yehezgun",
   "short_name": "yehezgun",
   "theme_color": "#fff",
   "background_color": "#fff",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
+  "description": "Yehezkiel Gunawan's Portfolio",
+  "screenshots": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Yehezkiel Gunawan's Portfolio"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "form_factor": "mobile",
+      "label": "Yehezkiel Gunawan's Portfolio"
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-72x72.png",
