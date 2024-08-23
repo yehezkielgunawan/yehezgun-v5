@@ -1,5 +1,10 @@
 import { expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+// Import components after mocking
+import Home from "@/app/page";
+import ProjectPage from "@/app/projects/page";
+import BlogPage from "@/app/blog/page";
+import About from "@/app/about/page";
 
 // Mock the module before importing components that use it
 vi.mock("@/services/projects", () => ({
@@ -101,12 +106,6 @@ vi.mock("@/services/experiences", () => ({
 		},
 	],
 }));
-
-// Import components after mocking
-import Home from "@/app/page";
-import ProjectPage from "@/app/projects/page";
-import BlogPage from "@/app/blog/page";
-import About from "@/app/about/page";
 
 test("should render the home page successfully", async () => {
 	render(<Home />);
