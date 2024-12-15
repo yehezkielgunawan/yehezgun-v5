@@ -5,23 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 import { MDXContent } from "@content-collections/mdx/react";
-import { CustomTheme } from "@/components/CustomTheme";
 import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
 import type { Metadata } from "next";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
 import ClientGiscus from "@/components/ClientGiscus";
+import { CustomTheme } from "@/components/CustomTheme";
 
 type DetailBlogProps = {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 };
 
 export async function generateMetadata({
 	params,
 }: DetailBlogProps): Promise<Metadata> {
-	const slug = params.slug;
+	const slug = (await params).slug;
 
 	const detailBlogData = getBlogMetadataBySlug(slug);
 
@@ -32,14 +32,8 @@ export async function generateMetadata({
 	});
 }
 
-const SingeBlogPage = ({
-	params,
-}: {
-	params: {
-		slug: string;
-	};
-}) => {
-	const blogData = getBlogBySlug(params.slug);
+const SingeBlogPage = async ({ params }: DetailBlogProps) => {
+	const blogData = getBlogBySlug((await params).slug);
 	return (
 		<GeneralWrapper>
 			<section>
