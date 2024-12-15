@@ -9,8 +9,10 @@ import {
 } from "react";
 import { BiCheckCircle } from "react-icons/bi";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { nord } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+	atomOneLight,
+	nord,
+} from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 const SyntaxComponent = ({
 	props,
@@ -56,7 +58,7 @@ const SyntaxComponent = ({
 					showInlineLineNumbers={false}
 					className="rounded-md"
 				>
-					{childrenValue}
+					{String(childrenValue)}
 				</SyntaxHighlighter>
 			</div>
 		);

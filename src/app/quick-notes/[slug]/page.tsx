@@ -10,15 +10,15 @@ import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 
 type DetailQuickNoteProps = {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 };
 
 export async function generateMetadata({
 	params,
 }: DetailQuickNoteProps): Promise<Metadata> {
-	const slug = params.slug;
+	const slug = (await params).slug;
 
 	const detailNoteData = getQuickNoteBySlug(slug);
 
@@ -29,14 +29,14 @@ export async function generateMetadata({
 	});
 }
 
-const SingleNotePage = ({
+const SingleNotePage = async ({
 	params,
 }: {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }) => {
-	const noteData = getQuickNoteBySlug(params.slug);
+	const noteData = getQuickNoteBySlug((await params).slug);
 	return (
 		<GeneralWrapper>
 			<section className="flex flex-wrap items-end justify-between gap-4">
