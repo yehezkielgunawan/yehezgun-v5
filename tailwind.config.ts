@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
+import type { Config as DaisyUIConfig } from "daisyui";
 
-const config: Config = {
+const config: Config & { daisyui: DaisyUIConfig } = {
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
