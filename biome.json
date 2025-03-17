@@ -1,5 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "files": { "ignoreUnknown": false, "ignore": ["src/app/globals.css"] },
   "organizeImports": {
     "enabled": true
   },
