@@ -25,7 +25,7 @@ const About = () => {
 					<br /> <br />
 					Besides the programming stuff, I also like to watch some animes, read
 					mangas, and go to some local cosplay or Japanese Culture events on the
-					weekend😅. I currently using my Sony A6000 as my main camera to do
+					weekend😅. I currently using my Sony A6400 as my main camera to do
 					some potrait photography.
 				</p>
 
