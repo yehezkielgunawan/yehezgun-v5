@@ -17,19 +17,19 @@ export default function Home() {
 					<div className="flex flex-wrap items-center gap-4">
 						<Link
 							href="/projects"
-							className="btn rounded-lg bg-base-300 font-bold"
+							className="btn link-hover rounded-lg bg-base-300 font-bold"
 						>
 							Projects
 						</Link>
 						<Link
 							href="/about"
-							className="btn rounded-lg bg-base-300 font-bold"
+							className="btn link-hover rounded-lg bg-base-300 font-bold"
 						>
 							About Me
 						</Link>
 						<a
 							href="/resume"
-							className="btn rounded-lg bg-base-300 font-bold"
+							className="btn link-hover rounded-lg bg-base-300 font-bold"
 							target="_blank"
 							rel="noreferrer"
 							data-umami-event="Click Resume Button"
