@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "biome-format": "biome format --write src/",
-    "biome-lint": "biome lint src/",
+    "biome:format": "biome format --write src/",
+    "biome:lint": "biome lint --write src/",
+    "biome:lint:ci": "biome lint src/",
     "test": "vitest",
     "test:ci": "vitest run",
     "up-latest": "pnpm up -i -L"
