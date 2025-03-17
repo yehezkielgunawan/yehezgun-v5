@@ -48,7 +48,7 @@ const SingeBlogPage = async ({ params }: DetailBlogProps) => {
 				<div className="flex flex-wrap items-center justify-between gap-4">
 					<div className="flex items-center gap-4">
 						<h4 className="m-0">Published Date: {formatDate(blogData.date)}</h4>
-						<h5 className={clsx("badge badge-neutral shadow")}>
+						<h5 className={clsx("badge badge-neutral shadow-sm")}>
 							{blogData.category}
 						</h5>
 					</div>

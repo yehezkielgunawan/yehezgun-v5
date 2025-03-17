@@ -27,7 +27,7 @@ jobs:
       with:
         version: latest
     - name: Run Biome
-      run: biome lint src/
+      run: pnpm biome:lint:ci
     - name: Build
       run: pnpm build
     - name: Run Unit Test
