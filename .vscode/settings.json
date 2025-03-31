@@ -2,5 +2,6 @@
 	"editor.defaultFormatter": "biomejs.biome",
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
-	}
+	},
+	"css.lint.unknownAtRules": "ignore"
 }
