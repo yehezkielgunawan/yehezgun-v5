@@ -18,15 +18,18 @@ const About = () => {
 		<GeneralWrapper>
 			<h1>✋Hello There!</h1>
 			<section className="mt-8 flex flex-wrap-reverse justify-between gap-4 md:flex-nowrap">
-				<p>
-					You can call me Yehez. Mostly working as a Frontend Engineer using
-					React and its ecosystem. To sharpen my understanding of something, I
-					usually write about it through my blog or notes.
+				<p className="text-base">
+					You can call me Yehez! I mostly work as a Frontend Engineer, diving
+					deep into React and its ecosystem. I also share my knowledge as a
+					guest lecturer at Binus University, which has been a fun way to
+					connect with students and stay sharp. When I want to better understand
+					something, I usually write about it on my blog or jot it down in my
+					notes.
 					<br /> <br />
-					Besides the programming stuff, I also like to watch some animes, read
-					mangas, and go to some local cosplay or Japanese Culture events on the
-					weekend😅. I currently using my Sony A6400 as my main camera to do
-					some potrait photography.
+					Outside of work, I'm into anime, manga, and attending local cosplay or
+					Japanese culture events on weekends 😅. Oh, and I love portrait
+					photography—I use my Sony A6400 as my go-to camera for capturing cool
+					shots.
 				</p>
 
 				<Image
