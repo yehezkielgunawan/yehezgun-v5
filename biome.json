@@ -1,6 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-  "files": { "ignoreUnknown": false, "ignore": ["src/app/globals.css"] },
+  "files": { "ignoreUnknown": false },
   "organizeImports": {
     "enabled": true
   },
@@ -54,5 +54,18 @@
       "jsxQuoteStyle": "double",
       "semicolons": "always"
     }
-  }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true
+    }
+  },
+  "overrides": [
+    {
+      "include": ["src/app/globals.css"],
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
 }
