@@ -28,7 +28,7 @@ export default function Home() {
 							About Me
 						</Link>
 						<a
-							href="/resume"
+							href="https://cv.yehezgun.com"
 							className="btn link-hover rounded-lg bg-base-300 font-bold"
 							target="_blank"
 							rel="noreferrer"
