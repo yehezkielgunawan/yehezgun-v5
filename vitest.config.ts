@@ -18,7 +18,12 @@ export default defineConfig({
 		},
 		coverage: {
 			include: ["src/app/**", "src/service/**"],
-			exclude: ["src/__test__/**"],
+			exclude: [
+				"src/__test__/**",
+				"src/app/**/\\[**\\]/**", // Exclude dynamic routes with [parameter] pattern
+			],
+			reporter: ["text", "html"],
+			all: true,
 		},
 	},
 });
