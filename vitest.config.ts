@@ -16,5 +16,9 @@ export default defineConfig({
 			"@": "/src",
 			"content-collections": "/src/__test__/mocks/content-collections.ts",
 		},
+		coverage: {
+			include: ["src/app/**", "src/service/**"],
+			exclude: ["src/__test__/**"],
+		},
 	},
 });
