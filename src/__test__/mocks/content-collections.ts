@@ -1,0 +1,38 @@
+export const allProjects = [
+	{
+		name: "Test Project 1",
+		description: "Test Description 1",
+		url: "https://test.com/1",
+		projectHero: "/test-hero-1.jpg",
+		projectIcon: "/test-icon-1.jpg",
+		stacks: ["React", "TypeScript"],
+		date: "2024-03-20",
+		isFeatured: true,
+		content: "Test content 1",
+		_meta: {
+			filePath: "/test-1.md",
+			fileName: "test-1",
+			directory: "projects",
+			path: "/projects/test-1",
+			extension: "md",
+		},
+	},
+	{
+		name: "Test Project 2",
+		description: "Test Description 2",
+		url: "https://test.com/2",
+		projectHero: "/test-hero-2.jpg",
+		projectIcon: "/test-icon-2.jpg",
+		stacks: ["Next.js", "Tailwind"],
+		date: "2024-03-19",
+		isFeatured: true,
+		content: "Test content 2",
+		_meta: {
+			filePath: "/test-2.md",
+			fileName: "test-2",
+			directory: "projects",
+			path: "/projects/test-2",
+			extension: "md",
+		},
+	},
+];
