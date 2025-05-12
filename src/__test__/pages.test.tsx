@@ -31,17 +31,15 @@ vi.mock("@/components/BlogWrapper", () => ({
 
 // Mock MDXContent component
 vi.mock("@content-collections/mdx/react", () => ({
-	MDXContent: ({
-		code,
-		components,
-	}: { code: string; components: Record<string, unknown> }) => (
+	// biome-ignore lint/correctness/noEmptyPattern: <explanation>
+	MDXContent: ({}: { code: string; components: Record<string, unknown> }) => (
 		<div data-testid="mdx-content">Mocked MDX Content</div>
 	),
 }));
 
 // Mock getBlogBySlug and getBlogMetadataBySlug
 vi.mock("@/services/blogs", () => ({
-	getBlogBySlug: (slug: string) => ({
+	getBlogBySlug: (_slug: string) => ({
 		title: "Mocked Blog Title",
 		date: "2023-01-01",
 		category: "Technology",
@@ -49,7 +47,7 @@ vi.mock("@/services/blogs", () => ({
 		summary: "Mocked blog summary",
 		mdx: "mocked mdx content",
 	}),
-	getBlogMetadataBySlug: (slug: string) => ({
+	getBlogMetadataBySlug: (_slug: string) => ({
 		title: "Mocked Blog Title",
 		summary: "Mocked blog summary",
 	}),
@@ -75,7 +73,7 @@ vi.mock("@/services/blogs", () => ({
 
 // Mock getQuickNoteBySlug and quickNotesList
 vi.mock("@/services/quickNotes", () => ({
-	getQuickNoteBySlug: (slug: string) => ({
+	getQuickNoteBySlug: (_slug: string) => ({
 		title: "Mocked Quick Note Title",
 		subtitle: "Mocked Quick Note Subtitle",
 		mdx: "mocked mdx content",
@@ -127,9 +125,8 @@ vi.mock("@/components/ShareButtonFlex", () => ({
 
 // Mock QuickNotesWrapper component
 vi.mock("@/components/QuickNotesWrapper", () => ({
-	default: ({
-		quickNotesList,
-	}: {
+	// biome-ignore lint/correctness/noEmptyPattern: <explanation>
+	default: ({}: {
 		quickNotesList: Array<{
 			title: string;
 			subtitle: string;
@@ -141,7 +138,7 @@ vi.mock("@/components/QuickNotesWrapper", () => ({
 
 // Mock formatDate
 vi.mock("@/services/formatDate", () => ({
-	formatDate: (date: string) => "January 1, 2023",
+	formatDate: (_date: string) => "January 1, 2023",
 }));
 
 describe("Home Page", () => {
