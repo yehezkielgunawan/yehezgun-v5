@@ -11,6 +11,7 @@
     "biome:lint:ci": "biome lint src/",
     "test": "vitest",
     "test:ci": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "up-latest": "pnpm up -i -L"
   },
   "dependencies": {
@@ -44,6 +45,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.2",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "@vitest/coverage-v8": "3.1.1",
     "daisyui": "^5.0.18",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.3",
