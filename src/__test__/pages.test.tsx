@@ -1,131 +1,35 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import Home from "@/app/page";
 import ProjectPage from "@/app/projects/page";
 import BlogPage from "@/app/blog/page";
 import About from "@/app/about/page";
 
-// Mock next/image
-vi.mock("next/image", () => ({
-	default: (props: {
-		alt: string;
-		src: string;
-		width: number;
-		height: number;
-		className?: string;
-		priority?: boolean;
-	}) => <img {...props} alt={props.alt} src={props.src} />,
-}));
+describe("Home Page", () => {
+	it("renders the main heading", () => {
+		render(<Home />);
+		expect(screen.getByText("Hello! I'm Yehez 🙌")).toBeInTheDocument();
+	});
 
-// Mock content-collections
-vi.mock("content-collections", () => ({
-	allProjects: [
-		{
-			name: "Featured Project",
-			description: "A featured project description",
-			url: "https://test.com/featured",
-			projectHero: "/test-hero.jpg",
-			projectIcon: "/test-icon.jpg",
-			stacks: ["React", "TypeScript"],
-			date: "2024-03-20",
-			isFeatured: true,
-			content: "Project content",
-			_meta: {
-				filePath: "/featured.md",
-				fileName: "featured",
-				directory: "projects",
-				path: "/projects/featured",
-				extension: "md",
-			},
-		},
-	],
-	allWorkExperiences: [
-		{
-			company: "Test Company",
-			title: "Senior Developer",
-			startDate: "2020-01-01",
-			endDate: "2024-03-20",
-			description: "Test experience description",
-			_meta: {
-				filePath: "/experience.md",
-				fileName: "experience",
-				directory: "experiences",
-				path: "/experiences/test",
-				extension: "md",
-			},
-		},
-	],
-}));
+	it("renders the navigation links", () => {
+		render(<Home />);
+		expect(screen.getByText("Projects")).toBeInTheDocument();
+		expect(screen.getByText("About Me")).toBeInTheDocument();
+		expect(screen.getByText("Resume")).toBeInTheDocument();
+	});
 
-// Mock the projects service
-vi.mock("@/services/projects", () => ({
-	featuredProjects: [
-		{
-			name: "Featured Project",
-			description: "A featured project description",
-			url: "https://test.com/featured",
-			projectHero: "/test-hero.jpg",
-			projectIcon: "/test-icon.jpg",
-			stacks: ["React", "TypeScript"],
-			date: "2024-03-20",
-			isFeatured: true,
-			content: "Project content",
-			_meta: {
-				filePath: "/featured.md",
-				fileName: "featured",
-				directory: "projects",
-				path: "/projects/featured",
-				extension: "md",
-			},
-		},
-	],
-	nonFeaturedProjects: [
-		{
-			name: "Other Project",
-			description: "A non-featured project description",
-			url: "https://test.com/other",
-			projectHero: "/test-hero.jpg",
-			projectIcon: "/test-icon.jpg",
-			stacks: ["Next.js", "Tailwind"],
-			date: "2024-03-19",
-			isFeatured: false,
-			content: "Project content",
-			_meta: {
-				filePath: "/other.md",
-				fileName: "other",
-				directory: "projects",
-				path: "/projects/other",
-				extension: "md",
-			},
-		},
-	],
-}));
+	it("renders the profile image", () => {
+		render(<Home />);
+		const image = screen.getByAltText("icon");
+		expect(image).toBeInTheDocument();
+		expect(image).toHaveAttribute("src", "/yehez-icon.svg");
+	});
 
-// Mock the blogs service
-vi.mock("@/services/blogs", () => ({
-	blogList: [
-		{
-			title: "Test Blog Post",
-			summary: "A test blog post summary",
-			coverImg: "/test-cover.jpg",
-			slug: "test-blog",
-			date: "2024-03-20",
-			category: "Testing",
-		},
-	],
-	blogCategories: () => ["Testing"],
-}));
-
-// Mock the experiences service
-vi.mock("@/services/experiences", () => ({
-	experienceList: [
-		{
-			company: "Test Company",
-			role: "Senior Developer",
-			startDate: "2020-01-01",
-			endDate: "2024-03-20",
-		},
-	],
-}));
+	it("renders the featured projects section", () => {
+		render(<Home />);
+		expect(screen.getByText("Featured Projects")).toBeInTheDocument();
+	});
+});
 
 describe("Project Page", () => {
 	it("renders the main heading", () => {
@@ -173,6 +77,12 @@ describe("Blog Page", () => {
 	it("renders blog posts", () => {
 		render(<BlogPage />);
 		expect(screen.getByText("Test Blog Post")).toBeInTheDocument();
+
+		// Find the blog card and verify the category within it
+		const blogCard = screen.getByRole("link", { name: /Test Blog Post/i });
+		const category = within(blogCard).getByText("Testing");
+		expect(category).toBeInTheDocument();
+		expect(category).toHaveClass("badge");
 	});
 });
 

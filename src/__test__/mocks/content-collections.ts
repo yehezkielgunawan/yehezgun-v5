@@ -1,38 +1,68 @@
 export const allProjects = [
 	{
-		name: "Test Project 1",
-		description: "Test Description 1",
-		url: "https://test.com/1",
-		projectHero: "/test-hero-1.jpg",
-		projectIcon: "/test-icon-1.jpg",
+		name: "Featured Project",
+		description: "A featured project description",
+		url: "https://test.com/featured",
+		projectHero: "/test-hero.jpg",
+		projectIcon: "/test-icon.jpg",
 		stacks: ["React", "TypeScript"],
 		date: "2024-03-20",
 		isFeatured: true,
-		content: "Test content 1",
+		content: "Project content",
 		_meta: {
-			filePath: "/test-1.md",
-			fileName: "test-1",
+			filePath: "/featured.md",
+			fileName: "featured",
 			directory: "projects",
-			path: "/projects/test-1",
+			path: "/projects/featured",
 			extension: "md",
 		},
 	},
 	{
-		name: "Test Project 2",
-		description: "Test Description 2",
-		url: "https://test.com/2",
-		projectHero: "/test-hero-2.jpg",
-		projectIcon: "/test-icon-2.jpg",
+		name: "Other Project",
+		description: "A non-featured project description",
+		url: "https://test.com/other",
+		projectHero: "/test-hero.jpg",
+		projectIcon: "/test-icon.jpg",
 		stacks: ["Next.js", "Tailwind"],
 		date: "2024-03-19",
-		isFeatured: true,
-		content: "Test content 2",
+		isFeatured: false,
+		content: "Project content",
 		_meta: {
-			filePath: "/test-2.md",
-			fileName: "test-2",
+			filePath: "/other.md",
+			fileName: "other",
 			directory: "projects",
-			path: "/projects/test-2",
+			path: "/projects/other",
 			extension: "md",
+		},
+	},
+];
+
+export const allWorkExperiences = [
+	{
+		company: "Test Company",
+		title: "Senior Developer",
+		startDate: "2020-01-01",
+		endDate: "2024-03-20",
+		description: "Test experience description",
+		_meta: {
+			filePath: "/experience.md",
+			fileName: "experience",
+			directory: "experiences",
+			path: "/experiences/test",
+			extension: "md",
+		},
+	},
+];
+
+export const allBlogs = [
+	{
+		title: "Test Blog Post",
+		summary: "A test blog post summary",
+		coverImg: "/test-cover.jpg",
+		date: "2024-03-20",
+		category: "Testing",
+		_meta: {
+			path: "test-blog",
 		},
 	},
 ];
