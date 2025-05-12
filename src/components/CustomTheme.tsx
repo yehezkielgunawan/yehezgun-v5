@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type {
 	AnchorHTMLAttributes,
 	DetailedHTMLProps,
@@ -6,6 +5,7 @@ import type {
 	ImgHTMLAttributes,
 } from "react";
 import SyntaxComponent from "./SyntaxComponent";
+import ImageWithLightbox from "./ImageWithLightbox";
 
 export const CustomTheme = {
 	a: ({
@@ -30,15 +30,7 @@ export const CustomTheme = {
 	}: DetailedHTMLProps<
 		ImgHTMLAttributes<HTMLImageElement>,
 		HTMLImageElement
-	>) => (
-		<Image
-			src={src as string}
-			alt={alt as string}
-			width={1600}
-			height={900}
-			className="float-right m-0 aspect-video max-h-80 w-full rounded-lg object-contain"
-		/>
-	),
+	>) => <ImageWithLightbox src={src as string} alt={alt as string} />,
 
 	code: (
 		props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,
