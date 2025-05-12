@@ -1,0 +1,74 @@
+---
+title: "What I've Learned About Testing"
+summary: "My contemplation about testing in frontend development."
+coverImg: "/blogs/what-i-learned-about-testing/cover.jpg"
+date: "2025-05-12"
+category: "Technical"
+---
+
+## Table of contents
+- [Introduction](#introduction)
+- [Why We Need Testing?](#why-we-need-testing)
+- [Test Types](#test-types)
+- [Test Tradeoffs](#test-trade-offs)
+- [Conclusion](#conclusion)
+
+## Introduction
+
+On August 2024, I got the offer in my current workplace. Before I got the offer, I was interviewed and told by the Engineering Manager that soon I would be work with that they implemented the Testing Driven Development as a culture and every member should be aware of it.
+
+The first response in my mind is "Oh, I have to learn about testing, because I never work with TDD before". Thank God, I got the chance to consult with mas [Irfan Maulana](https://www.linkedin.com/in/mazipan/) who was a Senior Frontend Engineer at several big companies in Indonesia.
+
+I still remember I set the online meeting with him on August 23, 2024. We discussed so many things about testing, started with the why's until the tradeoffs. I learned a lot from him, and I want to share what I've learned about testing in this blog post.
+
+This blog actually a quick contemplation from me about testing implementation😅.
+
+## Why We Need Testing?
+
+> We write tests to be confident that our application will work when the user uses them.
+
+The quote above is quoted from [Kent C. Dodds](https://kentcdodds.com/blog/how-to-know-what-to-test#remembering-why-we-test). We need to make sure that our application works as expected. We need to make sure that the code we write is correct and does not break the application. We need to make sure that the code we write is maintainable and easy to understand.
+
+Also, every changes that we made to the codebase should not break the application. We need to make sure that the code we write is testable and easy to test. We need to make sure that the code we write is easy to refactor and easy to maintain.
+
+## Test Types
+
+The image below is the visualization of the test types (Testing Pyramid/Trophy):
+![Testing Pyramid/Trophy](/blogs/what-i-learned-about-testing/test-pyramid.png)
+
+Kent C. Dodds share in [his blog](https://kentcdodds.com/blog/static-vs-unit-vs-integration-vs-e2e-tests), there're 4 types of tests that we can use to test our application:
+- **Static Tests**: These tests are used to check the code quality and code style. These tests are not used to check the functionality of the application. These tests are used to check the code quality and code style. If you already familiar with ESLint, Prettier, or TypeScript, these tools are the examples of static tests. These tests are used to check the code quality and code style.
+- **Unit Tests**: These tests are used to check the functionality of a single unit of code. These tests are used to check the functionality of a single function or a single component. These tests are used to check the functionality of a single module or a single class.
+- **Integration Tests**: These tests are used to check the functionality of a group of units of code. These tests are used to check the functionality of a group of functions or a group of components. These tests are used to check the functionality of a group of modules or a group of classes.
+- **End-to-End Tests**: These tests are used to check the functionality of the entire application. These tests are used to check the functionality of the entire application from the user's perspective. These tests are used to check the functionality of the entire application from the user's perspective.
+
+## Test Trade-offs
+![Pyramid Trade-offs](/blogs/what-i-learned-about-testing/pyramid-tradeoff.png)
+
+### Cost
+As the test types goes up, the cost of the tests also goes up. The cost of the tests is the time and effort that we need to spend to write the tests. The cost of the tests is the time and effort that we need to spend to maintain the tests. The cost of the tests is the time and effort that we need to spend to run the tests.
+
+### Speed
+As the test types goes up, the speed of the tests also goes down. The speed of the tests is the time that we need to spend to run the tests. The speed of the tests is the time that we need to spend to run the tests. The speed of the tests is the time that we need to spend to run the tests.
+
+
+### Confidence Scopes
+As the test types goes up, the confidence scopes of the tests also goes up. The confidence scopes of the tests is the confidence that we have that the code that we write is correct. The confidence scopes of the tests is the confidence that we have that the code that we write is maintainable and easy to understand. The confidence scopes of the tests is the confidence that we have that the code that we write is testable and easy to test.
+
+## Conclusion
+
+So where I should start? **Start Small.**
+
+Start from the smallest test type, which is **Static Tests**. You can start with ESLint, Prettier, or TypeScript. After that, you can start with **Unit Tests**. You can start with Jest or React Testing Library, because those are the popular library that usually used for unit testing. The **Integration Tests** and **End-to-End Tests** are the last tests that you can implement later.
+
+And this is the most important thing. The popular approach is write the test before you write the code. But in my opinion, you can write the test after you write the code. The most important thing is to make sure that the code that you write is correct and does not break the application. You can write the test after you write the code. I even still write the test after I write code.
+
+With current AI Assistant, you can utilize it to write the test scripts. Don't be confused on what you should test. Utilize the AI, you can learn it along the way. Here's my test script examples that I used in my current personal web: [https://github.com/yehezkielgunawan/yehezgun-v5/pull/65/files](https://github.com/yehezkielgunawan/yehezgun-v5/pull/65/files).
+
+This is the closing statement from [Kent C. Dodds](https://kentcdodds.com/blog/static-vs-unit-vs-integration-vs-e2e-tests#conclusion):
+> What I'm interested in is whether I'm confident that when I ship my changes, my code satisfies the business requirements and I'll use a mix of the different testing strategies to accomplish that goal.
+
+## References
+- [Kent C. Dodds - How to Know What to Test](https://kentcdodds.com/blog/how-to-know-what-to-test)
+- [Kent C. Dodds - Static vs Unit vs Integration vs E2E Tests](https://kentcdodds.com/blog/static-vs-unit-vs-integration-vs-e2e-tests)
+- [Live explanation from mas Irfan Maulana](https://www.linkedin.com/in/mazipan/)
