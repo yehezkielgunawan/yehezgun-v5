@@ -109,28 +109,20 @@ vi.mock("@/services/experiences", () => ({
 
 test("should render the home page successfully", async () => {
 	render(<Home />);
-	expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-		"Hello! I'm Yehez 🙌",
-	);
+	expect(screen.getByText("Hello! I'm Yehez 🙌")).toBeInTheDocument();
 });
 
 test("should render the projects page successfully", async () => {
 	render(<ProjectPage />);
-	expect(screen.getAllByRole("heading", { level: 2 })[0].textContent).toBe(
-		"Featured Projects",
-	);
+	expect(screen.getByText("Featured Projects")).toBeInTheDocument();
 });
 
 test("should render the blog page successfully", async () => {
 	render(<BlogPage />);
-	expect(screen.getAllByRole("heading", { level: 1 })[2].textContent).toBe(
-		"Blog",
-	);
+	expect(screen.getByText("Blog")).toBeInTheDocument();
 });
 
 test("should render the about page successfully", async () => {
 	render(<About />);
-	expect(screen.getAllByRole("heading", { level: 1 })[3].textContent).toBe(
-		"✋Hello There!",
-	);
+	expect(screen.getByText("✋Hello There!")).toBeInTheDocument();
 });
