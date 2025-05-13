@@ -27,9 +27,9 @@ This blog actually a quick contemplation from me about testing implementationðŸ˜
 
 > We write tests to be confident that our application will work when the user uses them.
 
-The quote above is quoted from [Kent C. Dodds](https://kentcdodds.com/blog/how-to-know-what-to-test#remembering-why-we-test). We need to make sure that our application works as expected. We need to make sure that the code we write is correct and does not break the application. We need to make sure that the code we write is maintainable and easy to understand.
+The quote above is quoted from [Kent C. Dodds](https://kentcdodds.com/blog/how-to-know-what-to-test#remembering-why-we-test). We need to make sure that our application works as expected. We need to make sure that the code we write is correct and does not break the application. We also have to be aware that the code we write is maintainable and easy to understand.
 
-Also, every changes that we made to the codebase should not break the application. We need to make sure that the code we write is testable and easy to test. We need to make sure that the code we write is easy to refactor and easy to maintain.
+Also, every changes that we made to the codebase should not break the application. It should be testable and easy to test. We have to make sure that the code we write is easy to refactor and easy to maintain.
 
 ## Test Types
 
@@ -37,7 +37,7 @@ The image below is the visualization of the test types (Testing Pyramid/Trophy):
 ![Testing Pyramid/Trophy](/blogs/what-i-learned-about-testing/test-pyramid.png)
 
 Kent C. Dodds share in [his blog](https://kentcdodds.com/blog/static-vs-unit-vs-integration-vs-e2e-tests), there're 4 types of tests that we can use to test our application:
-- **Static Tests**: These tests are used to check the code quality and code style. These tests are not used to check the functionality of the application. These tests are used to check the code quality and code style. If you already familiar with ESLint, Prettier, or TypeScript, these tools are the examples of static tests. These tests are used to check the code quality and code style.
+- **Static Tests**: These tests are used to check the code quality and code style. Remember, these are not used to check the functionality of the application. It checks the code quality and code style. If you already familiar with ESLint, Prettier, or TypeScript, these tools are the examples of static tests. These tests are used to check the code quality and code style.
 - **Unit Tests**: These tests are intended to verify the functioning of a particular piece of code. It verifies that individual, isolated parts work as expected.
 - **Integration Tests**: These tests are used to check the functionality of a group of units of code. It verifies that several units work together in harmony as expected.
 - **End-to-End Tests**: These tests are used to check the functionality of the entire application. It also check the functionality of the entire application from the user's perspective.
