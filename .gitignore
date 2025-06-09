@@ -40,3 +40,10 @@ next-env.d.ts
 
 # env
 .env
+
+# sst
+.sst
+
+
+# open-next
+.open-next
