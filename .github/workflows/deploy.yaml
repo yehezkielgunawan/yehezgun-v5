@@ -13,7 +13,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::123456789012:role/GitHubOIDCRole # Replace with your role ARN
-          aws-region: us-east-1 # or your preferred region
+          aws-region: ${{ secrets.AWS_REGION }}
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
