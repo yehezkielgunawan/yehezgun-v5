@@ -12,9 +12,7 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "up-latest": "pnpm up -i -L",
-    "sst:deploy": "sst deploy --stage production",
-    "sst:dev": "sst dev"
+    "up-latest": "pnpm up -i -L"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -33,7 +31,6 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
-    "sst": "3.17.4",
     "yet-another-react-lightbox": "^3.23.1"
   },
   "devDependencies": {
