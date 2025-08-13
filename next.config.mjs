@@ -18,8 +18,11 @@ const nextConfig = {
 		umamiID: process.env.UMAMI_ID,
 		umamiURL: process.env.UMAMI_URL,
 	},
-	// Output configuration for better compatibility
-	output: "standalone",
+	// Conditional output based on deployment target
+	output:
+		process.env.CF_PAGES || process.env.CLOUDFLARE_BUILD
+			? "standalone"
+			: undefined,
 };
 
 export default withcontentCollections(nextConfig);

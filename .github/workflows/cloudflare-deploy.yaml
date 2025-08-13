@@ -51,6 +51,7 @@ jobs:
       - name: Deploy to Cloudflare Workers
         run: pnpm cloudflare:deploy
         env:
+          CLOUDFLARE_BUILD: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
