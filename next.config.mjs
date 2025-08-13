@@ -18,6 +18,8 @@ const nextConfig = {
 		umamiID: process.env.UMAMI_ID,
 		umamiURL: process.env.UMAMI_URL,
 	},
+	// Output configuration for better compatibility
+	output: "standalone",
 };
 
 export default withcontentCollections(nextConfig);
