@@ -2,21 +2,11 @@ name: Deploy to Cloudflare Workers
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'production'
-        type: choice
-        options:
-          - production
-          - preview
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare Workers
-    environment: ${{ github.event.inputs.environment }}
     
     steps:
       - name: Checkout
@@ -60,19 +50,7 @@ jobs:
           UMAMI_ID: ${{ secrets.UMAMI_ID }}
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
 
-      - name: Comment PR (if applicable)
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const workerName = process.env.CLOUDFLARE_WORKER_NAME || 'yehezgun-v5';
-            const deploymentUrl = `https://${workerName}.workers.dev`;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 Deployed to Cloudflare Workers: ${deploymentUrl}`
-            });
-
-            
+      - name: Deployment Summary
+        run: |
+          echo "🚀 Deployment completed!"
+          echo "Your site is available at: https://yehezgun-v5.workers.dev"
