@@ -6,7 +6,10 @@
     "biome:format": "biome format --write src/",
     "biome:lint": "biome lint --write src/",
     "biome:lint:ci": "biome lint src/",
-    "build": "next build --turbopack",
+    "build": "next build",
+    "cloudflare:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cloudflare:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "dev": "next dev --turbopack",
     "start": "next start",
     "test": "vitest",
@@ -16,6 +19,7 @@
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
+    "@opennextjs/cloudflare": "^1.6.5",
     "@vitejs/plugin-react": "^4.4.1",
     "clsx": "^2.1.1",
     "jsdom": "^26.1.0",
@@ -51,7 +55,8 @@
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.4"
+    "vitest": "^3.1.4",
+    "wrangler": "^4.28.1"
   },
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
 }
