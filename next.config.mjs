@@ -17,6 +17,8 @@ const nextConfig = {
 		categoryId: process.env.NEXT_PUBLIC_CATEGORY_ID,
 		umamiID: process.env.UMAMI_ID,
 		umamiURL: process.env.UMAMI_URL,
+		CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
+		CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
 	},
 	// Conditional output based on deployment target
 	output:
