@@ -25,8 +25,14 @@ jobs:
       - name: Install Deps (immutable)
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Project
-        run: pnpm build
+      - name: Build For Cloudflare Workers
+        run: pnpm cloudflare:build:ci
+        env:
+          NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
+          NEXT_PUBLIC_REPO_ID: ${{ secrets.NEXT_PUBLIC_REPO_ID }}
+          NEXT_PUBLIC_CATEGORY_ID: ${{ secrets.NEXT_PUBLIC_CATEGORY_ID }}
+          UMAMI_ID: ${{ secrets.UMAMI_ID }}
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
 
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
