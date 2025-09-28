@@ -10,11 +10,11 @@ describe("Metadata Service", () => {
 			const ogImageUrl = generateOGImage({ title, description });
 
 			// Check the URL structure
-			expect(ogImageUrl).toContain("https://og-v2.yehezgun.com/api/og");
+				expect(ogImageUrl).toContain("https://og-image-rev.yehez.workers.dev/og");
 			expect(ogImageUrl).toContain(`title=${encodeURIComponent(title)}`);
-			expect(ogImageUrl).toContain(`desc=${encodeURIComponent(description)}`);
+				expect(ogImageUrl).toContain(`description=${encodeURIComponent(description)}`);
 			expect(ogImageUrl).toContain("siteName=yehezgun.com");
-			expect(ogImageUrl).toContain("socialMedia=Twitter:%20@yehezgun");
+				expect(ogImageUrl).toContain("social=Twitter:%20@yehezgun");
 		});
 
 		it("should encode special characters in the URL", () => {
@@ -24,7 +24,7 @@ describe("Metadata Service", () => {
 			const ogImageUrl = generateOGImage({ title, description });
 
 			expect(ogImageUrl).toContain(`title=${encodeURIComponent(title)}`);
-			expect(ogImageUrl).toContain(`desc=${encodeURIComponent(description)}`);
+			expect(ogImageUrl).toContain(`description=${encodeURIComponent(description)}`);
 		});
 	});
 
