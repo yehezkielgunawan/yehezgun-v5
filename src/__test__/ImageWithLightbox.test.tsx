@@ -36,7 +36,11 @@ vi.mock("next/image", () => ({
 		src,
 		alt,
 		onLoad,
-	}: { src: string; alt: string; onLoad?: () => void }) => {
+	}: {
+		src: string;
+		alt: string;
+		onLoad?: () => void;
+	}) => {
 		// Store the onLoad callback so we can call it manually in tests
 		mockImageOnLoad = onLoad;
 		return <img src={src} alt={alt} data-testid="image-inside-button" />;
