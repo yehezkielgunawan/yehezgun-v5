@@ -16,7 +16,9 @@ import {
 
 const SyntaxComponent = ({
 	props,
-}: { props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> }) => {
+}: {
+	props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
+}) => {
 	const [isCopied, setIsCopied] = useState(false);
 	const childrenValue = String(props.children).replace(/\n$/, "");
 	const language = props.className?.replace(/language-/, "");

@@ -27,15 +27,14 @@ export default function Home() {
 						>
 							About Me
 						</Link>
-						<a
-							href="https://cv.yehezgun.com"
+						<Link
+							href="/resume"
 							className="btn link-hover rounded-lg bg-base-300 font-bold"
-							target="_blank"
-							rel="noreferrer"
 							data-umami-event="Click Resume Button"
+							target="_blank"
 						>
 							Resume
-						</a>
+						</Link>
 					</div>
 				</div>
 				<Image

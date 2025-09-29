@@ -1,9 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
   "files": { "ignoreUnknown": false },
-  "organizeImports": {
-    "enabled": true
-  },
+
   "linter": {
     "enabled": true,
     "rules": {
@@ -62,7 +60,7 @@
   },
   "overrides": [
     {
-      "include": ["src/app/globals.css"],
+      "includes": ["src/app/globals.css"],
       "linter": {
         "enabled": false
       }

@@ -1,10 +1,7 @@
 "use client";
 import { FaCopy, FaXTwitter } from "react-icons/fa6";
 
-const ShareBtns = (props: {
-	title?: string;
-	url: string;
-}) => {
+const ShareBtns = (props: { title?: string; url: string }) => {
 	return [
 		{
 			name: "Twitter (X)",

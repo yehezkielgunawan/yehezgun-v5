@@ -7,8 +7,4 @@ export const footerMenuList = [
 		title: "Templates",
 		url: "https://github.com/yehezkielgunawan?tab=repositories&q=template&type=&language=&sort=",
 	},
-	{
-		title: "Analytics",
-		url: "https://umami-2.yehezgun.com/share/6D9Snfxa1vGbxpIj/yehezgun.com",
-	},
 ];

@@ -94,7 +94,11 @@ vi.mock("next/image", () => ({
 		src,
 		alt,
 		className,
-	}: { src: string; alt: string; className?: string }) => (
+	}: {
+		src: string;
+		alt: string;
+		className?: string;
+	}) => (
 		<img src={src} alt={alt} className={className} data-testid="mock-image" />
 	),
 }));
@@ -104,7 +108,11 @@ vi.mock("next/link", () => ({
 		href,
 		children,
 		className,
-	}: { href: string; children: React.ReactNode; className?: string }) => (
+	}: {
+		href: string;
+		children: React.ReactNode;
+		className?: string;
+	}) => (
 		<a href={href} className={className} data-testid="mock-link">
 			{children}
 		</a>

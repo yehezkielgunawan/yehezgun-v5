@@ -1,7 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-	themes: nord --default, dim --prefersdark;
+	themes:
+		nord --default,
+		dim --prefersdark;
 }
 
 @custom-variant dark (&:is([data-theme="dim"] *));
