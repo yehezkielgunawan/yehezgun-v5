@@ -21,7 +21,7 @@
  * with this wrapper.)
  */
 
-import React, {
+import {
   useEffect,
   useState,
   type ReactNode,
@@ -118,7 +118,7 @@ export default function ClientMDXContent({
       throw error;
     }
     return (
-      <div className="rounded-md border border-error/30 bg-error/5 p-4 text-sm text-error">
+      <div className="rounded-md border border-error/30 bg-error/5 p-4 text-error text-sm">
         {errorFallback ? (
           errorFallback(error)
         ) : (
