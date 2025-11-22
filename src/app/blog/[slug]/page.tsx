@@ -29,6 +29,7 @@ export async function generateMetadata({
     title: detailBlogData.title,
     description: detailBlogData.summary,
     slug: `blog/${slug}`,
+    type: "article",
   });
 }
 

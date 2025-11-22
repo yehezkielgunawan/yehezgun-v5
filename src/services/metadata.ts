@@ -4,19 +4,22 @@ type OGImageProps = {
   title: string;
   description: string;
   slug?: string;
+  type?: "website" | "article";
 };
 
 export function generateOGImage({ title, description }: OGImageProps) {
-  return `https://og-image-rev.yehez.workers.dev/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&siteName=yehezgun.com&social=Twitter:%20@yehezgun`;
+  return `https://og-image.yehezgun.com/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&siteName=yehezgun.com&social=Twitter:%20@yehezgun`;
 }
 
 export const metadataContent = ({
   title,
   description,
   slug,
+  type = "website",
 }: OGImageProps): Metadata => ({
   title,
   description,
+  authors: [{ name: "Yehezkiel Gunawan", url: "https://yehezgun.com" }],
   category: "personal",
   manifest: "/manifest.json",
   icons: {
@@ -29,7 +32,7 @@ export const metadataContent = ({
     },
   },
   openGraph: {
-    type: "website",
+    type,
     siteName: "YehezGun",
     url: `https://yehezgun.com${slug ? `/${slug}` : ""}`,
     title,
@@ -40,9 +43,14 @@ export const metadataContent = ({
           title,
           description,
         }),
+        secureUrl: generateOGImage({
+          title,
+          description,
+        }),
         width: 1200,
         height: 627,
         alt: title,
+        type: "image/png",
       },
     ],
   },

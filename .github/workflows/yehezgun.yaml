@@ -30,7 +30,5 @@ jobs:
         run: pnpm biome:lint:ci
       - name: Build
         run: pnpm build
-      - name: Run Unit Test
-        run: pnpm test:ci
-      - name: Test Coverage
+      - name: Unit Testing & Coverage
         run: pnpm test:coverage
