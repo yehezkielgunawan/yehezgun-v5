@@ -35,11 +35,13 @@ import {
  */
 type MDXRuntimeComponent = ComponentType<{
   code: unknown;
+  // biome-ignore lint/suspicious/noExplicitAny: MDX components can be any React component
   components?: Record<string, any>;
 }>;
 
 export interface ClientMDXContentProps {
   code: unknown;
+  // biome-ignore lint/suspicious/noExplicitAny: MDX components can be any React component
   components?: Record<string, any>;
   /**
    * Optional placeholder (skeleton / spinner) while the client bundle for
@@ -133,7 +135,7 @@ export default function ClientMDXContent({
 
   // Still loading runtime
   if (!mdxComp) {
-    return placeholder ? <>{placeholder}</> : null;
+    return placeholder ?? null;
   }
 
   const Runtime = mdxComp;

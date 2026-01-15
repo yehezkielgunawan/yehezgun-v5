@@ -8,7 +8,7 @@ type ShareButtonFlexProps = {
 
 const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
 	const [isCopied, setIsCopied] = React.useState(false);
-	const currentUrl = typeof window !== "undefined" && window.location.href;
+	const currentUrl = window?.location.href;
 
 	const handleClick = async (btn: {
 		name: string;

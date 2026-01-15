@@ -43,6 +43,7 @@ vi.mock("next/image", () => ({
 	}) => {
 		// Store the onLoad callback so we can call it manually in tests
 		mockImageOnLoad = onLoad;
+		// biome-ignore lint/performance/noImgElement: Using img in test mock for next/image
 		return <img src={src} alt={alt} data-testid="image-inside-button" />;
 	},
 }));
