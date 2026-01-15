@@ -18,7 +18,7 @@ vi.mock("@/context/ThemeProvider", () => ({
 
 vi.mock("next/script", () => ({
 	__esModule: true,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// biome-ignore lint/suspicious/noExplicitAny: Mock component needs any for props
 	default: (props: any) => <div data-testid="next-script-mock" {...props} />,
 }));
 

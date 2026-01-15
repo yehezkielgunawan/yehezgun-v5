@@ -16,7 +16,7 @@ afterEach(() => {
 // Mock next/image as a simple img component
 vi.mock("next/image", () => ({
 	__esModule: true,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// biome-ignore lint/suspicious/noExplicitAny: Mock component needs any for props
 	default: (props: any) => {
 		// eslint-disable-next-line @next/next/no-img-element
 		return React.createElement("img", {

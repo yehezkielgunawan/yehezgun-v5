@@ -31,7 +31,7 @@ vi.mock("@/components/BlogWrapper", () => ({
 
 // Mock MDXContent component
 vi.mock("@content-collections/mdx/react", () => ({
-	// biome-ignore lint/correctness/noEmptyPattern: <explanation>
+	// biome-ignore lint/correctness/noEmptyPattern: Props destructured but unused in mock
 	MDXContent: ({}: { code: string; components: Record<string, unknown> }) => (
 		<div data-testid="mdx-content">Mocked MDX Content</div>
 	),
@@ -99,6 +99,7 @@ vi.mock("next/image", () => ({
 		alt: string;
 		className?: string;
 	}) => (
+		// biome-ignore lint/performance/noImgElement: Using img in test mock for next/image
 		<img src={src} alt={alt} className={className} data-testid="mock-image" />
 	),
 }));
@@ -133,7 +134,7 @@ vi.mock("@/components/ShareButtonFlex", () => ({
 
 // Mock QuickNotesWrapper component
 vi.mock("@/components/QuickNotesWrapper", () => ({
-	// biome-ignore lint/correctness/noEmptyPattern: <explanation>
+	// biome-ignore lint/correctness/noEmptyPattern: Props destructured but unused in mock
 	default: ({}: {
 		quickNotesList: Array<{
 			title: string;
