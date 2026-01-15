@@ -23,7 +23,7 @@ export default defineConfig({
 				"src/app/**/\\[**\\]/**", // Exclude dynamic routes with [parameter] pattern
 			],
 			reporter: ["text", "html"],
-			all: true,
+			provider: "v8",
 		},
 	},
 });

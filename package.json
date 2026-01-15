@@ -41,9 +41,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@content-collections/core": "^0.12.0",
+    "@content-collections/core": "^0.13.1",
     "@content-collections/mdx": "^0.2.2",
-    "@content-collections/next": "^0.2.9",
+    "@content-collections/next": "^0.2.10",
     "@tailwindcss/postcss": "^4.1.8",
     "@tailwindcss/typography": "^0.5.19",
     "@testing-library/jest-dom": "^6.6.3",
@@ -52,12 +52,12 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "@vitest/coverage-v8": "^3.1.4",
+    "@vitest/coverage-v8": "^4.0.17",
     "daisyui": "^5.0.42",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.4",
+    "vitest": "^4.0.17",
     "wrangler": "^4.53.0"
   },
   "packageManager": "pnpm@10.14.0+sha512.ad27a79641b49c3e481a16a805baa71817a04bbe06a38d17e60e2eaee83f6a146c6a688125f5792e48dd5ba30e7da52a5cda4c3992b9ccf333f9ce223af84748"
