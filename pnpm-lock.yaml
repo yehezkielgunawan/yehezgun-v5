@@ -23,6 +23,9 @@ importers:
       jsdom:
         specifier: ^27.4.0
         version: 27.4.0
+      mdx-bundler:
+        specifier: ^10.1.1
+        version: 10.1.1(acorn@8.15.0)(esbuild@0.25.8)
       next:
         specifier: 16.0.7
         version: 16.0.7(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -4828,11 +4831,6 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
-  yaml@2.8.1:
-    resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
-    engines: {node: '>= 14.6'}
-    hasBin: true
-
   yaml@2.8.2:
     resolution: {integrity: sha512-mplynKqc1C2hTVYxd0PU2xQAc22TI1vShAYGksCCfxbn/dFwnHTNi1bvYsBTkhdUNtGIf5xNOg938rrSSYvS9A==}
     engines: {node: '>= 14.6'}
@@ -6223,7 +6221,7 @@ snapshots:
   '@esbuild-plugins/node-resolve@0.2.2(esbuild@0.25.8)':
     dependencies:
       '@types/resolve': 1.20.6
-      debug: 4.4.1
+      debug: 4.4.3
       esbuild: 0.25.8
       escape-string-regexp: 4.0.0
       resolve: 1.22.10
@@ -9275,7 +9273,7 @@ snapshots:
 
   mdx-bundler@10.1.1(acorn@8.15.0)(esbuild@0.25.8):
     dependencies:
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.6
       '@esbuild-plugins/node-resolve': 0.2.2(esbuild@0.25.8)
       '@fal-works/esbuild-plugin-global-externals': 2.1.2
       '@mdx-js/esbuild': 3.1.0(acorn@8.15.0)(esbuild@0.25.8)
@@ -9931,7 +9929,7 @@ snapshots:
       estree-util-value-to-estree: 3.4.0
       toml: 3.0.0
       unified: 11.0.5
-      yaml: 2.8.1
+      yaml: 2.8.2
 
   remark-mdx@3.1.0:
     dependencies:
@@ -10558,8 +10556,6 @@ snapshots:
   yallist@3.1.1: {}
 
   yallist@5.0.0: {}
-
-  yaml@2.8.1: {}
 
   yaml@2.8.2: {}
 
