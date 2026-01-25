@@ -50,8 +50,11 @@ const SyntaxComponent = ({
 						type="button"
 						onClick={handleCopyText}
 						className={clsx("btn btn-info btn-xs")}
+						aria-label={
+							isCopied ? "Copied to clipboard" : "Copy code to clipboard"
+						}
 					>
-						{isCopied ? <BiCheckCircle size={16} /> : "Copy"}
+						{isCopied ? <BiCheckCircle size={16} aria-hidden="true" /> : "Copy"}
 					</button>
 				</div>
 				<SyntaxHighlighter

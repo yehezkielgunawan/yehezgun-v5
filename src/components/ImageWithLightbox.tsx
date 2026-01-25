@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
@@ -58,7 +58,11 @@ const ImageWithLightbox = ({
 							className="absolute inset-0 flex items-center justify-center rounded-lg bg-gray-100"
 							data-testid="loading-container"
 						>
-							<div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-200 border-t-neutral-800" />
+							<div
+								className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-200 border-t-neutral-800"
+								aria-hidden="true"
+							/>
+							<span className="sr-only">Loading image</span>
 						</div>
 					)}
 				</div>
