@@ -19,7 +19,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 		<Link
 			href={props.url}
 			target="_blank"
-			className="group hover:-translate-y-0.5 no-underline transition duration-300 hover:underline"
+			className="group no-underline transition duration-300 hover:-translate-y-0.5 hover:underline"
 			data-umami-event={`Click Project: ${props.name}`}
 		>
 			<div className="flex h-full flex-col justify-between gap-4 rounded-lg border border-base-content p-2 md:p-4">

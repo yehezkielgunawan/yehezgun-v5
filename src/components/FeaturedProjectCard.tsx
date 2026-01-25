@@ -21,7 +21,7 @@ const FeaturedProjectCard = (project: Project) => {
 						priority={true}
 					/>
 
-					<figcaption className="-translate-x-1/2 absolute bottom-0 left-1/2 w-full text-center font-bold text-base-content">
+					<figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 text-center font-bold text-base-content">
 						{project.name}
 					</figcaption>
 				</figure>

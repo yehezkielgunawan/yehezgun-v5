@@ -18,7 +18,7 @@ export const CustomTheme = {
 	>) => (
 		<a
 			href={href}
-			className="link break-words hover:decoration-dashed hover:underline-offset-2"
+			className="link wrap-break-word hover:decoration-dashed hover:underline-offset-2"
 			target={String(href).startsWith("http") ? "_blank" : "_self"}
 			rel="noreferrer"
 		>
