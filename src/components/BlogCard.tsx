@@ -15,7 +15,7 @@ const BlogCard = (blog: BlogCardProps) => {
 	return (
 		<Link
 			href={`/blog/${blog.slug}`}
-			className="group hover:-translate-y-0.5 bg-base-200 no-underline transition duration-300 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
+			className="group bg-base-200 no-underline transition duration-300 hover:-translate-y-0.5 hover:underline hover:shadow-md dark:hover:shadow-neutral-content"
 		>
 			<div className="h-full w-full rounded-lg border border-base-content">
 				<Image

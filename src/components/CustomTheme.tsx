@@ -5,8 +5,8 @@ import type {
 	HTMLAttributes,
 	ImgHTMLAttributes,
 } from "react";
-import SyntaxComponent from "./SyntaxComponent";
 import ImageWithLightbox from "./ImageWithLightbox";
+import SyntaxComponent from "./SyntaxComponent";
 
 export const CustomTheme = {
 	a: ({
@@ -15,16 +15,20 @@ export const CustomTheme = {
 	}: DetailedHTMLProps<
 		AnchorHTMLAttributes<HTMLAnchorElement>,
 		HTMLAnchorElement
-	>) => (
-		<a
-			href={href}
-			className="link break-words hover:decoration-dashed hover:underline-offset-2"
-			target={String(href).startsWith("http") ? "_blank" : "_self"}
-			rel="noreferrer"
-		>
-			{children}
-		</a>
-	),
+	>) => {
+		const isExternal = String(href).startsWith("http");
+		return (
+			<a
+				href={href}
+				className="link wrap-break-word hover:decoration-dashed hover:underline-offset-2"
+				target={isExternal ? "_blank" : "_self"}
+				rel="noreferrer"
+			>
+				{children}
+				{isExternal && <span className="sr-only"> (opens in a new tab)</span>}
+			</a>
+		);
+	},
 	img: ({
 		src,
 		alt,
