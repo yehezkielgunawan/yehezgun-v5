@@ -25,9 +25,6 @@ jobs:
       - name: Install Deps (immutable)
         run: pnpm install --no-frozen-lockfile
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium
-
       - name: Build For Cloudflare Workers
         run: pnpm cloudflare:build:ci
         env:
