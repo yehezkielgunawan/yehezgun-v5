@@ -8,15 +8,17 @@ import { useEffect } from "react";
  * This component initializes mermaid.js and renders any mermaid code blocks
  * found in the page. It should be included on pages that contain mermaid diagrams.
  *
- * Mermaid code blocks are expected to have the class "language-mermaid" and
- * be wrapped in a <pre> tag (standard MDX code block output).
+ * Mermaid code blocks are expected to have classes like:
+ * - "language-mermaid" -> default responsive behavior
+ * - "language-mermaid-overflow" -> always scroll horizontally
+ * - "language-mermaid-fit" -> always fit to container width
  */
 export default function MermaidInit() {
 	useEffect(() => {
 		const renderMermaid = async () => {
-			// Find all mermaid code blocks
+			// Find all mermaid code blocks (including variants)
 			const mermaidBlocks = document.querySelectorAll(
-				"pre code.language-mermaid",
+				'pre code[class*="language-mermaid"]',
 			);
 
 			if (mermaidBlocks.length === 0) return;
@@ -42,12 +44,22 @@ export default function MermaidInit() {
 
 				if (!preElement || preElement.tagName !== "PRE") continue;
 
+				// Determine the mode from the class name
+				const classList = codeBlock.className;
+				let mode = "default";
+
+				if (classList.includes("language-mermaid-overflow")) {
+					mode = "overflow";
+				} else if (classList.includes("language-mermaid-fit")) {
+					mode = "fit";
+				}
+
 				// Get the mermaid code
 				const code = codeBlock.textContent || "";
 
 				// Create a container for the rendered diagram
 				const container = document.createElement("div");
-				container.className = "mermaid-container mermaid-default";
+				container.className = `mermaid-container mermaid-${mode}`;
 
 				try {
 					// Generate unique ID
