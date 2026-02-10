@@ -1,35 +1,24 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
-import type { Element, Root, RootContent } from "hast";
 import type { Code, Root as MdastRoot } from "mdast";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeMermaid from "rehype-mermaid";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
 
-type MermaidMode = "default" | "overflow" | "fit";
-
-// Track mermaid modes for the current document being processed
-let currentDocMermaidModes: MermaidMode[] = [];
-
 /**
- * Remark plugin to capture mermaid rendering modes from code block languages.
+ * Remark plugin to normalize mermaid code block languages.
  *
  * Usage in MDX:
  *   ```mermaid            -> default responsive behavior
  *   ```mermaid-overflow   -> always scroll horizontally
  *   ```mermaid-fit        -> always fit to container
  *
- * This plugin normalizes the language back to "mermaid" so rehype-mermaid
- * can process it, while storing the mode for use by rehypeWrapMermaid.
+ * This plugin keeps the language variants so client-side can handle them.
  */
 function remarkMermaidModes() {
 	return (tree: MdastRoot) => {
-		// Reset modes for this document
-		currentDocMermaidModes = [];
-
 		const visit = (node: MdastRoot | MdastRoot["children"][number]) => {
 			if ("children" in node && Array.isArray(node.children)) {
 				for (const child of node.children) {
@@ -37,76 +26,26 @@ function remarkMermaidModes() {
 				}
 			}
 
+			// Normalize mermaid variants to mermaid for syntax highlighting
+			// but keep a data attribute for the mode
 			if (node.type === "code") {
 				const codeNode = node as Code;
 				const lang = codeNode.lang || "";
 
-				if (lang === "mermaid-overflow") {
-					currentDocMermaidModes.push("overflow");
+				if (
+					lang === "mermaid-overflow" ||
+					lang === "mermaid-fit" ||
+					lang === "mermaid"
+				) {
+					// Store mode in meta for client-side handling
+					const mode = lang.replace("mermaid-", "") || "default";
+					codeNode.meta = `data-mermaid-mode="${mode === "mermaid" ? "default" : mode}"`;
 					codeNode.lang = "mermaid";
-				} else if (lang === "mermaid-fit") {
-					currentDocMermaidModes.push("fit");
-					codeNode.lang = "mermaid";
-				} else if (lang === "mermaid") {
-					currentDocMermaidModes.push("default");
 				}
 			}
 		};
 
 		visit(tree);
-	};
-}
-
-/**
- * Custom rehype plugin to wrap mermaid SVGs in a scrollable container.
- *
- * Modes (set via code block language in remark):
- * - default: Responsive (fits on mobile, scrolls on desktop)
- * - overflow: Always uses horizontal scrolling
- * - fit: Always fits to container width
- */
-function rehypeWrapMermaid() {
-	return (tree: Root) => {
-		let mermaidIndex = 0;
-
-		const wrapMermaidSvg = (children: RootContent[]): RootContent[] => {
-			return children.map((node) => {
-				if (node.type === "element") {
-					const element = node as Element;
-
-					// Check if this is a mermaid SVG
-					if (
-						element.tagName === "svg" &&
-						element.properties?.id &&
-						String(element.properties.id).startsWith("mermaid")
-					) {
-						const mode = currentDocMermaidModes[mermaidIndex] || "default";
-						mermaidIndex++;
-
-						// Wrap in a div container with mode class
-						return {
-							type: "element",
-							tagName: "div",
-							properties: {
-								className: ["mermaid-container", `mermaid-${mode}`],
-								"data-mermaid-mode": mode,
-							},
-							children: [element],
-						} as Element;
-					}
-
-					// Recursively process children
-					if (element.children) {
-						element.children = wrapMermaidSvg(
-							element.children as RootContent[],
-						) as Element["children"];
-					}
-				}
-				return node;
-			});
-		};
-
-		tree.children = wrapMermaidSvg(tree.children);
 	};
 }
 
@@ -154,25 +93,7 @@ const blogs = defineCollection({
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
-			rehypePlugins: [
-				rehypeAutolinkHeadings,
-				rehypeSlug,
-				rehypeRaw,
-				[
-					rehypeMermaid,
-					{
-						strategy: "inline-svg",
-						mermaidConfig: {
-							flowchart: {
-								useMaxWidth: false,
-								htmlLabels: true,
-							},
-							theme: "default",
-						},
-					},
-				],
-				rehypeWrapMermaid,
-			],
+			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
 			remarkPlugins: [remarkMermaidModes, remarkGfm],
 		});
 		return {
