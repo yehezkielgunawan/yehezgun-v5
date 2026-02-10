@@ -7,7 +7,6 @@ import rehypeMermaid from "rehype-mermaid";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
 import { z } from "zod";
 
 type MermaidMode = "default" | "overflow" | "fit";
@@ -174,7 +173,7 @@ const blogs = defineCollection({
 				],
 				rehypeWrapMermaid,
 			],
-			remarkPlugins: [remarkMermaidModes, remarkGfm, remarkHtml],
+			remarkPlugins: [remarkMermaidModes, remarkGfm],
 		});
 		return {
 			...document,
@@ -197,7 +196,7 @@ const quickNotes = defineCollection({
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
 			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
-			remarkPlugins: [remarkGfm, remarkHtml],
+			remarkPlugins: [remarkGfm],
 		});
 		return {
 			...document,
