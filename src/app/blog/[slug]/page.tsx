@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
 import ClientGiscus from "@/components/ClientGiscus";
 import { CustomTheme } from "@/components/CustomTheme";
+import MermaidWrapper from "@/components/MermaidWrapper";
 
 type DetailBlogProps = {
 	params: Promise<{
@@ -63,6 +64,7 @@ const SingeBlogPage = async ({ params }: DetailBlogProps) => {
 					components={CustomTheme}
 					placeholder={<p>Loading content...</p>}
 				/>
+				<MermaidWrapper />
 			</section>
 			<Link
 				href="/blog"
