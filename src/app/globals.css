@@ -48,3 +48,78 @@
 		@apply prose max-w-none dark:prose-invert;
 	}
 }
+
+/* Mermaid diagram container - base styles */
+.mermaid-container {
+	@apply w-full;
+	-webkit-overflow-scrolling: touch;
+}
+
+.mermaid-container > svg {
+	display: block;
+	height: auto;
+}
+
+/*
+ * Mermaid rendering modes:
+ * - default: Responsive - fits on mobile, scrolls on desktop
+ * - overflow: Always uses horizontal scrolling (preserves diagram size)
+ * - fit: Always fits to container width (scales diagram)
+ *
+ * Usage in MDX:
+ *   1. Default (just mermaid code block) - responsive behavior
+ *   2. With MermaidWrapper component:
+ *      <MermaidWrapper mode="overflow">
+ *        ```mermaid
+ *        flowchart TD
+ *        ...
+ *        ```
+ *      </MermaidWrapper>
+ */
+
+/* === DEFAULT MODE: Responsive (fit on mobile, scroll on desktop) === */
+.mermaid-default,
+.mermaid-wrapper.mermaid-default .mermaid-container {
+	@media (width < theme(--breakpoint-md)) {
+		@apply overflow-x-hidden;
+
+		> svg {
+			width: 100% !important;
+			max-width: 100% !important;
+			height: auto !important;
+		}
+	}
+
+	@media (width >= theme(--breakpoint-md)) {
+		@apply overflow-x-auto;
+
+		> svg {
+			max-width: none;
+			width: auto;
+		}
+	}
+}
+
+/* === OVERFLOW MODE: Always use horizontal scrolling === */
+.mermaid-overflow,
+.mermaid-wrapper.mermaid-overflow .mermaid-container {
+	@apply overflow-x-auto;
+
+	> svg {
+		max-width: none;
+		width: auto;
+	}
+}
+
+/* === FIT MODE: Always fit to container width === */
+.mermaid-fit,
+.mermaid-wrapper.mermaid-fit .mermaid-container {
+	@apply overflow-x-hidden;
+
+	> svg {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto !important;
+	}
+}
+
