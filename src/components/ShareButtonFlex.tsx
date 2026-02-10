@@ -8,7 +8,7 @@ type ShareButtonFlexProps = {
 
 const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
 	const [isCopied, setIsCopied] = React.useState(false);
-	const currentUrl = window?.location.href;
+	const currentUrl = typeof window !== "undefined" ? window.location.href : "";
 
 	const handleClick = async (btn: {
 		name: string;
@@ -17,7 +17,9 @@ const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
 	}) => {
 		if (btn.isCopy) {
 			// copy the current URL to the clipboard
-			await navigator.clipboard.writeText(window.location.href);
+			if (typeof window !== "undefined") {
+				await navigator.clipboard.writeText(currentUrl);
+			}
 			setIsCopied(true);
 			setTimeout(() => {
 				setIsCopied(false);
@@ -25,7 +27,9 @@ const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
 			return;
 		}
 
-		window.open(btn.baseUrl, "_blank");
+		if (typeof window !== "undefined") {
+			window.open(btn.baseUrl, "_blank");
+		}
 	};
 
 	return (
