@@ -22,6 +22,8 @@ jobs:
           cache: "pnpm"
       - name: Install Deps (immutable)
         run: pnpm install --no-frozen-lockfile
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install chromium
       - name: Setup Biome
         uses: biomejs/setup-biome@v2
         with:

@@ -7,7 +7,6 @@ import rehypeMermaid from "rehype-mermaid";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
 import { z } from "zod";
 
 type MermaidMode = "default" | "overflow" | "fit";
@@ -124,6 +123,7 @@ const projects = defineCollection({
 		stacks: z.array(z.string()),
 		isFeatured: z.boolean(),
 		date: z.string(),
+		content: z.string(),
 	}),
 });
 
@@ -136,6 +136,7 @@ const workExperiences = defineCollection({
 		company: z.string(),
 		startDate: z.string(),
 		endDate: z.string().optional(),
+		content: z.string(),
 	}),
 });
 
@@ -149,6 +150,7 @@ const blogs = defineCollection({
 		coverImg: z.string(),
 		date: z.string(),
 		category: z.string(),
+		content: z.string(),
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
@@ -171,7 +173,7 @@ const blogs = defineCollection({
 				],
 				rehypeWrapMermaid,
 			],
-			remarkPlugins: [remarkMermaidModes, remarkGfm, remarkHtml],
+			remarkPlugins: [remarkMermaidModes, remarkGfm],
 		});
 		return {
 			...document,
@@ -189,11 +191,12 @@ const quickNotes = defineCollection({
 		subtitle: z.string(),
 		date: z.string(),
 		tags: z.array(z.string()),
+		content: z.string(),
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
 			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
-			remarkPlugins: [remarkGfm, remarkHtml],
+			remarkPlugins: [remarkGfm],
 		});
 		return {
 			...document,
