@@ -5,7 +5,7 @@ import { SiCodewars, SiLeetcode } from "react-icons/si";
 export const socialMedias = [
 	{
 		name: "LinkedIn",
-		url: "https://www.linkedin.com/in/yehezkiel-gunawan-595128138/",
+		url: "https://www.linkedin.com/in/yehezkiel-gunawan/",
 		icon: FaLinkedin,
 	},
 	{
@@ -20,7 +20,7 @@ export const socialMedias = [
 	},
 	{
 		name: "Email",
-		url: "mailto:yehezkiel.gunawan28@gmail.com",
+		url: "mailto:yehezkiel.gunawan@yehezgun.com",
 		icon: FaEnvelope,
 	},
 ];

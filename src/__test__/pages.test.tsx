@@ -295,7 +295,7 @@ describe("Resume Page", () => {
 		const iframe = screen.getByTitle("Resume");
 		expect(iframe).toHaveAttribute(
 			"src",
-			"https://drive.google.com/file/d/1oXe3GJlPHHDE3w14IzLSa650jXgvG-_K/preview",
+			"https://drive.google.com/file/d/1qfmpSD-dMIxj78yaQBaRgQQpIPSzJ_y7/preview",
 		);
 	});
 
