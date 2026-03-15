@@ -2,7 +2,7 @@
 title: "How to Use Rust Libraries Through WASM in Your Web App"
 summary: "A quick blog about how to use Rust libraries through WASM in your web app"
 coverImg: "/blogs/how-to-use-rust-lib-through-wasm/cover.jpg"
-date: "2026-3-9"
+date: "2026-3-16"
 category: "Tutorial"
 ---
 
@@ -17,7 +17,7 @@ category: "Tutorial"
 - [How I Integrated Pixo WASM in My Image Compressor App](#how-i-integrated-pixo-wasm-in-my-image-compressor-app)
 - [Step by Step: Using a Rust WASM Library in Your Web App](#step-by-step-using-a-rust-wasm-library-in-your-web-app)
 - [Performance: Why Bother With WASM?](#performance-why-bother-with-wasm)
-- [Why It Doesn't Always Work on Mobile](#why-it-doesnt-always-work-on-mobile)
+- [Why It Doesn't Always Work on Mobile?](#why-it-doesnt-always-work-on-mobile)
 - [Closing](#closing)
 - [References](#references)
 
@@ -355,13 +355,13 @@ The key benefits of WASM approach:
 
 Where WASM really shines is for **CPU-bound tasks** that JavaScript is naturally slow at: image/video processing, cryptography, physics simulations, audio processing, and so on. If your task is mostly I/O-bound or simple DOM manipulation, WASM probably won't help much.
 
-## Why It Doesn't Always Work on Mobile
+## Why It Doesn't Always Work on Mobile?
 
 WASM itself is well-supported on mobile browsers. But the surrounding workflow, specifically reading files, decoding images, and managing memory, is where things break. I learned this the hard way while building img-compress. Here are the real issues I ran into and the workarounds I had to build.
 
 ### File Handles Go Stale Between Async Operations
 
-This was the most frustrating bug. On mobile browsers (especially iOS Safari), a `File` object from an `<input>` can become **unreadable** if you try to access it in a later event-loop turn. The browser may release the underlying file data across async boundaries (such as between a user gesture and a subsequent `useEffect`), even though the `File` object itself still exists in memory.
+This was the most frustrating limitation that I didn't figure it out yet, so far. On mobile browsers (especially iOS Safari), a `File` object from an `<input>` can become **unreadable** if you try to access it in a later event-loop turn. The browser may release the underlying file data across async boundaries (such as between a user gesture and a subsequent `useEffect`), even though the `File` object itself still exists in memory.
 
 The fix: read the file into memory **immediately** in the same event handler, before any async boundaries:
 
