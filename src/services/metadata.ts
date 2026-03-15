@@ -7,8 +7,11 @@ type OGImageProps = {
 	type?: "website" | "article";
 };
 
+const AVATAR_URL =
+	"https://res.cloudinary.com/yehez/image/upload/v1646485864/yehez_avatar_transparent_swwqcq.png";
+
 export function generateOGImage({ title, description }: OGImageProps) {
-	return `https://og-image.yehezgun.com/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&siteName=yehezgun.com&social=Twitter:%20@yehezgun`;
+	return `https://og-image.yehezgun.com/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&siteName=yehezgun.com&social=Twitter:%20@yehezgun&image=${encodeURIComponent(AVATAR_URL)}`;
 }
 
 export const metadataContent = ({
@@ -48,7 +51,7 @@ export const metadataContent = ({
 					description,
 				}),
 				width: 1200,
-				height: 627,
+				height: 630,
 				alt: title,
 				type: "image/png",
 			},
