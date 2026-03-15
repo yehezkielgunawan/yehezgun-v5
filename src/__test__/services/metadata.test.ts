@@ -17,6 +17,7 @@ describe("Metadata Service", () => {
 			);
 			expect(ogImageUrl).toContain("siteName=yehezgun.com");
 			expect(ogImageUrl).toContain("social=Twitter:%20@yehezgun");
+			expect(ogImageUrl).toContain("image=");
 		});
 
 		it("should encode special characters in the URL", () => {
