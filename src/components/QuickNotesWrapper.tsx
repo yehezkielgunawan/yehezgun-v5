@@ -9,6 +9,7 @@ type QuickNotesWrapperProps = {
 		subtitle: string;
 		tags: string[];
 		slug: string;
+		date: string;
 	}[];
 };
 
@@ -28,7 +29,11 @@ const QuickNotesWrapper = ({ quickNotesList }: QuickNotesWrapperProps) => {
 				onChange={handleChangeSearch}
 			/>
 			<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+				{/* sort based on the date */}
 				{quickNotesList
+					.sort(
+						(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+					)
 					.filter(
 						(note) =>
 							// filter based on title or tags

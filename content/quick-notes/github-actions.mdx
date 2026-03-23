@@ -1,0 +1,93 @@
+---
+title: "Github Actions Workflow Template"
+subtitle: "Github Actions Workflow Template"
+date: "2026-03-23"
+tags: ["cloudflare", "github", "actions"]
+---
+
+# Base Template Workflow for Pull Request
+
+```yaml
+name: YehezGun CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  next:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - name: Install Deps (immutable)
+        run: pnpm install --no-frozen-lockfile
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+      - name: Run Biome
+        run: pnpm biome:lint:ci
+      - name: Build
+        run: pnpm build
+      - name: Unit Testing & Coverage
+        run: pnpm test:coverage
+
+
+```
+
+# Base Template Workflow for Cloudflare Deploy
+
+```yaml
+name: Deploy to Cloudflare Workers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install Deps (immutable)
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build For Cloudflare Workers
+        run: pnpm cloudflare:build:ci
+        env:
+          NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
+          NEXT_PUBLIC_REPO_ID: ${{ secrets.NEXT_PUBLIC_REPO_ID }}
+          NEXT_PUBLIC_CATEGORY_ID: ${{ secrets.NEXT_PUBLIC_CATEGORY_ID }}
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --name yehezgun-v5
+
+```
