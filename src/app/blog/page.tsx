@@ -1,6 +1,6 @@
 import BlogWrapper from "@/components/BlogWrapper";
 import GeneralWrapper from "@/components/GeneralWrapper";
-import { blogList } from "@/services/blogs";
+import { blogCategories, blogList } from "@/services/blogs";
 import { metadataContent } from "@/services/metadata";
 import type { Metadata } from "next";
 
@@ -19,7 +19,7 @@ const BlogPage = () => {
 				<p>Here, I will share some of the things I learn on a daily basis.</p>
 			</section>
 			<section className="mt-12">
-				<BlogWrapper blogList={blogList} />
+				<BlogWrapper blogList={blogList} categoryList={blogCategories()} />
 			</section>
 		</GeneralWrapper>
 	);

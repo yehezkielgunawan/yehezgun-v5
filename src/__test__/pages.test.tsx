@@ -69,6 +69,7 @@ vi.mock("@/services/blogs", () => ({
 			summary: "Summary 1",
 		},
 	],
+	blogCategories: () => ["Tech"],
 }));
 
 // Mock getQuickNoteBySlug and quickNotesList
