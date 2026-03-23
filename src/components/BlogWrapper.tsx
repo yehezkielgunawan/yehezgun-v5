@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import BlogCard from "./BlogCard";
-import { blogCategories } from "@/services/blogs";
 import clsx from "clsx";
 
 type BlogWrapperProps = {
@@ -12,12 +11,12 @@ type BlogWrapperProps = {
 		category: string;
 		title: string;
 	}[];
+	categoryList: string[];
 };
 
-const BlogWrapper = ({ blogList }: BlogWrapperProps) => {
+const BlogWrapper = ({ blogList, categoryList }: BlogWrapperProps) => {
 	const [searchKeyword, setSearchKeyword] = useState<string>("");
 	const [selectedCategory, setSelectedCategory] = useState<string>("");
-	const categoryList = blogCategories();
 
 	const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchKeyword(e.target.value);

@@ -32,6 +32,10 @@ const projects = defineCollection({
 		date: z.string(),
 		content: z.string(),
 	}),
+	transform: (document) => {
+		const { content: _, ...metadata } = document;
+		return metadata;
+	},
 });
 
 const workExperiences = defineCollection({
@@ -45,6 +49,10 @@ const workExperiences = defineCollection({
 		endDate: z.string().optional(),
 		content: z.string(),
 	}),
+	transform: (document) => {
+		const { content: _, ...metadata } = document;
+		return metadata;
+	},
 });
 
 const blogs = defineCollection({
@@ -64,8 +72,9 @@ const blogs = defineCollection({
 			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
 			remarkPlugins: [remarkGfm],
 		});
+		const { content: _, ...metadata } = document;
 		return {
-			...document,
+			...metadata,
 			mdx,
 		};
 	},
@@ -87,8 +96,9 @@ const quickNotes = defineCollection({
 			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
 			remarkPlugins: [remarkGfm],
 		});
+		const { content: _, ...metadata } = document;
 		return {
-			...document,
+			...metadata,
 			mdx,
 		};
 	},

@@ -48,3 +48,6 @@ next-env.d.ts
 # open-next
 .open-next
 .gitnexus
+
+.serena/
+bundled/

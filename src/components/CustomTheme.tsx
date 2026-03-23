@@ -1,12 +1,18 @@
 "use client";
+import dynamic from "next/dynamic";
 import type {
 	AnchorHTMLAttributes,
 	DetailedHTMLProps,
 	HTMLAttributes,
 	ImgHTMLAttributes,
 } from "react";
-import ImageWithLightbox from "./ImageWithLightbox";
-import SyntaxComponent from "./SyntaxComponent";
+
+const SyntaxComponent = dynamic(() => import("./SyntaxComponent"), {
+	ssr: false,
+});
+const ImageWithLightbox = dynamic(() => import("./ImageWithLightbox"), {
+	ssr: false,
+});
 
 export const CustomTheme = {
 	a: ({

@@ -27,7 +27,14 @@ const ProjectPage = () => {
 								(new Date(a.date) as unknown as number),
 						)
 						.map((project) => (
-							<ProjectCard key={project._meta.filePath} {...project} />
+							<ProjectCard
+								key={project._meta.filePath}
+								name={project.name}
+								description={project.description}
+								projectIcon={project.projectIcon}
+								stacks={project.stacks}
+								url={project.url}
+							/>
 						))}
 				</div>
 			</section>
@@ -41,7 +48,14 @@ const ProjectPage = () => {
 								(new Date(a.date) as unknown as number),
 						)
 						.map((project) => (
-							<ProjectCard key={project._meta.filePath} {...project} />
+							<ProjectCard
+								key={project._meta.filePath}
+								name={project.name}
+								description={project.description}
+								projectIcon={project.projectIcon}
+								stacks={project.stacks}
+								url={project.url}
+							/>
 						))}
 				</div>
 			</section>
