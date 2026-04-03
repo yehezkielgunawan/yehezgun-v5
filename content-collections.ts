@@ -105,5 +105,5 @@ const quickNotes = defineCollection({
 });
 
 export default defineConfig({
-	collections: [projects, workExperiences, blogs, quickNotes],
+	content: [projects, workExperiences, blogs, quickNotes],
 });
