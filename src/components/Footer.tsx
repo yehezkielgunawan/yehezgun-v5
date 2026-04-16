@@ -11,9 +11,10 @@ const Footer = () => {
 						<Link
 							key={menu.title}
 							href={menu.url}
-							target="_blank"
+							{...(menu.isExternal
+								? { target: "_blank", rel: "noreferrer" }
+								: {})}
 							className="link link-hover font-semibold"
-							rel="noreferrer"
 						>
 							{menu.title}
 						</Link>
