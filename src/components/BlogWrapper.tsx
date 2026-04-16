@@ -1,7 +1,7 @@
 "use client";
+import clsx from "clsx";
 import { useState } from "react";
 import BlogCard from "./BlogCard";
-import clsx from "clsx";
 
 type BlogWrapperProps = {
 	blogList: {

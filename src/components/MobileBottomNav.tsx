@@ -1,8 +1,8 @@
 "use client";
-import { menuList } from "@/constants/menuList";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { menuList } from "@/constants/menuList";
 
 const MobileBottomNav = () => {
 	const pathname = usePathname();

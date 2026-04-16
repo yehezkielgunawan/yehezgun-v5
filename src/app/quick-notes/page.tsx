@@ -1,9 +1,8 @@
+import type { Metadata } from "next";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import QuickNotesWrapper from "@/components/QuickNotesWrapper";
 import { metadataContent } from "@/services/metadata";
 import { quickNotesList } from "@/services/quickNotes";
-
-import type { Metadata } from "next";
 
 export const metadata: Metadata = metadataContent({
 	title: "Quick Notes",

@@ -1,8 +1,8 @@
+import type { Metadata } from "next";
 import BlogWrapper from "@/components/BlogWrapper";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import { blogCategories, blogList } from "@/services/blogs";
 import { metadataContent } from "@/services/metadata";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = metadataContent({
 	title: "Blog",

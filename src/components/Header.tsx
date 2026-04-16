@@ -1,11 +1,11 @@
 "use client";
-import { IoMoon, IoSunny } from "react-icons/io5";
-import { menuList } from "@/constants/menuList";
 import clsx from "clsx";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
-import Link from "next/link";
+import { IoMoon, IoSunny } from "react-icons/io5";
+import { menuList } from "@/constants/menuList";
 
 const Header = () => {
 	const pathname = usePathname();

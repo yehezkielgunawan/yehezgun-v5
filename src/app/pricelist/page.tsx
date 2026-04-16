@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import { metadataContent } from "@/services/metadata";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = metadataContent({
 	title: "Pricelist",

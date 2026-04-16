@@ -1,5 +1,5 @@
-import { footerMenuList } from "@/constants/footerMenuList";
 import Link from "next/link";
+import { footerMenuList } from "@/constants/footerMenuList";
 
 const Footer = () => {
 	return (
