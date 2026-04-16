@@ -27,8 +27,8 @@ const Header = () => {
 					</div>
 					<div className="flex">
 						<ul className="menu menu-horizontal hidden md:flex">
-						{menuList.map((menu) => (
-							<li key={menu.title}>
+							{menuList.map((menu) => (
+								<li key={menu.title}>
 									<Link
 										href={menu.url}
 										className={clsx(
