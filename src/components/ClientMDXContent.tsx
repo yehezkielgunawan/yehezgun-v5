@@ -21,7 +21,7 @@
  * with this wrapper.)
  */
 
-import { useEffect, useState, type ReactNode, type ComponentType } from "react";
+import { type ComponentType, type ReactNode, useEffect, useState } from "react";
 
 /**
  * Keep the runtime component props intentionally broad to avoid depending on the

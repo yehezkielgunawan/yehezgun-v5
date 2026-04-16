@@ -1,8 +1,8 @@
+import type { Metadata } from "next";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import ProjectCard from "@/components/ProjectCard";
 import { metadataContent } from "@/services/metadata";
 import { featuredProjects, nonFeaturedProjects } from "@/services/projects";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = metadataContent({
 	title: "Projects",

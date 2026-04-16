@@ -1,12 +1,12 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import About from "@/app/about/page";
+import BlogPage from "@/app/blog/page";
+import Loading from "@/app/loading";
 import Home from "@/app/page";
 import ProjectPage from "@/app/projects/page";
-import BlogPage from "@/app/blog/page";
-import About from "@/app/about/page";
 import QuickNotesPage from "@/app/quick-notes/page";
 import ResumePage from "@/app/resume/page";
-import Loading from "@/app/loading";
 
 // Mock BlogWrapper component
 vi.mock("@/components/BlogWrapper", () => ({

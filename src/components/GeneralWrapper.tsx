@@ -1,7 +1,7 @@
 import type React from "react";
+import Footer from "./Footer";
 import Header from "./Header";
 import MobileBottomNav from "./MobileBottomNav";
-import Footer from "./Footer";
 
 const GeneralWrapper = ({
 	children,

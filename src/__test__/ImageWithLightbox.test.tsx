@@ -1,5 +1,5 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ImageWithLightbox from "@/components/ImageWithLightbox";
 
 // Mock onLoad callback to test loading state

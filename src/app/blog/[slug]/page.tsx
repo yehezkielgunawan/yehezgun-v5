@@ -1,17 +1,17 @@
-import GeneralWrapper from "@/components/GeneralWrapper";
-import { getBlogBySlug, getBlogMetadataBySlug } from "@/services/blogs";
 import clsx from "clsx";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
+import ClientGiscus from "@/components/ClientGiscus";
 import ClientMDXContent from "@/components/ClientMDXContent";
+import { CustomTheme } from "@/components/CustomTheme";
+import GeneralWrapper from "@/components/GeneralWrapper";
+import MermaidWrapper from "@/components/MermaidWrapper";
+import ShareButtonFlex from "@/components/ShareButtonFlex";
+import { getBlogBySlug, getBlogMetadataBySlug } from "@/services/blogs";
 import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
-import type { Metadata } from "next";
-import ShareButtonFlex from "@/components/ShareButtonFlex";
-import ClientGiscus from "@/components/ClientGiscus";
-import { CustomTheme } from "@/components/CustomTheme";
-import MermaidWrapper from "@/components/MermaidWrapper";
 
 type DetailBlogProps = {
 	params: Promise<{

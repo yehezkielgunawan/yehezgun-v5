@@ -38,6 +38,14 @@
       }
     }
   },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "formatter": {
     "enabled": true,
     "lineEnding": "lf",

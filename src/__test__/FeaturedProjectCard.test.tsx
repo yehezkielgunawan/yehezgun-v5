@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import FeaturedProjectCard from "@/components/FeaturedProjectCard";
 import type { Project } from "content-collections";
+import { describe, expect, it, vi } from "vitest";
+import FeaturedProjectCard from "@/components/FeaturedProjectCard";
 
 // Mock next/image
 vi.mock("next/image", () => ({

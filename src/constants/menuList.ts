@@ -1,5 +1,5 @@
 import { FaStickyNote } from "react-icons/fa";
-import { IoHomeSharp, IoRocket, IoPencil, IoPerson } from "react-icons/io5";
+import { IoHomeSharp, IoPencil, IoPerson, IoRocket } from "react-icons/io5";
 
 export const menuList = [
 	{

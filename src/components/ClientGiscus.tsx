@@ -1,8 +1,8 @@
 "use client";
-import { categoryId, repoId, repoName } from "@/constants/baseConst";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
+import { categoryId, repoId, repoName } from "@/constants/baseConst";
 
 const ClientGiscus = () => {
 	const isClient = useSyncExternalStore(

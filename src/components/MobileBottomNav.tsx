@@ -1,8 +1,8 @@
 "use client";
-import { menuList } from "@/constants/menuList";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { menuList } from "@/constants/menuList";
 
 const MobileBottomNav = () => {
 	const pathname = usePathname();
@@ -10,8 +10,8 @@ const MobileBottomNav = () => {
 		// with glassmorphism effect
 		<nav className="fixed bottom-2 left-1/2 flex w-full -translate-x-1/2 items-center justify-around">
 			<ul className="menu menu-horizontal flex rounded-sm bg-neutral/60 bg-clip-padding backdrop-blur-xs backdrop-filter md:hidden">
-			{menuList.map((menu) => (
-				<li key={menu.title}>
+				{menuList.map((menu) => (
+					<li key={menu.title}>
 						<Link
 							href={menu.url}
 							className={clsx("tooltip", pathname === menu.url && "active")}

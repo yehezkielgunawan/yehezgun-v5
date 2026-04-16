@@ -1,13 +1,12 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { BiChevronLeft } from "react-icons/bi";
+import ClientMDXContent from "@/components/ClientMDXContent";
 import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
 import { metadataContent } from "@/services/metadata";
 import { getQuickNoteBySlug } from "@/services/quickNotes";
-
-import ClientMDXContent from "@/components/ClientMDXContent";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { BiChevronLeft } from "react-icons/bi";
 
 type DetailQuickNoteProps = {
 	params: Promise<{
