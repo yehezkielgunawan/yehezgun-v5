@@ -25,7 +25,6 @@
     "mermaid": "^11.16.0",
     "next": "16.2.10",
     "next-themes": "^0.4.6",
-    "node@latest": "link:types/node@latest",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-icons": "^5.7.0",
@@ -61,5 +60,5 @@
     "vitest": "^4.1.10",
     "wrangler": "^4.107.1"
   },
-  "packageManager": "pnpm@10.29.2+sha512.bef43fa759d91fd2da4b319a5a0d13ef7a45bb985a3d7342058470f9d2051a3ba8674e629672654686ef9443ad13a82da2beb9eeb3e0221c87b8154fff9d74b8"
+  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
 }

@@ -26,9 +26,6 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      node@latest:
-        specifier: link:types/node@latest
-        version: link:types/node@latest
       react:
         specifier: ^19.2.7
         version: 19.2.7
