@@ -1,0 +1,195 @@
+---
+title: "My OpenCode AI Setup"
+subtitle: "How I use Sol, Terra, Luna, MCP servers, and scoped tools efficiently"
+date: "2026-08-08"
+tags: ["ai", "opencode", "mcp", "llm", "developer-tools"]
+---
+
+I use OpenCode as a small team instead of treating every model like the same
+assistant. Sol handles architecture and planning. Terra and Luna execute bounded
+tasks from that plan. MCP servers give each model targeted access to external
+information without pasting everything into the conversation.
+
+This note records my setup as of August 2026. Model names and versions will
+change, but the routing rules are the part I want to keep.
+
+## Setup snapshot
+
+| Component | Current setup |
+| --- | --- |
+| OpenCode | `1.18.15` |
+| Main model | `openai/gpt-5.6-sol` |
+| Executor models | `openai/gpt-5.6-terra`, `openai/gpt-5.6-luna` |
+| Fast variants | Sol, Terra, and Luna `-fast` |
+| MCP servers | GitHub, Context7, PDF Reader |
+| Workflow plugin | Superpowers |
+| Shell output optimization | RTK `0.42.4` |
+| Runtime | Node.js `22.18.0` |
+| Project package manager | pnpm `11.10.0` through Corepack |
+
+The installed OpenAI model list also includes GPT-5.4 and GPT-5.5 variants. I
+keep the 5.6 family as my normal path so the handoff between planner and
+executors stays simple.
+
+## Sol plans, Terra and Luna execute
+
+My model names describe responsibility, not a benchmark ranking:
+
+| Model | What I ask it to do |
+| --- | --- |
+| Sol | Inspect context, define constraints, design the change, split the work, resolve ambiguity, and review the result |
+| Terra | Implement or investigate one clearly bounded task |
+| Luna | Implement or investigate one clearly bounded task |
+| `-fast` variants | Handle short, low-risk work with explicit inputs and an output that is easy to verify |
+
+Terra and Luna are interchangeable in this setup. I do not assume one is better
+at frontend work, backend work, or research unless I have measured that behavior
+myself.
+
+The normal flow looks like this:
+
+```text
+Request
+  -> Sol inspects and plans
+      -> Terra executes task A
+      -> Luna executes independent task B
+  -> Sol reviews, integrates, and verifies
+```
+
+The tasks have to be independent before I run them in parallel. If both models
+need to edit the same file or depend on the same unfinished decision, parallel
+execution creates more cleanup than speed.
+
+A useful executor prompt includes four things: one objective, the exact files or
+sources to inspect, constraints that must not change, and a command or observable
+result that proves the task is finished. If an executor finds an architectural
+conflict, it returns the conflict to Sol instead of silently expanding its scope.
+
+## The MCP servers I use
+
+MCP servers are retrieval and action boundaries. They let the model request a
+small, structured result from another system. This often uses less context than
+copying a repository page, a documentation site, or a whole PDF into the chat.
+It is not free, though. Every enabled server adds tool definitions and another
+decision the model may need to make.
+
+### GitHub
+
+The GitHub MCP handles repository contents, commits, issues, pull requests,
+reviews, releases, and other GitHub operations. I use it when the source of truth
+is GitHub rather than the local checkout.
+
+For efficient calls, I request only the fields I need and use small result pages.
+Search is better when I know the author, label, title, symbol, or other target.
+List operations are better when I genuinely need a broad inventory. This keeps a
+model from reading large issue bodies or pull request payloads that do not affect
+the current decision.
+
+### Context7
+
+Context7 supplies current documentation for libraries, frameworks, SDKs, APIs,
+CLIs, and cloud services. My model first resolves the library ID, then asks one
+focused documentation question. I prefer this over relying on model memory for
+version-specific behavior.
+
+One query should cover one concept. Combining unrelated questions about routing,
+authentication, caching, and deployment tends to return a larger and less useful
+answer. Credentials, private code, and customer data never belong in a Context7
+query.
+
+### PDF Reader
+
+PDF Reader extracts selectable text, searches for terms, reads tables and
+metadata, renders pages, and can use OCR when the document has no useful text
+layer. I start with text search and restrict the page range. Rendering or OCR is
+reserved for pages where layout or scanned content matters.
+
+That order matters for context size: search for the evidence, read the relevant
+pages, then inspect a visual region if the answer depends on it. Sending an
+entire PDF through OCR for one paragraph wastes time and tokens.
+
+## Skills and shell output
+
+The Superpowers plugin adds process skills for planning, debugging, TDD, and
+verification. A matching skill can prevent the model from jumping into an edit
+before it understands the task. The trade-off is more instruction context, so a
+skill should be loaded because the task triggers it, not because it happens to
+be installed.
+
+RTK handles a different source of waste. Its OpenCode plugin rewrites supported
+shell commands so their output is shorter while preserving the useful result.
+Test summaries, Git output, and other noisy commands take less room in the model
+context. Full output is still available when a failure needs closer inspection.
+
+I also keep a Graphify knowledge graph for codebase questions when a project has
+one. It is not one of my configured MCP servers. It is a local query path that can
+return a scoped subgraph instead of forcing the model to search the repository
+again.
+
+## Rules that keep usage efficient
+
+1. Sol receives the complete goal; executors receive bounded tasks.
+2. I use a `-fast` model only when the task is low risk and failure is easy to detect.
+3. I retrieve the smallest useful set of files, documentation, fields, or PDF pages.
+4. Parent and executor models do not repeat the same investigation.
+5. Independent tasks can run in parallel. Shared decisions stay sequential.
+6. Deterministic checks such as tests, type checking, and builds prove the result.
+7. An MCP stays disabled when the session does not need its tools.
+8. Sol performs the final review when a change crosses files or responsibilities.
+
+The smallest model is not automatically the cheapest choice. A fast executor
+that receives a vague task may make several incorrect attempts. A stronger
+planning pass can reduce total usage by giving the executor a narrow path and a
+clear stopping condition.
+
+## Public-safe OpenCode configuration
+
+My published examples use environment variables. Tokens and API keys must never
+appear directly in `opencode.json`.
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
+  "permission": {
+    "websearch": "allow"
+  },
+  "mcp": {
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "enabled": true,
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_TOKEN}"
+      }
+    },
+    "pdf-reader": {
+      "type": "local",
+      "command": ["npx", "@sylphx/pdf-reader-mcp"]
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+OpenCode reads configuration at startup, so it needs a full restart after this
+file changes.
+
+## Security notes
+
+I keep credentials in environment variables, keep local environment files out of
+Git, and grant each MCP only the access it needs. A token that appears in a
+terminal recording, committed file, shared chat, or published page is treated as
+compromised and rotated immediately.
+
+Before sharing a setup note like this one, I search the diff for API key prefixes,
+authorization headers, private paths, and account identifiers. The example above
+shows the configuration shape without exposing the configuration values.
