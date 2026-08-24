@@ -2,6 +2,21 @@
 
 This is the 5th iteration of my personal website.
 
+## Requirements
+
+- Node.js 24 LTS
+- pnpm 11
+
+Install the required Node.js version with nvm, then enable the package manager declared by this repository:
+
+```bash
+nvm install
+nvm use
+corepack enable
+corepack install
+pnpm install
+```
+
 ## TechStacks
 
 - [Next.js](https://nextjs.org)
