@@ -6,7 +6,7 @@ This file provides instructions for AI coding agents working in this repository.
 
 - **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript 5.9
-- **Package Manager**: pnpm (v10.29.2)
+- **Package Manager**: pnpm (v11.10.0)
 - **Styling**: Tailwind CSS v4 + DaisyUI
 - **Content**: MDX with Content Collections
 - **Testing**: Vitest + Testing Library
