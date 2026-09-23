@@ -22,7 +22,6 @@ describe("FeaturedProjectCard", () => {
 		url: "https://test.com",
 		projectHero: "/test-image.jpg",
 		date: "2024-03-20",
-		content: "Test content",
 		description: "Test description",
 		projectIcon: "/test-icon.jpg",
 		stacks: ["React", "TypeScript"],

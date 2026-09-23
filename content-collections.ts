@@ -5,6 +5,10 @@ import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
+import {
+	contentDateSchema,
+	externalUrlSchema,
+} from "./src/services/contentValidation";
 
 /**
  * Mermaid code block language variants (handled by MermaidInit client-side):
@@ -24,12 +28,12 @@ const projects = defineCollection({
 	schema: z.object({
 		name: z.string(),
 		description: z.string(),
-		url: z.string(),
+		url: externalUrlSchema,
 		projectIcon: z.string(),
 		projectHero: z.string(),
 		stacks: z.array(z.string()),
 		isFeatured: z.boolean(),
-		date: z.string(),
+		date: contentDateSchema,
 		content: z.string(),
 	}),
 	transform: (document) => {
@@ -45,8 +49,8 @@ const workExperiences = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		company: z.string(),
-		startDate: z.string(),
-		endDate: z.string().optional(),
+		startDate: contentDateSchema,
+		endDate: contentDateSchema.optional(),
 		content: z.string(),
 	}),
 	transform: (document) => {
@@ -63,7 +67,7 @@ const blogs = defineCollection({
 		title: z.string(),
 		summary: z.string(),
 		coverImg: z.string(),
-		date: z.string(),
+		date: contentDateSchema,
 		category: z.string(),
 		content: z.string(),
 	}),
@@ -87,7 +91,7 @@ const quickNotes = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		subtitle: z.string(),
-		date: z.string(),
+		date: contentDateSchema,
 		tags: z.array(z.string()),
 		content: z.string(),
 	}),

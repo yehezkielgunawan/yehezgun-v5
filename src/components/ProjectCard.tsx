@@ -30,7 +30,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 				<div className="flex items-center justify-between gap-6">
 					<p className="m-0 self-start text-sm">{props.description}</p>
 					<Image
-						alt="project-icon"
+						alt={`${props.name} logo`}
 						src={props.projectIcon}
 						width={72}
 						height={72}
@@ -43,7 +43,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 					{props.stacks.map((icon) => (
 						<Image
 							key={icon}
-							alt={icon}
+							alt={`${icon} logo`}
 							src={`/stacks/${theme === "dim" ? "dark" : "light"}/${icon}.svg`}
 							width={32}
 							height={32}

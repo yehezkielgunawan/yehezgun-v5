@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { menuList } from "@/constants/menuList";
 
 const MobileBottomNav = () => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	return (
 		// with glassmorphism effect
 		<nav className="fixed bottom-2 left-1/2 flex w-full -translate-x-1/2 items-center justify-around">
@@ -14,8 +14,20 @@ const MobileBottomNav = () => {
 					<li key={menu.title}>
 						<Link
 							href={menu.url}
-							className={clsx("tooltip", pathname === menu.url && "active")}
+							className={clsx(
+								"tooltip",
+								(pathname === menu.url ||
+									(menu.url !== "/" && pathname.startsWith(`${menu.url}/`))) &&
+									"active",
+							)}
 							data-tip={menu.title}
+							aria-label={menu.title}
+							aria-current={
+								pathname === menu.url ||
+								(menu.url !== "/" && pathname.startsWith(`${menu.url}/`))
+									? "page"
+									: undefined
+							}
 						>
 							<menu.icon size={20} />
 						</Link>
