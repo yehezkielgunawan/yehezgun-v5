@@ -13,6 +13,7 @@ import { join, resolve } from "node:path";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import RootLayout from "@/app/layout";
+import openNextConfig from "../../open-next.config";
 
 vi.mock("next/font/google", () => ({
 	Plus_Jakarta_Sans: () => ({
@@ -61,6 +62,18 @@ describe("RootLayout configuration", () => {
 });
 
 describe("Cloudflare build configuration", () => {
+	it("configures OpenNext to serve prerendered routes from static assets", () => {
+		const incrementalCache = openNextConfig.default.override?.incrementalCache;
+
+		expect(incrementalCache).toEqual(expect.any(Function));
+		if (typeof incrementalCache !== "function") return;
+
+		expect(incrementalCache()).toMatchObject({
+			name: "cf-static-assets-incremental-cache",
+		});
+		expect(openNextConfig.dangerous?.enableCacheInterception).toBe(true);
+	});
+
 	it("keeps deployment credentials out of OpenNext build inputs", () => {
 		const packageJson = JSON.parse(
 			readFileSync(resolve(process.cwd(), "package.json"), "utf8"),
