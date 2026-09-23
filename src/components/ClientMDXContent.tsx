@@ -30,14 +30,12 @@ import { type ComponentType, type ReactNode, useEffect, useState } from "react";
  */
 type MDXRuntimeComponent = ComponentType<{
 	code: unknown;
-	// biome-ignore lint/suspicious/noExplicitAny: MDX components can be any React component
-	components?: Record<string, any>;
+	components?: Record<string, unknown>;
 }>;
 
 export interface ClientMDXContentProps {
 	code: unknown;
-	// biome-ignore lint/suspicious/noExplicitAny: MDX components can be any React component
-	components?: Record<string, any>;
+	components?: Record<string, unknown>;
 	/**
 	 * Optional placeholder (skeleton / spinner) while the client bundle for
 	 * MDX runtime is loading.
