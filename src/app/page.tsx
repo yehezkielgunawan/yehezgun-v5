@@ -41,7 +41,7 @@ export default function Home() {
 					src="/yehez-icon.svg"
 					width={240}
 					height={240}
-					alt="icon"
+					alt="Yehezgun logo"
 					priority={true}
 					className="rounded-full"
 				/>
@@ -50,15 +50,9 @@ export default function Home() {
 			<section className="mt-12">
 				<h2>Featured Projects</h2>
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					{featuredProjects
-						.sort(
-							(a, b) =>
-								(new Date(b.date) as unknown as number) -
-								(new Date(a.date) as unknown as number),
-						)
-						.map((project) => (
-							<FeaturedProjectCard {...project} key={project.name} />
-						))}
+					{featuredProjects.map((project) => (
+						<FeaturedProjectCard {...project} key={project.name} />
+					))}
 				</div>
 			</section>
 		</GeneralWrapper>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDate } from "@/services/formatDate";
+import { compareDatesDescending, formatDate } from "@/services/formatDate";
 
 describe("FormatDate Service", () => {
 	it("should format date with default options", () => {
@@ -44,5 +44,20 @@ describe("FormatDate Service", () => {
 
 		// With all custom options: "1/15/23"
 		expect(formattedDate).toBe("1/15/23");
+	});
+
+	it("should compare dates from newest to oldest without changing the input", () => {
+		const dates = ["2023-01-15", "2025-01-15", "2024-01-15"];
+
+		const sortedDates = [...dates].sort(compareDatesDescending);
+
+		expect(sortedDates).toEqual(["2025-01-15", "2024-01-15", "2023-01-15"]);
+		expect(dates).toEqual(["2023-01-15", "2025-01-15", "2024-01-15"]);
+	});
+
+	it("uses a stable tie breaker for equal dates", () => {
+		expect(
+			compareDatesDescending("2024-01-01", "2024-01-01", "second", "first"),
+		).toBeGreaterThan(0);
 	});
 });

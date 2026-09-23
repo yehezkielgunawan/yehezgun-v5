@@ -22,8 +22,13 @@ const QuickNotesWrapper = ({ quickNotesList }: QuickNotesWrapperProps) => {
 
 	return (
 		<>
+			<label htmlFor="quick-notes-search" className="sr-only">
+				Search Notes
+			</label>
 			<input
-				type="text"
+				id="quick-notes-search"
+				type="search"
+				aria-label="Search Notes"
 				placeholder="Search Notes..."
 				className="input input-bordered w-full rounded-lg border-2"
 				onChange={handleChangeSearch}
@@ -31,9 +36,6 @@ const QuickNotesWrapper = ({ quickNotesList }: QuickNotesWrapperProps) => {
 			<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
 				{/* sort based on the date */}
 				{quickNotesList
-					.sort(
-						(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-					)
 					.filter(
 						(note) =>
 							// filter based on title or tags

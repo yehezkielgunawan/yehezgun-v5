@@ -32,28 +32,8 @@ describe("Blogs Service", () => {
 			expect(blog).toHaveProperty("mdx");
 		});
 
-		it("should throw an error if blog is not found", () => {
-			expect(() => blogService.getBlogBySlug("non-existent-blog")).toThrow(
-				"No post found for slug: non-existent-blog",
-			);
-		});
-	});
-
-	describe("getBlogMetadataBySlug", () => {
-		it("should return blog metadata by slug", () => {
-			// Get a valid slug from the blogList to test with
-			const blogList = blogService.blogList;
-			const testSlug = blogList[0].slug;
-
-			const metadata = blogService.getBlogMetadataBySlug(testSlug);
-			expect(metadata).toHaveProperty("title");
-			expect(metadata).toHaveProperty("summary");
-		});
-
-		it("should throw an error if blog is not found", () => {
-			expect(() =>
-				blogService.getBlogMetadataBySlug("non-existent-blog"),
-			).toThrow("No post found for slug: non-existent-blog");
+		it("should return undefined if blog is not found", () => {
+			expect(blogService.getBlogBySlug("non-existent-blog")).toBeUndefined();
 		});
 	});
 

@@ -28,8 +28,13 @@ const BlogWrapper = ({ blogList, categoryList }: BlogWrapperProps) => {
 
 	return (
 		<>
+			<label htmlFor="blog-search" className="sr-only">
+				Search Blog
+			</label>
 			<input
-				type="text"
+				id="blog-search"
+				type="search"
+				aria-label="Search Blog"
 				placeholder="Search Blog..."
 				className="input input-bordered w-full rounded-lg border-2"
 				onChange={handleChangeSearch}
@@ -59,11 +64,6 @@ const BlogWrapper = ({ blogList, categoryList }: BlogWrapperProps) => {
 					)
 					.filter((blog) =>
 						selectedCategory ? blog.category === selectedCategory : true,
-					)
-					.sort(
-						(a, b) =>
-							(new Date(b.date) as unknown as number) -
-							(new Date(a.date) as unknown as number),
 					)
 					.map((blog) => (
 						<BlogCard
