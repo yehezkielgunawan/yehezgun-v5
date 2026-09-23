@@ -12,15 +12,6 @@ const nextConfig = {
 			},
 		],
 	},
-	env: {
-		publicRepo: process.env.NEXT_PUBLIC_REPO,
-		repoId: process.env.NEXT_PUBLIC_REPO_ID,
-		categoryId: process.env.NEXT_PUBLIC_CATEGORY_ID,
-		umamiID: process.env.UMAMI_ID,
-		umamiURL: process.env.UMAMI_URL,
-		CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
-		CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
-	},
 	// Conditional output based on deployment target
 	output:
 		process.env.CF_PAGES || process.env.CLOUDFLARE_BUILD

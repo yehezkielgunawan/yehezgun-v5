@@ -22,8 +22,8 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
 
-      - name: Install Deps (immutable)
-        run: pnpm install --no-frozen-lockfile
+      - name: Install Deps (frozen)
+        run: pnpm install --frozen-lockfile
 
       - name: Build For Cloudflare Workers
         run: pnpm cloudflare:build:ci
@@ -31,6 +31,8 @@ jobs:
           NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
           NEXT_PUBLIC_REPO_ID: ${{ secrets.NEXT_PUBLIC_REPO_ID }}
           NEXT_PUBLIC_CATEGORY_ID: ${{ secrets.NEXT_PUBLIC_CATEGORY_ID }}
+          NEXT_PUBLIC_UMAMI_URL: ${{ secrets.NEXT_PUBLIC_UMAMI_URL }}
+          NEXT_PUBLIC_UMAMI_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_ID }}
 
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3

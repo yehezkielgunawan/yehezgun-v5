@@ -1,5 +1,5 @@
-export const repoName = process.env.publicRepo as `${string}/${string}`;
-export const repoId = process.env.repoId as string;
-export const categoryId = process.env.categoryId as string;
-export const umamiId = process.env.umamiID as string;
-export const umamiURL = process.env.umamiURL as string;
+export const repoName = process.env.NEXT_PUBLIC_REPO;
+export const repoId = process.env.NEXT_PUBLIC_REPO_ID;
+export const categoryId = process.env.NEXT_PUBLIC_CATEGORY_ID;
+export const umamiId = process.env.NEXT_PUBLIC_UMAMI_ID;
+export const umamiURL = process.env.NEXT_PUBLIC_UMAMI_URL;

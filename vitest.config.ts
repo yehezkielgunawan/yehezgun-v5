@@ -17,13 +17,19 @@ export default defineConfig({
 			"content-collections": "/src/__test__/mocks/content-collections.ts",
 		},
 		coverage: {
-			include: ["src/app/**", "src/service/**"],
+			include: ["src/**/*.ts", "src/**/*.tsx"],
 			exclude: [
 				"src/__test__/**",
-				"src/app/**/\\[**\\]/**", // Exclude dynamic routes with [parameter] pattern
+				"src/**/*.d.ts",
 			],
 			reporter: ["text", "html"],
 			provider: "v8",
+			thresholds: {
+				branches: 40,
+				functions: 50,
+				lines: 50,
+				statements: 50,
+			},
 		},
 	},
 });

@@ -29,8 +29,10 @@ export default function RootLayout({
 				>
 					{children}
 				</ThemeProvider>
+				{umamiId && umamiURL ? (
+					<Script defer src={umamiURL} data-website-id={umamiId} />
+				) : null}
 			</body>
-			<Script defer src={umamiURL} data-website-id={umamiId} />
 		</html>
 	);
 }

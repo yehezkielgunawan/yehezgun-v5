@@ -20,15 +20,19 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
-      - name: Install Deps (immutable)
-        run: pnpm install --no-frozen-lockfile
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-        with:
-          version: latest
+      - name: Install Deps (frozen)
+        run: pnpm install --frozen-lockfile
       - name: Run Biome
         run: pnpm biome:lint:ci
       - name: Build
         run: pnpm build
+      - name: Build For Cloudflare Workers
+        run: pnpm cloudflare:build:ci
+        env:
+          NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
+          NEXT_PUBLIC_REPO_ID: ${{ secrets.NEXT_PUBLIC_REPO_ID }}
+          NEXT_PUBLIC_CATEGORY_ID: ${{ secrets.NEXT_PUBLIC_CATEGORY_ID }}
+          NEXT_PUBLIC_UMAMI_URL: ${{ secrets.NEXT_PUBLIC_UMAMI_URL }}
+          NEXT_PUBLIC_UMAMI_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_ID }}
       - name: Unit Testing & Coverage
         run: pnpm test:coverage
