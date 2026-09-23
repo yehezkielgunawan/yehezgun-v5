@@ -1,31 +1,26 @@
 import { allBlogs } from "content-collections";
+import { compareDatesDescending } from "@/services/formatDate";
 
-export const blogList = allBlogs.map((post) => ({
-	title: post.title,
-	summary: post.summary,
-	coverImg: post.coverImg,
-	date: post.date,
-	category: post.category,
-	slug: post._meta.path,
-}));
-
-export const getBlogBySlug = (slug: string) => {
-	const post = allBlogs.find((blog) => blog._meta.path === slug);
-	if (!post) {
-		throw new Error(`No post found for slug: ${slug}`);
-	}
-	return post;
-};
-
-export const getBlogMetadataBySlug = (slug: string) => {
-	const post = allBlogs.find((blog) => blog._meta.path === slug);
-	if (!post) {
-		throw new Error(`No post found for slug: ${slug}`);
-	}
-	return {
+export const blogList = allBlogs
+	.map((post) => ({
 		title: post.title,
 		summary: post.summary,
-	};
+		coverImg: post.coverImg,
+		date: post.date,
+		category: post.category,
+		slug: post._meta.path,
+	}))
+	.sort((firstBlog, secondBlog) =>
+		compareDatesDescending(
+			firstBlog.date,
+			secondBlog.date,
+			firstBlog.slug,
+			secondBlog.slug,
+		),
+	);
+
+export const getBlogBySlug = (slug: string) => {
+	return allBlogs.find((blog) => blog._meta.path === slug);
 };
 
 export const blogCategories = () => {

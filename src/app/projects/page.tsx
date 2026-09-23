@@ -20,43 +20,31 @@ const ProjectPage = () => {
 			<section className="mt-12">
 				<h2>Featured Projects</h2>
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					{featuredProjects
-						.sort(
-							(a, b) =>
-								(new Date(b.date) as unknown as number) -
-								(new Date(a.date) as unknown as number),
-						)
-						.map((project) => (
-							<ProjectCard
-								key={project._meta.filePath}
-								name={project.name}
-								description={project.description}
-								projectIcon={project.projectIcon}
-								stacks={project.stacks}
-								url={project.url}
-							/>
-						))}
+					{featuredProjects.map((project) => (
+						<ProjectCard
+							key={project._meta.filePath}
+							name={project.name}
+							description={project.description}
+							projectIcon={project.projectIcon}
+							stacks={project.stacks}
+							url={project.url}
+						/>
+					))}
 				</div>
 			</section>
 			<section className="mt-12">
 				<h2>Other Projects</h2>
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-					{nonFeaturedProjects
-						.sort(
-							(a, b) =>
-								(new Date(b.date) as unknown as number) -
-								(new Date(a.date) as unknown as number),
-						)
-						.map((project) => (
-							<ProjectCard
-								key={project._meta.filePath}
-								name={project.name}
-								description={project.description}
-								projectIcon={project.projectIcon}
-								stacks={project.stacks}
-								url={project.url}
-							/>
-						))}
+					{nonFeaturedProjects.map((project) => (
+						<ProjectCard
+							key={project._meta.filePath}
+							name={project.name}
+							description={project.description}
+							projectIcon={project.projectIcon}
+							stacks={project.stacks}
+							url={project.url}
+						/>
+					))}
 				</div>
 			</section>
 		</GeneralWrapper>

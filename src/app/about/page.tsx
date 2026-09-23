@@ -36,7 +36,7 @@ const About = () => {
 					src="/yehez-pic.png"
 					width={500}
 					height={300}
-					alt="profile-pic"
+					alt="Portrait of Yehezkiel Gunawan"
 					className="h-full max-w-full rounded-lg md:max-w-sm"
 				/>
 			</section>
@@ -80,22 +80,15 @@ const About = () => {
 			<section className="mt-4">
 				<h2>Work Experiences</h2>
 				<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-					{experienceList
-						.sort(
-							// sort based on the start date
-							(a, b) =>
-								new Date(b.startDate).getTime() -
-								new Date(a.startDate).getTime(),
-						)
-						.map((experience) => (
-							<ExperienceCard
-								key={experience.company}
-								company={experience.company}
-								role={experience.role}
-								startDate={experience.startDate}
-								endDate={experience.endDate}
-							/>
-						))}
+					{experienceList.map((experience) => (
+						<ExperienceCard
+							key={experience.slug}
+							company={experience.company}
+							role={experience.role}
+							startDate={experience.startDate}
+							endDate={experience.endDate}
+						/>
+					))}
 				</div>
 			</section>
 		</GeneralWrapper>

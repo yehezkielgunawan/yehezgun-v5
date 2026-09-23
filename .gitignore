@@ -48,6 +48,7 @@ next-env.d.ts
 # open-next
 .open-next
 .gitnexus
+.codegraph/
 
 .serena/
 bundled/

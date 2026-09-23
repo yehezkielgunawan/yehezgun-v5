@@ -149,6 +149,8 @@ vi.mock("@/components/QuickNotesWrapper", () => ({
 // Mock formatDate
 vi.mock("@/services/formatDate", () => ({
 	formatDate: (_date: string) => "January 1, 2023",
+	compareDatesDescending: (firstDate: string, secondDate: string) =>
+		Date.parse(secondDate) - Date.parse(firstDate),
 }));
 
 describe("Home Page", () => {
@@ -166,7 +168,7 @@ describe("Home Page", () => {
 
 	it("renders the profile image", () => {
 		render(<Home />);
-		const image = screen.getByAltText("icon");
+		const image = screen.getByAltText("Yehezgun logo");
 		expect(image).toBeInTheDocument();
 	});
 

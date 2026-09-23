@@ -1,40 +1,39 @@
 "use client";
-import React from "react";
-import ShareBtns from "./ShareBtns";
+import { useState } from "react";
+import { getShareButtons, type ShareButton } from "@/services/shareTargets";
 
 type ShareButtonFlexProps = {
 	title: string;
 };
 
 const ShareButtonFlex = ({ title }: ShareButtonFlexProps) => {
-	const [isCopied, setIsCopied] = React.useState(false);
-	const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+	const [isCopied, setIsCopied] = useState(false);
 
-	const handleClick = async (btn: {
-		name: string;
-		baseUrl: string;
-		isCopy?: boolean;
-	}) => {
+	const handleClick = async (btn: ShareButton) => {
+		if (typeof window === "undefined") return;
+
+		const currentUrl = window.location.href;
 		if (btn.isCopy) {
-			// copy the current URL to the clipboard
-			if (typeof window !== "undefined") {
+			if (!navigator.clipboard) return;
+
+			try {
 				await navigator.clipboard.writeText(currentUrl);
-			}
-			setIsCopied(true);
-			setTimeout(() => {
+				setIsCopied(true);
+				setTimeout(() => {
+					setIsCopied(false);
+				}, 2000);
+			} catch {
 				setIsCopied(false);
-			}, 2000);
+			}
 			return;
 		}
 
-		if (typeof window !== "undefined") {
-			window.open(btn.baseUrl, "_blank");
-		}
+		window.open(btn.getUrl(currentUrl), "_blank", "noopener,noreferrer");
 	};
 
 	return (
 		<div className="flex items-center gap-4">
-			{ShareBtns({ title, url: currentUrl as string }).map((btn) => (
+			{getShareButtons(title).map((btn) => (
 				<button
 					type="button"
 					key={btn.name}

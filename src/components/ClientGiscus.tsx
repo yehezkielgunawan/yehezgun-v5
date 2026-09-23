@@ -4,6 +4,9 @@ import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 import { categoryId, repoId, repoName } from "@/constants/baseConst";
 
+const isRepositoryName = (value: string): value is `${string}/${string}` =>
+	value.includes("/");
+
 const ClientGiscus = () => {
 	const isClient = useSyncExternalStore(
 		() => () => {},
@@ -12,7 +15,14 @@ const ClientGiscus = () => {
 	);
 	const { theme } = useTheme();
 
-	if (!isClient) return null;
+	if (
+		!isClient ||
+		!repoName ||
+		!isRepositoryName(repoName) ||
+		!repoId ||
+		!categoryId
+	)
+		return null;
 
 	return (
 		<section className="mt-12">

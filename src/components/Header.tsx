@@ -8,7 +8,7 @@ import { IoMoon, IoSunny } from "react-icons/io5";
 import { menuList } from "@/constants/menuList";
 
 const Header = () => {
-	const pathname = usePathname();
+	const pathname = usePathname() ?? "";
 	const { setTheme, theme } = useTheme();
 	const isClient = useSyncExternalStore(
 		() => () => {},
@@ -21,9 +21,9 @@ const Header = () => {
 			<nav className="container mx-auto lg:max-w-5xl">
 				<div className="navbar px-0">
 					<div className="flex-1">
-						<a href="/" className="font-bold">
+						<Link href="/" className="font-bold">
 							yehezgun.com
-						</a>
+						</Link>
 					</div>
 					<div className="flex">
 						<ul className="menu menu-horizontal hidden md:flex">
@@ -33,9 +33,19 @@ const Header = () => {
 										href={menu.url}
 										className={clsx(
 											"tooltip tooltip-bottom",
-											pathname === menu.url && "active",
+											(pathname === menu.url ||
+												(menu.url !== "/" &&
+													pathname.startsWith(`${menu.url}/`))) &&
+												"active",
 										)}
 										data-tip={menu.title}
+										aria-label={menu.title}
+										aria-current={
+											pathname === menu.url ||
+											(menu.url !== "/" && pathname.startsWith(`${menu.url}/`))
+												? "page"
+												: undefined
+										}
 									>
 										<menu.icon size={18} />
 									</Link>
@@ -47,6 +57,7 @@ const Header = () => {
 								{isClient ? (
 									<label className={clsx("swap swap-rotate rounded-lg")}>
 										<input
+											aria-label="Toggle dark mode"
 											checked={theme === "dim"}
 											type="checkbox"
 											className="theme-controller"

@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
@@ -9,7 +10,7 @@ import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import MermaidWrapper from "@/components/MermaidWrapper";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
-import { getBlogBySlug, getBlogMetadataBySlug } from "@/services/blogs";
+import { blogList, getBlogBySlug } from "@/services/blogs";
 import { formatDate } from "@/services/formatDate";
 import { metadataContent } from "@/services/metadata";
 
@@ -19,12 +20,19 @@ type DetailBlogProps = {
 	}>;
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+	return blogList.map(({ slug }) => ({ slug }));
+}
+
 export async function generateMetadata({
 	params,
 }: DetailBlogProps): Promise<Metadata> {
 	const slug = (await params).slug;
 
-	const detailBlogData = getBlogMetadataBySlug(slug);
+	const detailBlogData = getBlogBySlug(slug);
+	if (!detailBlogData) notFound();
 
 	return metadataContent({
 		title: detailBlogData.title,
@@ -36,11 +44,12 @@ export async function generateMetadata({
 
 const SingeBlogPage = async ({ params }: DetailBlogProps) => {
 	const blogData = getBlogBySlug((await params).slug);
+	if (!blogData) notFound();
 	return (
 		<GeneralWrapper>
 			<section>
 				<Image
-					alt="cover"
+					alt={`${blogData.title} cover image`}
 					src={blogData.coverImg}
 					width={500}
 					height={300}

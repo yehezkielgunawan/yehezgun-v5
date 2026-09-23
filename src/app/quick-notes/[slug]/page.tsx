@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { BiChevronLeft } from "react-icons/bi";
 import ClientMDXContent from "@/components/ClientMDXContent";
@@ -6,7 +7,7 @@ import { CustomTheme } from "@/components/CustomTheme";
 import GeneralWrapper from "@/components/GeneralWrapper";
 import ShareButtonFlex from "@/components/ShareButtonFlex";
 import { metadataContent } from "@/services/metadata";
-import { getQuickNoteBySlug } from "@/services/quickNotes";
+import { getQuickNoteBySlug, quickNotesList } from "@/services/quickNotes";
 
 type DetailQuickNoteProps = {
 	params: Promise<{
@@ -14,12 +15,19 @@ type DetailQuickNoteProps = {
 	}>;
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+	return quickNotesList.map(({ slug }) => ({ slug }));
+}
+
 export async function generateMetadata({
 	params,
 }: DetailQuickNoteProps): Promise<Metadata> {
 	const slug = (await params).slug;
 
 	const detailNoteData = getQuickNoteBySlug(slug);
+	if (!detailNoteData) notFound();
 
 	return metadataContent({
 		title: `Quick Notes: ${detailNoteData.title}`,
@@ -28,14 +36,9 @@ export async function generateMetadata({
 	});
 }
 
-const SingleNotePage = async ({
-	params,
-}: {
-	params: Promise<{
-		slug: string;
-	}>;
-}) => {
+const SingleNotePage = async ({ params }: DetailQuickNoteProps) => {
 	const noteData = getQuickNoteBySlug((await params).slug);
+	if (!noteData) notFound();
 	return (
 		<GeneralWrapper>
 			<section className="flex flex-wrap items-end justify-between gap-4">

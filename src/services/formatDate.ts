@@ -13,3 +13,16 @@ export const formatDate = (
 	};
 	return new Date(date).toLocaleDateString("en-US", options);
 };
+
+export const compareDatesDescending = (
+	firstDate: string,
+	secondDate: string,
+	firstTieBreaker = "",
+	secondTieBreaker = "",
+) => {
+	const dateComparison = Date.parse(secondDate) - Date.parse(firstDate);
+
+	return dateComparison !== 0
+		? dateComparison
+		: firstTieBreaker.localeCompare(secondTieBreaker);
+};
