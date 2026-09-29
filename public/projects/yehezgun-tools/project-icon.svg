@@ -1,0 +1,38 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Yehezgun Tools icon</title>
+  <defs>
+    <linearGradient id="case" x1="96" y1="114" x2="420" y2="438" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2BB8FF"/>
+      <stop offset="0.5" stop-color="#1478FF"/>
+      <stop offset="1" stop-color="#1655E8"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="112" y1="140" x2="400" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38C7FF"/>
+      <stop offset="1" stop-color="#1671F7"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="192" y1="74" x2="320" y2="136" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#243A63"/>
+      <stop offset="1" stop-color="#0C1D3B"/>
+    </linearGradient>
+    <filter id="shadow" x="70" y="78" width="372" height="370" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#0B3DAA" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <path d="M184 140V112C184 91 201 74 222 74H290C311 74 328 91 328 112V140H302V116C302 107 295 100 286 100H226C217 100 210 107 210 116V140H184Z" fill="url(#handle)"/>
+    <rect x="92" y="152" width="328" height="286" rx="48" fill="url(#case)"/>
+    <path d="M92 191C92 169 110 151 132 151H380C402 151 420 169 420 191V220H92V191Z" fill="url(#lid)"/>
+    <rect x="92" y="213" width="328" height="18" rx="9" fill="#0C4FCB" fill-opacity="0.92"/>
+    <rect x="230" y="190" width="52" height="57" rx="12" fill="white"/>
+    <rect x="240" y="199" width="32" height="38" rx="7" fill="#F7FAFF"/>
+    <g transform="rotate(43 256 325)">
+      <rect x="242" y="244" width="28" height="169" rx="14" fill="white"/>
+      <path d="M236 231C236 222 243 215 252 215H260C269 215 276 222 276 231V268H236V231Z" fill="white"/>
+      <rect x="238" y="209" width="36" height="34" rx="9" fill="white"/>
+    </g>
+    <g transform="rotate(-43 256 324)">
+      <path d="M242 239C223 224 216 199 225 177L244 196L260 190L266 174L247 155C270 146 296 154 310 174C324 194 323 220 308 239L276 271L276 392C276 404 267 413 256 413C245 413 236 404 236 392V271L242 239Z" fill="white"/>
+    </g>
+  </g>
+</svg>
