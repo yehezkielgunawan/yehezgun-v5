@@ -18,34 +18,34 @@ First of all, make sure you have your own Google account, so you can log in to [
 
 If you don't have any projects yet in the Google Console, you can create them by clicking the new project at the top of the navbar.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/835b8caa5c7b663f5bae44d8bcfdb7def6b746fc-1174x815.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/835b8caa5c7b663f5bae44d8bcfdb7def6b746fc-1174x815.png?w=1200)
 
 If you already have some projects in your account, you can just select one of your desired projects in your Google Console. After that, you can click the `API and Services` menu to go to the dashboard menu.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/543869e9664d7847428300c594bac23e76870d3b-1063x688.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/543869e9664d7847428300c594bac23e76870d3b-1063x688.png?w=1200)
 
 In your dashboard menu, click the `Enable API and Services` button. Then, search "Google Sheets API" and select it.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/46957eec1b2515e1f870c43da5cff9343a3f7e93-1871x698.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/46957eec1b2515e1f870c43da5cff9343a3f7e93-1871x698.png?w=1200)
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/79bfc5f7aae77dc2c1d69d1535a411dfec91ac7e-1266x415.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/79bfc5f7aae77dc2c1d69d1535a411dfec91ac7e-1266x415.png?w=1200)
 
 After that, click the `Enable` button to enable the API service for the Google Sheet. The button will convert into `Manage` after you click it.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/3c2f7d6273bb0152a887583db119996e3ad55e93-843x393.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/3c2f7d6273bb0152a887583db119996e3ad55e93-843x393.png?w=1200)
 
 Click the `Manage` button to navigate to the dashboard page again. Then, click the `Credentials` menu. We'll set up the API Key here.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/dc7f5a356357967b5afaf92b612bfd0038204f20-1895x602.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/dc7f5a356357967b5afaf92b612bfd0038204f20-1895x602.png?w=1200)
 
 Click the `Create Credentials` button and select `API Key`. It will generate an API Key that can be used for our Google Sheet API.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/c035616c0fffca31d9f59efc834ef909d9bb5cf7-862x177.png?w=450)
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/d386489390b882bffe919004ad9ac05ac7ca3383-682x388.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/c035616c0fffca31d9f59efc834ef909d9bb5cf7-862x177.png?w=1200)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/d386489390b882bffe919004ad9ac05ac7ca3383-682x388.png?w=1200)
 
 The API now can be used directly for our needs. But if you want to add additional configurations, you can select the API Key that has been generated and make your config.
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/de867e8b8c4831d2af8b888f4b871bb10313ae26-787x729.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/de867e8b8c4831d2af8b888f4b871bb10313ae26-787x729.png?w=1200)
 
 # Integrate Google Sheet API with Svelte Kit
 Now, we can integrate the Google Sheet API with our front-end project. In this blog, I'll use Svelte Kit to make a simple Link Collection Web like Linktree. For the UI, I use Tailwind CSS and [Daisy UI](https://daisyui.com/) because I don't want to reinvent the wheel and just use tools that can help me for now😅.
@@ -134,7 +134,7 @@ export const load = async () => {
 ```
 Here's my final UI result. You can check it at [https://links.yehezgun.com/](https://links.yehezgun.com/).
 
-![image](https://cdn.sanity.io/images/xyi8gzmb/production/ed8ec6f873f5120ca660a6b0d271602cb6cc6431-896x505.png?w=450)
+![image](https://cdn.sanity.io/images/xyi8gzmb/production/ed8ec6f873f5120ca660a6b0d271602cb6cc6431-896x505.png?w=1200)
 
 # Closing
 Seems simple right? You just need to enable the API from your Google Console, generate the API Key, and then use it in your project.

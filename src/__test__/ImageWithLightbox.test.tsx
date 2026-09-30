@@ -36,15 +36,29 @@ vi.mock("next/image", () => ({
 		src,
 		alt,
 		onLoad,
+		onError,
+		...props
 	}: {
 		src: string;
 		alt: string;
 		onLoad?: () => void;
+		onError?: () => void;
+		[key: string]: unknown;
 	}) => {
 		// Store the onLoad callback so we can call it manually in tests
 		mockImageOnLoad = onLoad;
-		// biome-ignore lint/performance/noImgElement: Using img in test mock for next/image
-		return <img src={src} alt={alt} data-testid="image-inside-button" />;
+		return (
+			// biome-ignore lint/performance/noImgElement: Using img in test mock for next/image
+			<img
+				src={src}
+				alt={alt}
+				data-testid="image-inside-button"
+				data-quality={String(props.quality)}
+				onLoad={onLoad}
+				onError={onError}
+				{...props}
+			/>
+		);
 	},
 }));
 
@@ -102,6 +116,18 @@ describe("ImageWithLightbox", () => {
 		expect(screen.getByTestId("lightbox-mock")).toBeInTheDocument();
 	});
 
+	it("returns focus to the image button after the lightbox closes", () => {
+		render(<ImageWithLightbox src="/test-image.jpg" alt="Test image" />);
+		const button = screen.getByRole("button", {
+			name: "View larger image: Test image",
+		});
+
+		fireEvent.click(button);
+		fireEvent.click(screen.getByText("Close"));
+
+		expect(button).toHaveFocus();
+	});
+
 	it("closes lightbox when close button is clicked", () => {
 		render(<ImageWithLightbox src="/test-image.jpg" alt="Test image" />);
 		const button = screen.getByRole("button");
@@ -127,8 +153,39 @@ describe("ImageWithLightbox", () => {
 				quality={customQuality}
 			/>,
 		);
-		// This is a bit tricky to test directly since we're mocking the Image component
-		// In a real scenario, we could check if the quality prop is passed correctly
-		expect(true).toBeTruthy(); // Placeholder assertion
+		expect(screen.getByTestId("image-inside-button")).toHaveAttribute(
+			"data-quality",
+			String(customQuality),
+		);
+	});
+
+	it("preserves supplied dimensions and uses lazy, proportional article images", () => {
+		render(
+			<ImageWithLightbox
+				src="/test-image.jpg"
+				alt="Test image"
+				width={1200}
+				height={800}
+			/>,
+		);
+
+		const image = screen.getByTestId("image-inside-button");
+		expect(image).toHaveAttribute("width", "1200");
+		expect(image).toHaveAttribute("height", "800");
+		expect(image).toHaveAttribute("loading", "lazy");
+		expect(image).toHaveStyle({ width: "auto", height: "auto" });
+		expect(image).not.toHaveClass("max-h-80");
+	});
+
+	it("shows an original-image link when the image fails to load", () => {
+		render(<ImageWithLightbox src="/missing.png" alt="Missing image" />);
+
+		fireEvent.error(screen.getByTestId("image-inside-button"));
+
+		expect(screen.queryByTestId("loading-container")).not.toBeInTheDocument();
+		expect(screen.queryByRole("button")).not.toBeInTheDocument();
+		expect(
+			screen.getByRole("link", { name: /open original image/i }),
+		).toHaveAttribute("href", "/missing.png");
 	});
 });

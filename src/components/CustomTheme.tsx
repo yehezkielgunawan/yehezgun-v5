@@ -13,6 +13,13 @@ const SyntaxComponent = dynamic(() => import("./SyntaxComponent"), {
 const ImageWithLightbox = dynamic(() => import("./ImageWithLightbox"), {
 	ssr: false,
 });
+const FigureComponent = dynamic(() => import("./Figure"), {
+	ssr: false,
+});
+const normalizeImageDimension = (value: string | number | undefined) => {
+	const dimension = typeof value === "number" ? value : Number(value);
+	return Number.isFinite(dimension) && dimension > 0 ? dimension : undefined;
+};
 
 export const CustomTheme = {
 	a: ({
@@ -38,10 +45,20 @@ export const CustomTheme = {
 	img: ({
 		src,
 		alt,
+		width,
+		height,
 	}: DetailedHTMLProps<
 		ImgHTMLAttributes<HTMLImageElement>,
 		HTMLImageElement
-	>) => <ImageWithLightbox src={src as string} alt={alt as string} />,
+	>) => (
+		<ImageWithLightbox
+			src={typeof src === "string" ? src : ""}
+			alt={alt ?? ""}
+			width={normalizeImageDimension(width)}
+			height={normalizeImageDimension(height)}
+		/>
+	),
+	Figure: FigureComponent,
 
 	code: (
 		props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,
