@@ -1,10 +1,8 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
+import { contentRehypePlugins } from "./src/services/contentMdx";
 import {
 	contentDateSchema,
 	externalUrlSchema,
@@ -73,7 +71,7 @@ const blogs = defineCollection({
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
-			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
+			rehypePlugins: contentRehypePlugins,
 			remarkPlugins: [remarkGfm],
 		});
 		const { content: _, ...metadata } = document;
@@ -97,7 +95,7 @@ const quickNotes = defineCollection({
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
-			rehypePlugins: [rehypeAutolinkHeadings, rehypeSlug, rehypeRaw],
+			rehypePlugins: contentRehypePlugins,
 			remarkPlugins: [remarkGfm],
 		});
 		const { content: _, ...metadata } = document;

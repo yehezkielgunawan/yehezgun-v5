@@ -53,7 +53,7 @@ const SingeBlogPage = async ({ params }: DetailBlogProps) => {
 					src={blogData.coverImg}
 					width={500}
 					height={300}
-					className="aspect-video h-auto w-full rounded-lg object-fill"
+					className="aspect-video h-auto w-full rounded-lg object-cover"
 				/>
 				<h1>{blogData.title}</h1>
 				<div className="flex flex-wrap items-center justify-between gap-4">
