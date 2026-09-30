@@ -14,8 +14,11 @@ describe("content MDX plugins", () => {
 				path: "media",
 				extension: "mdx",
 			},
-			content:
-				'<Figure src="/diagram.png" alt="A diagram" width={640} height={480} caption="Diagram caption" />',
+			content: `
+<Figure src="/diagram.png" alt="A diagram" width={640} height={480} caption="Diagram caption" />
+
+<Tweet url="https://x.com/example/status/1594612869085233153" />
+`,
 		};
 		const context = {
 			cache: async <Input, Output>(
@@ -31,5 +34,6 @@ describe("content MDX plugins", () => {
 		);
 
 		expect(compiled).toContain("Figure");
+		expect(compiled).toContain("Tweet");
 	});
 });

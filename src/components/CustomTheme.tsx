@@ -16,6 +16,9 @@ const ImageWithLightbox = dynamic(() => import("./ImageWithLightbox"), {
 const FigureComponent = dynamic(() => import("./Figure"), {
 	ssr: false,
 });
+const TweetEmbed = dynamic(() => import("./TweetEmbed"), {
+	ssr: false,
+});
 const normalizeImageDimension = (value: string | number | undefined) => {
 	const dimension = typeof value === "number" ? value : Number(value);
 	return Number.isFinite(dimension) && dimension > 0 ? dimension : undefined;
@@ -59,6 +62,7 @@ export const CustomTheme = {
 		/>
 	),
 	Figure: FigureComponent,
+	Tweet: TweetEmbed,
 
 	code: (
 		props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,

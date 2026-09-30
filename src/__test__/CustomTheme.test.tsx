@@ -22,6 +22,7 @@ describe("CustomTheme MDX components", () => {
 	it("registers image and figure renderers for article MDX", () => {
 		expect(CustomTheme.img).toBeTypeOf("function");
 		expect(CustomTheme.Figure).toBeTypeOf("function");
+		expect(CustomTheme.Tweet).toBeTypeOf("function");
 	});
 
 	it("passes Markdown image dimensions to the lightbox image", () => {
