@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { BiChevronLeft } from "react-icons/bi";
+import BlogArticleContent from "@/components/BlogArticleContent";
 import ClientGiscus from "@/components/ClientGiscus";
 import ClientMDXContent from "@/components/ClientMDXContent";
 import { CustomTheme } from "@/components/CustomTheme";
@@ -43,7 +44,8 @@ export async function generateMetadata({
 }
 
 const SingeBlogPage = async ({ params }: DetailBlogProps) => {
-	const blogData = getBlogBySlug((await params).slug);
+	const { slug } = await params;
+	const blogData = getBlogBySlug(slug);
 	if (!blogData) notFound();
 	return (
 		<GeneralWrapper>
@@ -67,14 +69,14 @@ const SingeBlogPage = async ({ params }: DetailBlogProps) => {
 				</div>
 			</section>
 			<hr className="mt-4" />
-			<section className="mt-6">
+			<BlogArticleContent key={slug}>
 				<ClientMDXContent
 					code={blogData.mdx}
 					components={CustomTheme}
 					placeholder={<p>Loading content...</p>}
 				/>
 				<MermaidWrapper />
-			</section>
+			</BlogArticleContent>
 			<Link
 				href="/blog"
 				className="btn btn-neutral mt-8 flex w-full items-center rounded-lg"

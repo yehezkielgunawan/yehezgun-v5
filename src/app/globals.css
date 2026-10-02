@@ -53,6 +53,28 @@
 	}
 }
 
+/* Blog navigation: offsets match the fixed header and the TOC reading line. */
+.blog-article-body :is(h2, h3) {
+	scroll-margin-top: 6rem;
+}
+
+.blog-toc-floating {
+	bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+	@media (width >= theme(--breakpoint-md)) {
+		bottom: 1.5rem;
+	}
+}
+
+.blog-toc-compact-list {
+	max-height: min(
+		55dvh,
+		calc(100dvh - 15rem - env(safe-area-inset-bottom, 0px))
+	);
+	@media (width >= theme(--breakpoint-md)) {
+		max-height: min(55dvh, calc(100dvh - 11.5rem));
+	}
+}
+
 /* Mermaid diagram container - base styles */
 .mermaid-container {
 	@apply w-full;
