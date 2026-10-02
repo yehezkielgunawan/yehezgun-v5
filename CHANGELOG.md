@@ -1,5 +1,48 @@
 # Changelog
 
+## [1.1.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.0.0...v1.1.0) (2026-10-02)
+
+
+### Features
+
+* add blog post on testing methodologies and best practices ([ba88a0e](https://github.com/yehezkielgunawan/yehezgun-v5/commit/ba88a0ec9cdc1c5e2a3d2a17d1c27f5fc0c7951b))
+* add Cloudflare configuration and update package scripts for deployment ([0cb61ea](https://github.com/yehezkielgunawan/yehezgun-v5/commit/0cb61eafc04d1113189cb76fed77f467997a6688))
+* add Cloudflare deployment workflow and configure standalone output ([f8a8602](https://github.com/yehezkielgunawan/yehezgun-v5/commit/f8a8602e8004357834d9a7269d8e46b317e1569f))
+* add Cloudflare environment types definition file ([0c6af2e](https://github.com/yehezkielgunawan/yehezgun-v5/commit/0c6af2ee3f5af4dc60bfd3504d01f4469c6dc28e))
+* add new images for testing blog post ([9732249](https://github.com/yehezkielgunawan/yehezgun-v5/commit/97322490aa74e731a570bd4abaa0b8c33913792f))
+* add og generator ([21c98aa](https://github.com/yehezkielgunawan/yehezgun-v5/commit/21c98aae46fb570035bb6d1e9baa1ba2acca708a))
+* add OLX Indonesia project with assets and metadata ([daf8459](https://github.com/yehezkielgunawan/yehezgun-v5/commit/daf8459a0d95c0eee2e35f282c23344f56d01740))
+* add test coverage step to CI workflow ([01b7dae](https://github.com/yehezkielgunawan/yehezgun-v5/commit/01b7daee0b2ea197848059cdf45c7f778dd3c560))
+* add yehezgun tools ([293dd22](https://github.com/yehezkielgunawan/yehezgun-v5/commit/293dd22f4216d9fa308e5a2db2dcbe68118365de))
+* blog about testing ([25920a2](https://github.com/yehezkielgunawan/yehezgun-v5/commit/25920a24f44a9316fb848cfa1297f5c2093fe78f))
+* embed X posts in MDX ([24f665e](https://github.com/yehezkielgunawan/yehezgun-v5/commit/24f665efd147895d76b25676a3118b823b22ab6c))
+* enhance Cloudflare deployment configuration and adjust output settings ([22e2c33](https://github.com/yehezkielgunawan/yehezgun-v5/commit/22e2c3341e9d46b4971428a462c4131e99fceb84))
+* improve article image figures and zoom ([f9b89e6](https://github.com/yehezkielgunawan/yehezgun-v5/commit/f9b89e68cf7500443952fa146c9a98e3c3e761fa))
+* update dev dependencies and lockfile for tooling upgrades ([fbb844e](https://github.com/yehezkielgunawan/yehezgun-v5/commit/fbb844ebc240f91326d628273d0afa6f72b5ef30))
+* update resume link and remove featured status from thesis ([10f391b](https://github.com/yehezkielgunawan/yehezgun-v5/commit/10f391b181684f35f26a7f03baba1b21ff6f08e1))
+
+
+### Fixes and Updates
+
+* add Cloudflare deploy command and expose secrets in config ([52e611b](https://github.com/yehezkielgunawan/yehezgun-v5/commit/52e611b6bb0da676e4da68b2c4354c244c360166))
+* add Cloudflare deploy command and expose secrets in config ([76a4c28](https://github.com/yehezkielgunawan/yehezgun-v5/commit/76a4c28592934970af35efa602846dc1642c2335))
+* add data-testid attributes to skeleton loading components for improved testability ([060c8ef](https://github.com/yehezkielgunawan/yehezgun-v5/commit/060c8efb320aee6cfdb0e3ac1db83286c799ce64))
+* audit a11y ([a4f02b5](https://github.com/yehezkielgunawan/yehezgun-v5/commit/a4f02b5476daaf302842206ef4d1c3cd839e4261))
+* Biome config and Footer flex order issues ([b5bb7e4](https://github.com/yehezkielgunawan/yehezgun-v5/commit/b5bb7e4f7d65a7f458e086f9e7258d4e9785b666))
+* enhance clarity in confidence scopes explanation ([003027e](https://github.com/yehezkielgunawan/yehezgun-v5/commit/003027e628e7c458aeaa8011ca60baa87002dac0))
+* fix grammar of the latest blog about testing ([1586897](https://github.com/yehezkielgunawan/yehezgun-v5/commit/1586897acd7fae3f6627682dffb33b71867b5082))
+* harden client MDX rendering ([ada1e23](https://github.com/yehezkielgunawan/yehezgun-v5/commit/ada1e23df428cd2c013ce54cc5c82355ede7e0bf))
+* improve clarity and consistency in testing types section ([8351a99](https://github.com/yehezkielgunawan/yehezgun-v5/commit/8351a9974eb54e9c4c0f6c8ad3751093c0a4d07c))
+* improve clarity and consistency in testing types section ([b58b614](https://github.com/yehezkielgunawan/yehezgun-v5/commit/b58b614295767b70a03b9307a5b6e84fc08c2278))
+* make content routes and ordering deterministic ([f53fb08](https://github.com/yehezkielgunawan/yehezgun-v5/commit/f53fb08d5f15f22476028a15088c9e50ac668718))
+* reorder text-error and text-sm classes in error fallback div ([ded7f82](https://github.com/yehezkielgunawan/yehezgun-v5/commit/ded7f828b27ae317784f2b9f415dac7dfddaed80))
+* update dev script to use turbopack for improved performance ([abf59b8](https://github.com/yehezkielgunawan/yehezgun-v5/commit/abf59b8027ef87675004e1b20bf819acaa6f48b7))
+* update resume link to point to external CV site ([f178175](https://github.com/yehezkielgunawan/yehezgun-v5/commit/f1781758ee23389d8a620808630b79f668897fe9))
+* update resume link to point to external CV site ([421b125](https://github.com/yehezkielgunawan/yehezgun-v5/commit/421b1258f8e4b58a574c862f32ef11b56841b864))
+* update workflow to use Node.js 22 and fix indentation ([93c681a](https://github.com/yehezkielgunawan/yehezgun-v5/commit/93c681a5f46eebee03903b7b6b8d6412a7efda65))
+* update workflow to use Node.js 22 and fix indentation ([2f1ba85](https://github.com/yehezkielgunawan/yehezgun-v5/commit/2f1ba856021dd6e2a2df51ed1dbecbc33df22bab))
+* validate content and improve accessibility ([8978cb7](https://github.com/yehezkielgunawan/yehezgun-v5/commit/8978cb745c77db81df517660377f74a916d37d2c))
+
 ## 1.0.0 (2025-03-28)
 
 
