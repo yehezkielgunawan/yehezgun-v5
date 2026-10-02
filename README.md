@@ -26,6 +26,11 @@ pnpm install
 - [Content Collections](https://www.content-collections.dev/)
 - [React Giscus](https://giscus.app/)
 
+## Releases
+
+Production deploys from versioned releases. See [RELEASING.md](RELEASING.md) for
+PR-title conventions, publishing, retries, rollback, and repository setup.
+
 ## Notes for Mermaid Diagram
 
 - Use ````mermaid```` for responsive diagrams.

@@ -2,14 +2,96 @@ name: Deploy to Cloudflare Workers
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Existing release tag to deploy (retry or rollback), e.g. v1.1.0"
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      release_tag:
+        required: true
+        type: string
+      expected_sha:
+        description: "Commit SHA returned by Release Please"
+        required: false
+        default: ""
+        type: string
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: true
+      CLOUDFLARE_ACCOUNT_ID:
+        required: true
+      NEXT_PUBLIC_REPO:
+        required: false
+      NEXT_PUBLIC_REPO_ID:
+        required: false
+      NEXT_PUBLIC_CATEGORY_ID:
+        required: false
+      NEXT_PUBLIC_UMAMI_URL:
+        required: false
+      NEXT_PUBLIC_UMAMI_ID:
+        required: false
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: false
     steps:
-      - name: Checkout code
+      - name: Verify published release
+        id: release
+        uses: actions/github-script@v7
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        with:
+          script: |
+            const tag = process.env.RELEASE_TAG;
+            if (!/^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(tag)) {
+              throw new Error("Choose a stable release tag in vX.Y.Z format.");
+            }
+            const { data: release } = await github.rest.repos.getReleaseByTag({
+              ...context.repo,
+              tag,
+            });
+            if (release.draft || release.prerelease) {
+              throw new Error("Production requires a published, stable GitHub release.");
+            }
+            core.setOutput("tag", tag);
+
+      - name: Checkout release tag
         uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ steps.release.outputs.tag }}
+          persist-credentials: false
+
+      - name: Verify release version and commit
+        id: identity
+        uses: actions/github-script@v7
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+        with:
+          script: |
+            const { readFileSync } = require("node:fs");
+            const { execFileSync } = require("node:child_process");
+            const version = JSON.parse(readFileSync("package.json", "utf8")).version;
+            const manifest = JSON.parse(readFileSync(".release-please-manifest.json", "utf8"));
+            if (`v${version}` !== process.env.RELEASE_TAG || manifest["."] !== version) {
+              throw new Error("Release tag, package version, and manifest version must match.");
+            }
+            const sha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+            if (process.env.EXPECTED_SHA && sha !== process.env.EXPECTED_SHA) {
+              throw new Error("The release tag does not point to the expected release commit.");
+            }
+            core.setOutput("version", version);
+            core.setOutput("sha", sha);
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -25,6 +107,15 @@ jobs:
       - name: Install Deps (frozen)
         run: pnpm install --frozen-lockfile
 
+      - name: Run Biome
+        run: pnpm biome:lint:ci
+
+      - name: Unit Testing & Coverage
+        run: pnpm test:coverage
+
+      - name: Build Next.js
+        run: pnpm build
+
       - name: Build For Cloudflare Workers
         run: pnpm cloudflare:build:ci
         env:
@@ -35,8 +126,44 @@ jobs:
           NEXT_PUBLIC_UMAMI_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_ID }}
 
       - name: Deploy Worker
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --name yehezgun-v5
+
+      - name: Smoke check production
+        id: smoke
+        run: |
+          for url in https://yehezgun.com https://yehezgun.com/blog; do
+            curl --fail --silent --show-error --location \
+              --retry 5 --retry-all-errors --retry-delay 10 --max-time 30 \
+              --output /dev/null "$url"
+          done
+
+      - name: Record deployment outcome
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          VERSION: ${{ steps.identity.outputs.version }}
+          RELEASE_SHA: ${{ steps.identity.outputs.sha }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          SMOKE_OUTCOME: ${{ steps.smoke.outcome }}
+          JOB_STATUS: ${{ job.status }}
+        with:
+          script: |
+            await core.summary
+              .addHeading("Production deployment")
+              .addTable([
+                [{ data: "Field", header: true }, { data: "Value", header: true }],
+                ["Tag", process.env.RELEASE_TAG],
+                ["Version", process.env.VERSION || "Not verified"],
+                ["Commit", process.env.RELEASE_SHA || "Not verified"],
+                ["Deployment", process.env.DEPLOY_OUTCOME || "Not run"],
+                ["Smoke check", process.env.SMOKE_OUTCOME || "Not run"],
+                ["Job", process.env.JOB_STATUS],
+              ])
+              .addLink("Production site", "https://yehezgun.com")
+              .write();

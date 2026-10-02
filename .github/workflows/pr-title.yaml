@@ -1,0 +1,33 @@
+name: PR Title
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, edited, synchronize, ready_for_review]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  validate:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Read PR metadata only; never check out or execute the PR's code here.
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            perf
+            revert
+            docs
+            style
+            refactor
+            test
+            build
+            ci
+            chore

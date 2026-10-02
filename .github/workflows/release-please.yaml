@@ -1,26 +1,60 @@
-name: release-please
+name: Release
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      is_bump_minor:
-        description: "bump-minor-pre-major"
-        default: false
-        required: true
-        type: boolean
-      is_bump_patch_for_minor_pre_major:
-        description: "bump-patch-for-minor-pre-major"
-        default: false
-        required: true
-        type: boolean
+
+permissions:
+  contents: read
 
 jobs:
   release-please:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: release-please-main
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      sha: ${{ steps.release.outputs.sha }}
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Check release token
+        env:
+          RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+        run: |
+          if [ -z "$RELEASE_PLEASE_TOKEN" ]; then
+            echo "::error::Add RELEASE_PLEASE_TOKEN so generated release PRs receive CI checks."
+            exit 1
+          fi
+
+      - name: Create release PR or publish merged release
+        id: release
+        uses: googleapis/release-please-action@v4
         with:
-          release-type: node
-          package-name: release-please-action
-          bump-minor-pre-major: ${{ inputs.is_bump_minor }}
-          bump-patch-for-minor-pre-major: ${{ inputs.is_bump_patch_for_minor_pre_major }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          target-branch: main
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  deploy:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    uses: ./.github/workflows/cloudflare-deploy.yaml
+    with:
+      release_tag: ${{ needs.release-please.outputs.tag_name }}
+      expected_sha: ${{ needs.release-please.outputs.sha }}
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      NEXT_PUBLIC_REPO: ${{ secrets.NEXT_PUBLIC_REPO }}
+      NEXT_PUBLIC_REPO_ID: ${{ secrets.NEXT_PUBLIC_REPO_ID }}
+      NEXT_PUBLIC_CATEGORY_ID: ${{ secrets.NEXT_PUBLIC_CATEGORY_ID }}
+      NEXT_PUBLIC_UMAMI_URL: ${{ secrets.NEXT_PUBLIC_UMAMI_URL }}
+      NEXT_PUBLIC_UMAMI_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_ID }}
