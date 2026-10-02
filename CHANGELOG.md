@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.1.0...v1.2.0) (2026-10-02)
+
+
+### Features
+
+* add blog table of contents ([ccf48b0](https://github.com/yehezkielgunawan/yehezgun-v5/commit/ccf48b0698815bac158cad5a32d6c21d65811e4e))
+* **blog:** add responsive table of contents ([8500b33](https://github.com/yehezkielgunawan/yehezgun-v5/commit/8500b3332ee781ed06ed7561df65ba2233517282))
+* **blog:** integrate table of contents into posts ([c0513ec](https://github.com/yehezkielgunawan/yehezgun-v5/commit/c0513ecc87cc1dab7d5a80383372806ea7262784))
+
 ## [1.1.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.0.0...v1.1.0) (2026-10-02)
 
 
