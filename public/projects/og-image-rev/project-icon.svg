@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <title>Yehez Image Studio</title>
+  <rect width="512" height="512" rx="112" fill="#0f172a"/>
+  <rect x="110" y="104" width="218" height="270" rx="26" transform="rotate(-12 219 239)" stroke="#f7f3ec" stroke-width="16"/>
+  <rect x="188" y="142" width="218" height="270" rx="26" transform="rotate(10 297 277)" fill="#0f172a" stroke="#ef806c" stroke-width="16"/>
+  <path d="m204 213 53 64 53-64m-53 64v82" stroke="#f7f3ec" stroke-width="26" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>
