@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.2.0...v1.3.0) (2026-11-16)
+
+
+### Features
+
+* add Pocket Presenter to other projects ([5014e5d](https://github.com/yehezkielgunawan/yehezgun-v5/commit/5014e5d18ef7787241da2b3b1666434886527a51))
+* add Pocket Presenter to other projects ([74e9992](https://github.com/yehezkielgunawan/yehezgun-v5/commit/74e999279664a8e00a7a654211bf722fb2604696))
+
 ## [1.2.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.1.0...v1.2.0) (2026-10-02)
 
 
