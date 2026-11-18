@@ -19,6 +19,7 @@ separate MCP just to read PDFs. I don’t need it anymore, so I’m down to thre
 | OpenCode | `2.3.2` |
 | Model I’m using now | `openai/gpt-6.2-sol` |
 | MCP servers | GitHub, Context7, CodeGraph |
+| Local tools | `ast-grep`, `rg`, RTK |
 
 ## The MCP servers I use
 
@@ -47,6 +48,36 @@ I used to keep `pdf-reader` around just to open PDFs. Now I can attach a PDF
 directly in OpenCode, so I took it out of my setup. One thing to check if you
 try it: the model you pick needs to
 [support PDF input](https://opencode.ai/docs/attachments#formats).
+
+## Rules I carry between projects
+
+I updated my global `AGENTS.md` so I don’t have to explain my search habits in
+every repo. If a repo already has a CodeGraph index, I ask OpenCode to start
+there. If I’m about to change a shared helper, seeing where it’s called gives
+me a better idea of what I need to check afterward. OpenCode can get the code
+and its callers together instead of opening files one by one. If the repo
+doesn’t have an index, I don’t ask it to build one just to answer a question.
+
+I reach for [ast-grep](https://ast-grep.github.io/) when I care about what the
+code does. If I’m looking for calls to a function, I can search for a call
+pattern without caring whether the arguments are on one line or three. A
+comment that just mentions the function won’t match that pattern.
+
+[Ripgrep](https://github.com/BurntSushi/ripgrep) (`rg`) is what I want when I
+already have the text, like an error message or a config key. It points me to
+the matching file and line, and I can limit the search to one folder or file
+type when I already know roughly where to look.
+
+I use [RTK](https://github.com/rtk-ai/rtk) to keep routine Git and test output
+shorter. That leaves more room in the chat for the code and the details I’m
+actually working on. I ask OpenCode to call it explicitly for supported
+commands. When I see `rtk git status`, I don’t have to guess whether a hook
+rewrote it. If a test fails and the summary isn’t enough, I can still ask for
+the full output.
+
+I also prefer to keep the work in the current session unless I ask for
+subagents. When the edit is done, I want to see the diff before anything gets
+committed, so OpenCode leaves the changes uncommitted unless I ask.
 
 ## Where Superpowers fits
 
