@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.3.0...v1.3.1) (2026-11-27)
+
+
+### Fixes and Updates
+
+* align tooling with upgraded dependencies ([b8268b0](https://github.com/yehezkielgunawan/yehezgun-v5/commit/b8268b067698d8191de15af422f4ddffeb18c9c2))
+
 ## [1.3.0](https://github.com/yehezkielgunawan/yehezgun-v5/compare/v1.2.0...v1.3.0) (2026-11-16)
 
 
